@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {withTranslation} from "react-i18next";
+import {Navbar} from "react-bootstrap";
 
 /**
  * @param {string} className - 親からのクラス名
@@ -20,9 +21,9 @@ const TopBar = ({
                 }) => {
 
     return (
-        <div>
-
-        </div>
+        <Navbar expand="lg" className="bg-body-tertiary">
+                <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        </Navbar>
     );
 };
 

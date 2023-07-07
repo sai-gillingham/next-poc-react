@@ -14,5 +14,6 @@ export const entryWatcherSagas = Object.values(watchersSagas);
 // export {default as requestSelectors} from "./selectors";
 export {default as requestOperations} from "./operations";
 export {default as requestTypes} from "./types";
-// export {default as requestForms} from "./forms"
+export {default as entryForms} from "./forms"
+export {default as entryValidations} from "./validation"
 export {entryState, default as entryReducer} from './reducers';

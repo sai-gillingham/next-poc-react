@@ -24,9 +24,12 @@ export default function configureStore(REDUX_INITIAL_DATA: any | undefined) {
     const middlewares = [];
     middlewares.push(sagaMiddleware);
     const rootReducer = combineReducers(reducers);
+
     const composeEnhancer = (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+            // @ts-ignore
             trace: true,
+            // @ts-ignore
             traceLimit: 25
         })) || compose;
     const store = createStore(

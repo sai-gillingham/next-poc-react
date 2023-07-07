@@ -12,9 +12,10 @@ const RouteContainer = () => {
         <div className="makeStyles-content-4">
             <Routes>
                 {/** ログイン不要URLマッピング**/}
-                <Route path={"/entry"} element={EntryContainer}/>
-                <Route path={"/entry/confirm"} element={EntryContainer}/>
-                <Route path={"/entry/complete"} element={EntryContainer}/>
+                {/** // @ts-ignore** **/}
+                <Route path={"/entry"} element={<EntryContainer/>}/>
+                <Route path={"/entry/confirm"} element={<EntryContainer/>}/>
+                <Route path={"/entry/complete"} element={<EntryContainer/>}/>
             </Routes>
         </div>
     )

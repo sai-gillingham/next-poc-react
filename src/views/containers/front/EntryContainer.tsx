@@ -32,7 +32,7 @@ const _entryContainer = (
     {
         t
     }) => {
-
+    
     return (
         <EntryComponent
             t={t}

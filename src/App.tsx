@@ -9,6 +9,8 @@ import common_en from "./translations/en/common.json";
 import i18next from "i18next";
 import {I18nextProvider} from "react-i18next";
 import storeProvider from "./StoreProvider";
+import './App.scss';
+
 /***
  * /////////////////////////////////////
  * コアREACTファイル
@@ -33,7 +35,7 @@ declare global {
 i18next.init({
   interpolation: {escapeValue: false},
   lng: 'jp',
-  resources: {
+  resources: { 
     en: {
       common: common_en
     },
@@ -58,3 +60,5 @@ render(
     </ReduxProvider>,
     document.getElementById('root')
 );
+
+export default store;

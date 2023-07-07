@@ -1,5 +1,4 @@
 import React from 'react';
-import {Route} from "react-router-dom";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {withTranslation} from "react-i18next";
@@ -10,27 +9,21 @@ import FrontLayout from "./layout/front/Layout";
  * メインビューコンポーネント、すべてのビューはここからロードされます。
  */
 const mapStateToProps = state => {
-    return {
-
-    }
+    return {}
 }
 
 /**
  * Reduxアクション（これもコンポーネントのパラメータに挿入されます。)
  */
-const mapEventToProps = {
-
-}
+const mapEventToProps = {}
 
 const AppContainer = () => {
 
     return (
         <div>
-            <Route path='/'>
-                <ThemeProvider>
-                    <FrontLayout/>
-                </ThemeProvider>
-            </Route>
+            <ThemeProvider>
+                <FrontLayout/>
+            </ThemeProvider>
         </div>
     )
 }
