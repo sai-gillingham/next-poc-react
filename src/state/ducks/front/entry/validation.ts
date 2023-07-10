@@ -1,4 +1,5 @@
 import Joi from "joi";
+import { tlds } from '@hapi/tlds';
 
 // Review Form
 export const entryForm = Joi.object({
@@ -18,8 +19,8 @@ export const entryForm = Joi.object({
     },
     phone_number: Joi.string().required().max(11),
     email: {
-        first: Joi.string().required().max(255).email(),
-        second: Joi.string().required().max(255).email().equal(Joi.ref("first"))
+        first: Joi.string().required().max(255).email({ tlds: { allow: tlds }} as Joi.EmailOptions),
+        second: Joi.string().required().max(255).email({ tlds: { allow: tlds } } as Joi.EmailOptions).equal(Joi.ref("first"))
     },
     plain_password: {
         first: Joi.string().required().max(255).min(8),

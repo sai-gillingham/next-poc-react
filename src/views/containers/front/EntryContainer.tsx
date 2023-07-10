@@ -1,8 +1,9 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {connect} from "react-redux";
 import {withTranslation} from "react-i18next";
 import EntryComponent from "../../components/front/EntryComponent";
 import {compose} from "redux";
+import {requestOperations} from "../../../state/ducks/front/entry";
 
 /**
  * Reduxステート（これはコンポーネントのパラメータに挿入されます。)
@@ -10,7 +11,9 @@ import {compose} from "redux";
  */
 const mapStateToProps = state => {
     return {
-
+        entryForm: state.entry.entryForm as object,
+        entryData: state.entry.entryFormError as object,
+        entryFormLoading: state.entry.entryFormLoading as boolean  
     }
 }
 
@@ -18,7 +21,7 @@ const mapStateToProps = state => {
  * Reduxアクション（これもコンポーネントのパラメータに挿入されます。)
  */
 const mapEventToProps = {
-
+    sendEntryRequest: requestOperations.sendEntryRequest
 }
 
 /**
@@ -30,12 +33,18 @@ const mapEventToProps = {
  */
 const _entryContainer = (
     {
-        t
+        t,
+        sendEntryRequest,
+        entryForm,
+        entryFormLoading
     }) => {
     
     return (
         <EntryComponent
             t={t}
+            registerEvent={sendEntryRequest}
+            entryData={entryForm}
+            registerLoading={entryFormLoading}
         />
     )
 };

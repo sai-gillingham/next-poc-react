@@ -11,7 +11,7 @@
 
 import {call, put} from "redux-saga/effects";
 import actions from "./actions";
-import {callRequests } from "./api";
+import {callEntry } from "./api";
 
 /**
  * アカウント取得リクエスト
@@ -20,7 +20,7 @@ import {callRequests } from "./api";
 export function* entryRequest(data) {
     yield put(actions.sendEntryLoading())
     try {
-        const requests = yield call(callRequests, data.payload.form);
+        const requests = yield call(callEntry, data.payload.form);
         yield put(actions.sendEntrySuccess());
     } catch (e) {
         yield put(actions.sendEntryFailure(e));

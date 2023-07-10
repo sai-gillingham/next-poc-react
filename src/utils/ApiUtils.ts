@@ -6,19 +6,18 @@ export default class ApiUtils {
    * @param {string|null} accessToken auth0 アクセストークン
    * @param {number|null} timeout タイムアウト
    * @param {string|null} baseurl カスタムURL
-   * @param {boolean} forceNoMock ロカール環境でモック設定を有効にしても、モックサーバーに送信しない。
    */
-  constructor(accessToken = null, timeout = null, baseurl = null, forceNoMock = false,) {
+  constructor(accessToken = null, timeout = null, baseurl = null) {
     let accessTokens = "";
     accessTokens = accessToken;
-    axios.defaults.baseURL = baseurl || process.env.REACT_APP_MANAGEMENT_API_DOMAIN;
+    axios.defaults.baseURL = baseurl || process.env.REACT_APP_ECCUBE_TIMEOUT;
     axios.defaults.headers.post['Content-Type'] = 'application/json';
     axios.defaults.headers.post['Accept'] = 'application/json';
 
     if (accessToken !== null) {
       axios.defaults.headers.common['Authorization'] = "Bearer " + accessToken;
     }
-    axios.defaults.timeout = timeout || process.env.REACT_APP_MANGEMENT_API_TIMEOUT;
+    axios.defaults.timeout = timeout || process.env.REACT_APP_ECCUBE_TIMEOUT;
   }
 
   /**

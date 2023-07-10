@@ -18,6 +18,9 @@ const FrontLayout = ({}) => {
       <div>
         <div>
           <div>
+              <span>
+                  Text
+              </span>
             <Contents/>
             <Footer/>
           </div>

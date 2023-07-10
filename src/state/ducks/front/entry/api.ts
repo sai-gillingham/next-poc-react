@@ -6,7 +6,7 @@ import ApiUtils from "../../../../utils/ApiUtils";
  * @param account_id
  * @returns {AxiosPromise}
  */
-export function callRequests(params) {
+export function callEntry(params) {
     return new ApiUtils().post(
         POST_CUSTOMERS_PATH,
         params,

@@ -1,3 +1,40 @@
 {
-
+  "entry": {
+    "name": {
+      "name01": "名前「姓」",
+      "name02": "名前「名」"
+    },
+    "kana": {
+      "kana01": "フリガナ「セイ」",
+      "kana02": "フリガナ「メイ」"
+    },
+    "mail": "メールアドレス",
+    "phone_number": "電話番号",
+    "postal_code": "郵便番号",
+    "pref": "都道府県",
+    "address": {
+      "addr01": "住所「都道府県」",
+      "addr02": "住所「市区町村」"
+    },
+    "email": {
+      "first": "メールアドレス",
+      "second": "メールアドレス（確認用）"
+    },
+    "plain_password": {
+      "first": "パスワード",
+      "second": "パスワード（確認用）"
+    },
+    "birth": {
+      "year": "生年月日「年」",
+      "month": "生年月日「月」",
+      "day": "生年月日「日」"
+    }
+  },
+  "sex": {
+    "male": "男性",
+    "female": "女性"
+  },
+  "general": {
+    "send": "送信"
+  }
 }

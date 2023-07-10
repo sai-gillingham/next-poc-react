@@ -1,5 +1,5 @@
 import {
-    entryReducer,
+    entryReducer as entry,
     entryState,
     entryWatcherSagas
 } from './front/entry'
@@ -23,14 +23,14 @@ import {all, call, spawn} from 'redux-saga/effects';
  * すべての子のreduxステートを束ねる
  */
 export const StoreState = {
-    entryState: entryState,
+    entryState: entryState as object,
 };
 
 /**
  * すべてのリデューサーイベントを束ねる
  */
 export const reducers = {
-    entryReducer
+    entry
 };
 
 /**

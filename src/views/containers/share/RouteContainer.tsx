@@ -10,6 +10,9 @@ import EntryContainer from "../front/EntryContainer";
 const RouteContainer = () => {
     return (
         <div className="makeStyles-content-4">
+            <div>
+                Text
+            </div>
             <Routes>
                 {/** ログイン不要URLマッピング**/}
                 {/** // @ts-ignore** **/}

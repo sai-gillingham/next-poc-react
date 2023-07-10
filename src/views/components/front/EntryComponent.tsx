@@ -1,8 +1,11 @@
 import React from 'react';
-import {Col, Container, Row} from "react-bootstrap";
+import {Button, Col, Container, Row} from "react-bootstrap";
 import {Field, Form} from 'react-final-form';
 import {mergeWithDefaultForm} from "../../../utils/Common";
 import {entryForms, entryValidations} from "../../../state/ducks/front/entry";
+import TextInput from "../../atoms/form/TextInput";
+import FinalFormSelect from "../../atoms/form/Select";
+import Select from "../../atoms/form/Select";
 
 /**
  *
@@ -50,8 +53,8 @@ const EntryComponent = (
                                     size={"small"}
                                     loadingOnDisable={registerLoading}
                                     disabled={registerLoading}
-                                    component="text"
-                                    label={t('addresses.postal_code')}
+                                    component={TextInput}
+                                    label={t('entry.name.name01')}
                                 />
                             </Col>
                             <Col>
@@ -62,8 +65,8 @@ const EntryComponent = (
                                     size={"small"}
                                     loadingOnDisable={registerLoading}
                                     disabled={registerLoading}
-                                    component="text"
-                                    label={t('addresses.postal_code')}
+                                    component={TextInput}
+                                    label={t('entry.name.name02')}
                                 />
                             </Col>
                         </Row>
@@ -76,77 +79,221 @@ const EntryComponent = (
                                     size={"small"}
                                     loadingOnDisable={registerLoading}
                                     disabled={registerLoading}
-                                    component="text"
-                                    label={t('addresses.postal_code')}
+                                    component={TextInput}
+                                    label={t('entry.kana.kana01')}
                                 />
                             </Col>
                             <Col>
                                 <Field
-                                    name="entry[kana][kana01]"
+                                    name="entry[kana][kana02]"
                                     fullWidth
                                     required
                                     size={"small"}
                                     loadingOnDisable={registerLoading}
                                     disabled={registerLoading}
-                                    component="text"
-                                    label={t('addresses.postal_code')}
-                                />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <Field
-                                    name="first_name"
-                                    fullWidth
-                                    required
-                                    size={"small"}
-                                    loadingOnDisable={registerLoading}
-                                    disabled={registerLoading}
-                                    component="text"
-                                    label={t('addresses.postal_code')}
+                                    component={TextInput}
+                                    label={t('entry.kana.kana02')}
                                 />
                             </Col>
                         </Row>
                         <Row>
                             <Col>
                                 <Field
-                                    name="first_name"
+                                    name="entry[postal_code]"
                                     fullWidth
                                     required
                                     size={"small"}
                                     loadingOnDisable={registerLoading}
                                     disabled={registerLoading}
-                                    component="text"
-                                    label={t('addresses.postal_code')}
+                                    component={TextInput}
+                                    label={t('entry.postal_code')}
                                 />
                             </Col>
                         </Row>
                         <Row>
                             <Col>
                                 <Field
-                                    name="first_name"
+                                    name="entry[pref]"
                                     fullWidth
                                     required
                                     size={"small"}
                                     loadingOnDisable={registerLoading}
                                     disabled={registerLoading}
-                                    component="text"
-                                    label={t('addresses.postal_code')}
+                                    component={TextInput}
+                                    label={t('entry.pref')}
                                 />
                             </Col>
                         </Row>
                         <Row>
                             <Col>
                                 <Field
-                                    name="first_name"
+                                    name="entry[address][addr01]"
                                     fullWidth
                                     required
                                     size={"small"}
                                     loadingOnDisable={registerLoading}
                                     disabled={registerLoading}
-                                    component="text"
-                                    label={t('addresses.postal_code')}
+                                    component={TextInput}
+                                    label={t('entry.address.addr01')}
                                 />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Field
+                                    name="entry[address][addr02]"
+                                    fullWidth
+                                    required
+                                    size={"small"}
+                                    loadingOnDisable={registerLoading}
+                                    disabled={registerLoading}
+                                    component={TextInput}
+                                    label={t('entry.address.addr02')}
+                                />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Field
+                                    name="entry[phone_number]"
+                                    fullWidth
+                                    required
+                                    size={"small"}
+                                    loadingOnDisable={registerLoading}
+                                    disabled={registerLoading}
+                                    component={TextInput}
+                                    label={t('entry.phone_number')}
+                                />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Field
+                                    name="entry[email][first]"
+                                    fullWidth
+                                    required
+                                    size={"small"}
+                                    loadingOnDisable={registerLoading}
+                                    disabled={registerLoading}
+                                    component={TextInput}
+                                    label={t('entry.email.first')}
+                                />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Field
+                                    name="entry[email][second]"
+                                    fullWidth
+                                    required
+                                    size={"small"}
+                                    loadingOnDisable={registerLoading}
+                                    disabled={registerLoading}
+                                    component={TextInput}
+                                    label={t('entry.email.second')}
+                                />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Field
+                                    name="entry[plain_password][first]"
+                                    fullWidth
+                                    required
+                                    size={"small"}
+                                    loadingOnDisable={registerLoading}
+                                    disabled={registerLoading}
+                                    component={TextInput}
+                                    label={t('entry.plain_password.first')}
+                                />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Field
+                                    name="entry[plain_password][second]"
+                                    fullWidth
+                                    required
+                                    size={"small"}
+                                    loadingOnDisable={registerLoading}
+                                    disabled={registerLoading}
+                                    component={TextInput}
+                                    label={t('entry.plain_password.second')}
+                                />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Field
+                                    name="entry[birth][year]"
+                                    fullWidth
+                                    required
+                                    size={"small"}
+                                    loadingOnDisable={registerLoading}
+                                    disabled={registerLoading}
+                                    component={TextInput}
+                                    label={t('entry.birth.year')}
+                                />
+                            </Col>
+                            <Col>
+                                <Field
+                                    name="entry[birth][month]"
+                                    fullWidth
+                                    required
+                                    size={"small"}
+                                    loadingOnDisable={registerLoading}
+                                    disabled={registerLoading}
+                                    component={TextInput}
+                                    label={t('entry.birth.month')}
+                                />
+                            </Col>
+                            <Col>
+                                <Field
+                                    name="entry[birth][day]"
+                                    fullWidth
+                                    required
+                                    size={"small"}
+                                    loadingOnDisable={registerLoading}
+                                    disabled={registerLoading}
+                                    component={TextInput}
+                                    label={t('entry.birth.day')}
+                                />
+                            </Col>
+                        </Row>
+
+                        <Row>
+                            <Col>
+                                <Field
+                                    fullWidth
+                                    size={"small"}
+                                    name="entry[gender]"
+                                    component={Select}
+                                    // 下記のデータをAPIから取るべき？
+                                    options={
+                                        [
+                                            {
+                                                "translation_view": "sex.male",
+                                                "value": "1",
+                                                "id": "1"
+                                            },
+                                            {
+                                                "translation_view": "sex.female",
+                                                "value": "2",
+                                                "id": "2"
+                                            }
+                                        ]
+                                    }
+                                    type="text"
+                                />
+                            </Col>
+                        </Row>
+                        
+                        
+                        <Row>
+                            <Col>
+                                <Button variant="primary" style={{marginTop: 10}} type="submit">
+                                    {t('general.send')}
+                                </Button>
                             </Col>
                         </Row>
                     </form>)}
