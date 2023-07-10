@@ -1,12 +1,13 @@
 import React from 'react';
 import {Button, Col, Container, Row} from "react-bootstrap";
-import {Field, Form} from 'react-final-form';
+import {Field, Form, FormSpy} from 'react-final-form';
 import {mergeWithDefaultForm} from "../../../utils/Common";
 import {entryForms, entryValidations} from "../../../state/ducks/front/entry";
 import TextInput from "../../atoms/form/TextInput";
 import FinalFormSelect from "../../atoms/form/Select";
 import Select from "../../atoms/form/Select";
 import FormToReduxConnectorContainer from "../../containers/share/FormToReduxConnectorContainer";
+import {validator} from "../../../utils/Validate";
 
 /**
  *
@@ -14,6 +15,7 @@ import FormToReduxConnectorContainer from "../../containers/share/FormToReduxCon
  * @param registerLoading
  * @param registerEvent
  * @param entryData
+ * @param entryFormUpdate
  * @returns {JSX.Element}
  * @constructor
  */
@@ -22,7 +24,8 @@ const EntryComponent = (
         t,
         registerLoading,
         registerEvent,
-        entryData
+        entryData,
+        entryFormUpdate
     }) => {
 
     return (
@@ -30,6 +33,7 @@ const EntryComponent = (
             <Form
                 onSubmit={async (e) => {
                     e = mergeWithDefaultForm(e, entryForms.entryForm)
+                    console.log(e);
                     if (!registerLoading) {
                         registerEvent(e);
                         console.log(e)
@@ -37,19 +41,17 @@ const EntryComponent = (
                 }}
                 // ここでフォームデータを妥当性確認し、キーを変換します。
                 validate={e => {
-                    return entryValidations.entryForm.validate(e)
+                    const validation = validator(e, entryValidations.entryForm);
+                    console.log(validation);
+                    return validation;
                 }}
                 // 初期値を設定します
-                // initialValues={{
-                //     entry: entryData
-                // }}
                 subscription={{ submitting: true, pristine: true }}
                 // ここでは、フォームのレンダリングと制御を行います
                 // エラー処理やダブルクリック防止などはここで行います
                 render={({handleSubmit, form, submitting, pristine, invalid, values}) => (
                     <form onSubmit={handleSubmit} noValidate>
-                        {/* // @ts-ignore */}
-                        {/*<FormToReduxConnectorContainer/>*/}
+                        <FormSpy onChange={(state) => entryFormUpdate(state)} />
                         <Row>
                             <Col>
                                 <Field
@@ -272,10 +274,10 @@ const EntryComponent = (
                                 <Field
                                     fullWidth
                                     size={"small"}
-                                    name="entry.gender"
+                                    name="entry.sex"
                                     component={Select}
                                     t={t}
-                                    // 下記のデータをAPIから取るべき？
+                                    // 下記のデータをAPIから取るべきか？
                                     options={
                                         [
                                             {
@@ -299,7 +301,12 @@ const EntryComponent = (
                         
                         <Row>
                             <Col>
-                                <Button variant="primary" style={{marginTop: 10}} type="submit">
+                                <Button 
+                                    variant="primary" 
+                                    style={{marginTop: 10}} 
+                                    type="submit"
+                                    disabled={invalid || pristine || registerLoading}
+                                >
                                     {t('general.send')}
                                 </Button>
                             </Col>

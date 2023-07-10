@@ -10,7 +10,8 @@ export default class ApiUtils {
   constructor(accessToken = null, timeout = null, baseurl = null) {
     let accessTokens = "";
     accessTokens = accessToken;
-    axios.defaults.baseURL = baseurl || process.env.REACT_APP_ECCUBE_TIMEOUT;
+    // @TODO: CHANGE TO CORRECT URL
+    axios.defaults.baseURL = baseurl  || 'https://example.com/';
     axios.defaults.headers.post['Content-Type'] = 'application/json';
     axios.defaults.headers.post['Accept'] = 'application/json';
 

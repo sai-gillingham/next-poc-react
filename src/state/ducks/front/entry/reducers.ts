@@ -33,26 +33,23 @@ export default function entryReducer(state = entryState, action) {
         case types.FRONT_ENTRY_LOADING:
             return {
                 ...state,
-                entryFormLoading: true
+                entryFormLoading: state.entryFormLoading = true
             }
         case types.FRONT_ENTRY_SUCCESS:
             return {
                 ...state,
-                entryFormLoading: false
+                entryFormLoading: state.entryFormLoading = false
             }
         case types.FRONT_ENTRY_FAILURE:
             return {
                 ...state,
                 entryFormError: action.payload,
-                entryFormLoading: false
+                entryFormLoading: state.entryFormLoading = false
             }
         case types.FRONT_ENTRY_FORM_UPDATE:
             return {
                 ...state,
-                entryForm: {
-                    ...state.entryForm,
-                    ...action.payload
-                }
+                entryForm: state.entryForm = action.payload
             }
         default:
             return state;

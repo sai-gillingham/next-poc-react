@@ -21,7 +21,8 @@ const mapStateToProps = state => {
  * Reduxアクション（これもコンポーネントのパラメータに挿入されます。)
  */
 const mapEventToProps = {
-    sendEntryRequest: requestOperations.sendEntryRequest
+    sendEntryRequest: requestOperations.sendEntryRequest,
+    entryFormUpdate: requestOperations.entryFormUpdate
 }
 
 /**
@@ -36,7 +37,8 @@ const _entryContainer = (
         t,
         sendEntryRequest,
         entryForm,
-        entryFormLoading
+        entryFormLoading,
+        entryFormUpdate
     }) => {
     
     return (
@@ -45,6 +47,7 @@ const _entryContainer = (
             registerEvent={sendEntryRequest}
             entryData={entryForm}
             registerLoading={entryFormLoading}
+            entryFormUpdate={entryFormUpdate}
         />
     )
 };

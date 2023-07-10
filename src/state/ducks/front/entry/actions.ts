@@ -33,7 +33,7 @@ export function sendEntryFailure(errorData) {
 export function entryFormUpdate(params) {
     return {
         type: types.FRONT_ENTRY_FORM_UPDATE,
-        payload: params
+        payload: params.values
     }
 }
 
