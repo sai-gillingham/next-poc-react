@@ -30,12 +30,21 @@ export function sendEntryFailure(errorData) {
     }
 }
 
+export function entryFormUpdate(params) {
+    return {
+        type: types.FRONT_ENTRY_FORM_UPDATE,
+        payload: params
+    }
+}
+
+
 
 const actions = {
     sendEntryRequest,
     sendEntryLoading,
     sendEntrySuccess,
-    sendEntryFailure
+    sendEntryFailure,
+    entryFormUpdate
 };
 
 export default actions;

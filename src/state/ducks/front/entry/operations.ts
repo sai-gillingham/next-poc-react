@@ -11,9 +11,11 @@ import actions from "./actions";
  * ////////////////////////////////////////////////////////
  */
 const sendEntryRequest = actions.sendEntryRequest;
+const entryFormUpdate = actions.entryFormUpdate;
 
 const operations = {
-    sendEntryRequest
+    sendEntryRequest,
+    entryFormUpdate
 }
 
 export default operations;

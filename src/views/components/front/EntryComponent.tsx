@@ -6,6 +6,7 @@ import {entryForms, entryValidations} from "../../../state/ducks/front/entry";
 import TextInput from "../../atoms/form/TextInput";
 import FinalFormSelect from "../../atoms/form/Select";
 import Select from "../../atoms/form/Select";
+import FormToReduxConnectorContainer from "../../containers/share/FormToReduxConnectorContainer";
 
 /**
  *
@@ -23,6 +24,7 @@ const EntryComponent = (
         registerEvent,
         entryData
     }) => {
+
     return (
         <Container>
             <Form
@@ -30,6 +32,7 @@ const EntryComponent = (
                     e = mergeWithDefaultForm(e, entryForms.entryForm)
                     if (!registerLoading) {
                         registerEvent(e);
+                        console.log(e)
                     }
                 }}
                 // ここでフォームデータを妥当性確認し、キーを変換します。
@@ -37,17 +40,20 @@ const EntryComponent = (
                     return entryValidations.entryForm.validate(e)
                 }}
                 // 初期値を設定します
-                initialValues={{
-                    entry: entryData
-                }}
+                // initialValues={{
+                //     entry: entryData
+                // }}
+                subscription={{ submitting: true, pristine: true }}
                 // ここでは、フォームのレンダリングと制御を行います
                 // エラー処理やダブルクリック防止などはここで行います
                 render={({handleSubmit, form, submitting, pristine, invalid, values}) => (
                     <form onSubmit={handleSubmit} noValidate>
+                        {/* // @ts-ignore */}
+                        {/*<FormToReduxConnectorContainer/>*/}
                         <Row>
                             <Col>
                                 <Field
-                                    name="entry[name][name01]"
+                                    name="entry.name.name01"
                                     fullWidth
                                     required
                                     size={"small"}
@@ -59,7 +65,7 @@ const EntryComponent = (
                             </Col>
                             <Col>
                                 <Field
-                                    name="entry[name][name02]"
+                                    name="entry.name.name02"
                                     fullWidth
                                     required
                                     size={"small"}
@@ -73,7 +79,7 @@ const EntryComponent = (
                         <Row>
                             <Col>
                                 <Field
-                                    name="entry[kana][kana01]"
+                                    name="entry.kana.kana01"
                                     fullWidth
                                     required
                                     size={"small"}
@@ -85,7 +91,7 @@ const EntryComponent = (
                             </Col>
                             <Col>
                                 <Field
-                                    name="entry[kana][kana02]"
+                                    name="entry.kana.kana02"
                                     fullWidth
                                     required
                                     size={"small"}
@@ -99,7 +105,7 @@ const EntryComponent = (
                         <Row>
                             <Col>
                                 <Field
-                                    name="entry[postal_code]"
+                                    name="entry.postal_code"
                                     fullWidth
                                     required
                                     size={"small"}
@@ -113,7 +119,7 @@ const EntryComponent = (
                         <Row>
                             <Col>
                                 <Field
-                                    name="entry[pref]"
+                                    name="entry.pref"
                                     fullWidth
                                     required
                                     size={"small"}
@@ -127,7 +133,7 @@ const EntryComponent = (
                         <Row>
                             <Col>
                                 <Field
-                                    name="entry[address][addr01]"
+                                    name="entry.address.addr01"
                                     fullWidth
                                     required
                                     size={"small"}
@@ -141,7 +147,7 @@ const EntryComponent = (
                         <Row>
                             <Col>
                                 <Field
-                                    name="entry[address][addr02]"
+                                    name="entry.address.addr02"
                                     fullWidth
                                     required
                                     size={"small"}
@@ -155,7 +161,7 @@ const EntryComponent = (
                         <Row>
                             <Col>
                                 <Field
-                                    name="entry[phone_number]"
+                                    name="entry.phone_number"
                                     fullWidth
                                     required
                                     size={"small"}
@@ -169,7 +175,7 @@ const EntryComponent = (
                         <Row>
                             <Col>
                                 <Field
-                                    name="entry[email][first]"
+                                    name="entry.email.first"
                                     fullWidth
                                     required
                                     size={"small"}
@@ -183,7 +189,7 @@ const EntryComponent = (
                         <Row>
                             <Col>
                                 <Field
-                                    name="entry[email][second]"
+                                    name="entry.email.second"
                                     fullWidth
                                     required
                                     size={"small"}
@@ -197,7 +203,7 @@ const EntryComponent = (
                         <Row>
                             <Col>
                                 <Field
-                                    name="entry[plain_password][first]"
+                                    name="entry.plain_password.first"
                                     fullWidth
                                     required
                                     size={"small"}
@@ -211,7 +217,7 @@ const EntryComponent = (
                         <Row>
                             <Col>
                                 <Field
-                                    name="entry[plain_password][second]"
+                                    name="entry.plain_password.second"
                                     fullWidth
                                     required
                                     size={"small"}
@@ -225,7 +231,7 @@ const EntryComponent = (
                         <Row>
                             <Col>
                                 <Field
-                                    name="entry[birth][year]"
+                                    name="entry.birth.year"
                                     fullWidth
                                     required
                                     size={"small"}
@@ -237,7 +243,7 @@ const EntryComponent = (
                             </Col>
                             <Col>
                                 <Field
-                                    name="entry[birth][month]"
+                                    name="entry.birth.month"
                                     fullWidth
                                     required
                                     size={"small"}
@@ -249,7 +255,7 @@ const EntryComponent = (
                             </Col>
                             <Col>
                                 <Field
-                                    name="entry[birth][day]"
+                                    name="entry.birth.day"
                                     fullWidth
                                     required
                                     size={"small"}
@@ -266,8 +272,9 @@ const EntryComponent = (
                                 <Field
                                     fullWidth
                                     size={"small"}
-                                    name="entry[gender]"
+                                    name="entry.gender"
                                     component={Select}
+                                    t={t}
                                     // 下記のデータをAPIから取るべき？
                                     options={
                                         [
@@ -284,6 +291,7 @@ const EntryComponent = (
                                         ]
                                     }
                                     type="text"
+                                    label={t('entry.sex')}
                                 />
                             </Col>
                         </Row>

@@ -59,7 +59,7 @@ const Select: React.FC<Props> = (
                     >
                         <option key={0} value="">選択してください</option>
                         { options && options.map((option) => (
-                            <option data-testid={option.value} key={option.id} value={option.value}>{option.translation_view}</option>
+                            <option data-testid={option.value} key={option.id} value={option.value}>{t(option.translation_view)}</option>
                         ))}
                     </Form.Select>
                 {meta.error && meta.touched && showError &&
