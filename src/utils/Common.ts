@@ -7,6 +7,8 @@
  * ///////////////////////////////////////////////
  */
 
+import {matchRoutes, useLocation} from "react-router";
+
 /**
  * 現在のフォーム内容とフォームテンプレをマージする。
  * @param currentForm 送信したフォーム

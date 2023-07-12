@@ -1,13 +1,10 @@
 import React from 'react';
 import {Button, Col, Container, Row} from "react-bootstrap";
 import {Field, Form, FormSpy} from 'react-final-form';
-import {mergeWithDefaultForm} from "../../../utils/Common";
-import {entryForms, entryValidations} from "../../../state/ducks/front/entry";
-import TextInput from "../../atoms/form/TextInput";
-import FinalFormSelect from "../../atoms/form/Select";
-import Select from "../../atoms/form/Select";
-import FormToReduxConnectorContainer from "../../containers/share/FormToReduxConnectorContainer";
-import {validator} from "../../../utils/Validate";
+import {mergeWithDefaultForm} from "../../../../utils/Common";
+import {entryForms, entryValidations} from "../../../../state/ducks/front/entry";
+import TextInput from "../../../atoms/form/TextInput";
+import {validator} from "../../../../utils/Validate";
 import {useNavigate} from "react-router";
 
 /**

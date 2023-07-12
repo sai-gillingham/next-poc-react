@@ -1,9 +1,11 @@
 import React from "react";
 import {connect} from "react-redux";
 import {withTranslation} from "react-i18next";
-import EntryComponent from "../../components/front/EntryComponent";
+import EntryComponent from "../../components/front/entry/EntryComponent";
 import {compose} from "redux";
 import {requestOperations} from "../../../state/ducks/front/entry";
+import {useLocation} from "react-router";
+import EntryComplete from "../../components/front/entry/EntryComplete";
 
 /**
  * Reduxステート（これはコンポーネントのパラメータに挿入されます。)
@@ -13,7 +15,7 @@ const mapStateToProps = state => {
     return {
         entryForm: state.entry.entryForm as object,
         entryData: state.entry.entryFormError as object,
-        entryFormLoading: state.entry.entryFormLoading as boolean  
+        entryFormLoading: state.entry.entryFormLoading as boolean
     }
 }
 
@@ -40,15 +42,23 @@ const _entryContainer = (
         entryFormLoading,
         entryFormUpdate
     }) => {
-    
+
+    const location = useLocation()
+
     return (
-        <EntryComponent
-            t={t}
-            registerEvent={sendEntryRequest}
-            entryData={entryForm}
-            registerLoading={entryFormLoading}
-            entryFormUpdate={entryFormUpdate}
-        />
+        (location.pathname === '/entry' &&
+            <EntryComponent
+                t={t}
+                registerEvent={sendEntryRequest}
+                entryData={entryForm}
+                registerLoading={entryFormLoading}
+                entryFormUpdate={entryFormUpdate}
+            />
+        ) || (location.pathname === '/entry/complete' &&
+            <EntryComplete
+                t={t}
+            />
+        )
     )
 };
 
