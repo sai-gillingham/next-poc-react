@@ -72,12 +72,14 @@ export function sendEntryValidationFailure(errorData) {
 
 
 const actions = {
+    // 仮会員登録アクション
     sendEntryRequest,
     sendEntryLoading,
     sendEntrySuccess,
     sendEntryFailure,
     entryFormUpdate,
     
+    // 本会員登録アクション
     sendEntryValidationRequest,
     sendEntryValidationLoading,
     sendEntryValidationSuccess,

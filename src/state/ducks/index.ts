@@ -3,6 +3,14 @@ import {
     entryState,
     entryWatcherSagas
 } from './front/entry'
+import {
+    loginReducer as login,
+    loginState,
+    loginWatcherSagas
+} from "./front/login";
+
+import {all, call, spawn} from 'redux-saga/effects';
+
 
 /***
  * ///////////////////////////////////////////////
@@ -16,7 +24,6 @@ import {
  * reducksのテンプレート化の例 :  https://github.com/alexnm/re-ducks#enter-re-ducks
  * //////////////////////////////////////////////
  */
-import {all, call, spawn} from 'redux-saga/effects';
 
 
 /**
@@ -24,13 +31,15 @@ import {all, call, spawn} from 'redux-saga/effects';
  */
 export const StoreState = {
     entryState: entryState as object,
+    loginState: loginState as object
 };
 
 /**
  * すべてのリデューサーイベントを束ねる
  */
 export const reducers = {
-    entry
+    entry,
+    login
 };
 
 /**
@@ -38,7 +47,8 @@ export const reducers = {
  */
 export function* rootSaga() {
     const watchers = [
-        ...entryWatcherSagas
+        ...entryWatcherSagas,
+        ...loginWatcherSagas
     ];
 
     yield all(
