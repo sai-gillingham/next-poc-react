@@ -39,6 +39,36 @@ export function entryFormUpdate(params) {
     }
 }
 
+export function sendEntryValidationRequest(token) {
+    return {
+        type: types.FRONT_ENTRY_VALIDATION_REQUEST,
+        payload: {
+            token: token
+        }
+    }
+}
+
+export function sendEntryValidationLoading() {
+    return {
+        type: types.FRONT_ENTRY_VALIDATION_LOADING
+    }
+}
+
+export function sendEntryValidationSuccess() {
+    return {
+        type: types.FRONT_ENTRY_VALIDATION_SUCCESS
+    }
+}
+
+export function sendEntryValidationFailure(errorData) {
+    return {
+        type: types.FRONT_ENTRY_VALIDATION_FAILURE,
+        payload: {
+            errorData: errorData
+        }
+    }
+}
+
 
 
 const actions = {
@@ -46,7 +76,12 @@ const actions = {
     sendEntryLoading,
     sendEntrySuccess,
     sendEntryFailure,
-    entryFormUpdate
+    entryFormUpdate,
+    
+    sendEntryValidationRequest,
+    sendEntryValidationLoading,
+    sendEntryValidationSuccess,
+    sendEntryValidationFailure
 };
 
 export default actions;

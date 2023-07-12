@@ -11,7 +11,7 @@
 
 import {call, put} from "redux-saga/effects";
 import actions from "./actions";
-import {callEntry } from "./api";
+import {callEntry, callValidationEntry} from "./api";
 import {useNavigate} from "react-router-dom";
 
 /**
@@ -30,5 +30,19 @@ export function* entryRequest(data) {
     } catch (e) {
         console.log(e);
         yield put(actions.sendEntryFailure(e));
+    }
+}
+
+export function* entryValidationRequest(data) {
+    yield put(actions.sendEntryValidationLoading())
+    try {
+        const requests = yield call(callValidationEntry, data.payload.formData);
+        if(requests.data.errors) {
+            throw new Error(requests.data.errors);
+        }
+        yield put(actions.sendEntryValidationSuccess());
+    } catch (e) {
+        console.log(e);
+        yield put(actions.sendEntryValidationFailure(e));
     }
 }

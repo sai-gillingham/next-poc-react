@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import React from "react";
-import EntryContainer from "../front/EntryContainer";
+import EntryContainer from "../front/entry/EntryContainer";
+import EntryValidationContainer from "../front/entry/EntryValidationContainer";
 
 /**
  * urlに基づいてコンテナをロードする
@@ -16,6 +17,7 @@ const RouteContainer = () => {
                 <Route path={"/entry"} element={<EntryContainer/>}/>
                 <Route path={"/entry/confirm"} element={<EntryContainer/>}/>
                 <Route path={"/entry/complete"} element={<EntryContainer/>}/>
+                <Route path={"/entry/validation/:token"} element={<EntryValidationContainer/>}/>
             </Routes>
         </div>
     )

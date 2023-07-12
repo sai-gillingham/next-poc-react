@@ -1,7 +1,7 @@
 import { takeLeading } from "redux-saga/effects";
 import {default as types} from "./types";
 import {
-    entryRequest
+    entryRequest, entryValidationRequest
 } from "./sagas";
 
 /**
@@ -15,5 +15,6 @@ import {
 
 export function* fetchRequests() {
     yield takeLeading(types.FRONT_ENTRY_REQUEST, entryRequest);
+    yield takeLeading(types.FRONT_ENTRY_VALIDATION_REQUEST, entryValidationRequest);
 }
 

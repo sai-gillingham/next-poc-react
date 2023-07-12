@@ -17,8 +17,18 @@ const CREATE_ENTRY = gql`
         }
     }`;
 
+const VALIDATION_ENTRY = gql`
+    mutation validationEntryCustomer($input : validationEntryCustomerInput!) {
+        validationEntryCustomer(input: $input) {
+            customer {
+                id
+            }
+        }
+    }`;
+
 const entryMutations = {
-    CREATE_ENTRY
+    CREATE_ENTRY,
+    VALIDATION_ENTRY
 }
 
 export default entryMutations;

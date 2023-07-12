@@ -1,11 +1,11 @@
 import React from "react";
 import {connect} from "react-redux";
 import {withTranslation} from "react-i18next";
-import EntryComponent from "../../components/front/entry/EntryComponent";
+import EntryComponent from "../../../components/front/entry/EntryComponent";
 import {compose} from "redux";
-import {requestOperations} from "../../../state/ducks/front/entry";
+import {requestOperations} from "../../../../state/ducks/front/entry";
 import {useLocation} from "react-router";
-import EntryComplete from "../../components/front/entry/EntryComplete";
+import EntryComplete from "../../../components/front/entry/EntryComplete";
 
 /**
  * Reduxステート（これはコンポーネントのパラメータに挿入されます。)

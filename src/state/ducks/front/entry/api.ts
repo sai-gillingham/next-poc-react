@@ -15,3 +15,15 @@ export function callEntry(params) {
         }},
     )
 }
+
+export function callValidationEntry(params) {
+    console.log(params)
+    return new ApiUtils().sendMutation(
+        entryMutations.VALIDATION_ENTRY,
+        {
+            input: {
+                ...params
+            }
+        }
+    )
+}
