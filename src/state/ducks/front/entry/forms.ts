@@ -1,35 +1,12 @@
 const entryForm = {
-    entry: {
-        name: {
-            name01: "",
-            name02: ""
-        },
-        kana: {
-            kana01: "",
-            kana02: ""
-        },
-        postal_code: "",
-        pref: "",
-        address: {
-            addr01: "",
-            addr02: ""
-        },
-        phone_number: "",
-        email: {
-            first: "", 
-            second: ""
-        },
-        plain_password: {
-            first: "", 
-            second: ""
-        },
-        birth: {
-            year: "",
-            month: "",
-            day: ""
-        },
-        sex: ""
-    }
+    name01: "",
+    name02: "",
+    email: "",
+    postalCode: "",
+    phoneNumber: "",
+    addr01: "",
+    addr02: "",
+    plainPassword: ""
 }
 
 const forms = {

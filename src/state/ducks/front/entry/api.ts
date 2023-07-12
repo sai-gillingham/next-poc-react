@@ -1,14 +1,17 @@
-import {POST_CUSTOMERS_PATH} from "./constants";
 import ApiUtils from "../../../../utils/ApiUtils";
+import entryMutations from "./graphql/mutations";
+
+
 /**
- * @param accessToken
+ * 仮会員登録
  * @param params
- * @param account_id
- * @returns {AxiosPromise}
  */
 export function callEntry(params) {
-    return new ApiUtils().post(
-        POST_CUSTOMERS_PATH,
-        params,
+    console.log(params)
+    return new ApiUtils().sendMutation(
+        entryMutations.CREATE_ENTRY,
+        {input: {
+            ...params
+        }},
     )
 }

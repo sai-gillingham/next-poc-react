@@ -1,11 +1,13 @@
 import types from "./types";
 
-export function sendEntryRequest(formData) {
+export function sendEntryRequest(formData, navigate) {
+    
     return {
         type: types.FRONT_ENTRY_REQUEST,
         payload: {
-            formData: formData
-        }
+            formData: formData,
+        },
+        navigate: navigate
     }
 }
 
