@@ -1,4 +1,11 @@
 import ApiUtils from "../../../../utils/ApiUtils";
-import entryMutations from "./graphql/mutations";
+import loginMutations from "./graphql/mutations";
 
-
+export function callLogin(params) {
+    return new ApiUtils().sendMutation(
+        loginMutations.LOGIN_MUTATION,
+        {input: {
+                ...params
+            }},
+    )
+}

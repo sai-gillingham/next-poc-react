@@ -10,10 +10,12 @@ import actions from "./actions";
  * 例: https://github.com/alexnm/re-ducks#operations (英語)
  * ////////////////////////////////////////////////////////
  */
-
+const sendLoginRequest = actions.sendLoginRequest;
+const updateLoginForm = actions.updateLoginForm;
 
 const operations = {
-    
+    sendLoginRequest,
+    updateLoginForm
 }
 
 export default operations;

@@ -2,7 +2,8 @@ import React from "react";
 import {connect} from "react-redux";
 import {withTranslation} from "react-i18next";
 import {compose} from "redux";
-import {requestOperations} from "../../../../state/ducks/front/entry";
+import {loginOperations} from "../../../../state/ducks/front/login";
+import LoginComponent from "../../../components/front/auth/LoginComponent";
 
 /**
  * Reduxステート（これはコンポーネントのパラメータに挿入されます。)
@@ -10,7 +11,9 @@ import {requestOperations} from "../../../../state/ducks/front/entry";
  */
 const mapStateToProps = state => {
     return {
-        
+        loginForm: state.login.loginForm as object,
+        loginFormLoading: state.login.loginFormLoading as boolean,
+        loginFormError: state.login.loginFormError as object
     }
 }
 
@@ -18,7 +21,8 @@ const mapStateToProps = state => {
  * Reduxアクション（これもコンポーネントのパラメータに挿入されます。)
  */
 const mapEventToProps = {
-    
+    sendLoginRequest: loginOperations.sendLoginRequest,
+    updateLoginForm: loginOperations.updateLoginForm
 }
 
 /**
@@ -31,10 +35,23 @@ const mapEventToProps = {
 const _entryContainer = (
     {
         t,
-        
+        loginForm,
+        loginFormLoading,
+        loginFormError,
+        sendLoginRequest,
+        updateLoginForm
     }) => {
     
-    
+    return (
+        <LoginComponent
+            t={t}
+            loginForm={loginForm}
+            loginFormLoading={loginFormLoading}
+            loginFormError={loginFormError}
+            sendLoginRequest={sendLoginRequest}
+            updateLoginForm={updateLoginForm}        
+        />
+    )
 };
 
 
