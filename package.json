@@ -2,6 +2,7 @@
   "name": "next-poc-react",
   "version": "0.1.0",
   "private": true,
+  "proxy":"http://localhost:8080",
   "dependencies": {
     "@apollo/client": "^3.7.17",
     "@hapi/tlds": "^1.0.1",

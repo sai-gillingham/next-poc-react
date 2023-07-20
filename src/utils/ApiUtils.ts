@@ -12,7 +12,7 @@ export default class ApiUtils {
      */
   constructor(accessToken = null, timeout = null, baseurl = null) {
     this.apolloClient = new ApolloClient({
-        uri: baseurl || 'http://localhost:8080/api/graphql',
+        uri: baseurl || 'http://localhost:8080/api',
         cache: new InMemoryCache()
     });
   }

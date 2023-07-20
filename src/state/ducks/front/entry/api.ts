@@ -9,9 +9,7 @@ import entryMutations from "./graphql/mutations";
 export function callEntry(params) {
     return new ApiUtils().sendMutation(
         entryMutations.CREATE_ENTRY,
-        {input: {
-            ...params
-        }},
+        params,
     )
 }
 

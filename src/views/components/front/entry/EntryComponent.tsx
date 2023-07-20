@@ -78,7 +78,47 @@ const EntryComponent = (
                         <Row>
                             <Col>
                                 <Field
-                                    name="postalCode"
+                                    name="kana01"
+                                    fullWidth
+                                    required
+                                    size={"small"}
+                                    loadingOnDisable={registerLoading}
+                                    disabled={registerLoading}
+                                    component={TextInput}
+                                    label={t('entry.kana.kana01')}
+                                />
+                            </Col>
+                            <Col>
+                                <Field
+                                    name="kana02"
+                                    fullWidth
+                                    required
+                                    size={"small"}
+                                    loadingOnDisable={registerLoading}
+                                    disabled={registerLoading}
+                                    component={TextInput}
+                                    label={t('entry.kana.kana02')}
+                                />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Field
+                                    name="pref"
+                                    fullWidth
+                                    required
+                                    size={"small"}
+                                    loadingOnDisable={registerLoading}
+                                    disabled={registerLoading}
+                                    component={TextInput}
+                                    label={t('entry.pref')}
+                                />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Field
+                                    name="postal_code"
                                     fullWidth
                                     required
                                     size={"small"}
@@ -120,7 +160,7 @@ const EntryComponent = (
                         <Row>
                             <Col>
                                 <Field
-                                    name="phoneNumber"
+                                    name="phone_number"
                                     fullWidth
                                     required
                                     size={"small"}
@@ -148,7 +188,7 @@ const EntryComponent = (
                         <Row>
                             <Col>
                                 <Field
-                                    name="plainPassword"
+                                    name="plain_password"
                                     fullWidth
                                     required
                                     size={"small"}
