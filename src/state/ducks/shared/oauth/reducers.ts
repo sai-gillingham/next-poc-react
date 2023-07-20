@@ -15,7 +15,7 @@ import types from "./types";
 
 export const oAuthState = {
     // ログイン情報
-    token: null,
+    oAuthSessionDetails: {}
 }
 
 export default function loginReducer(state = oAuthState, action) {
@@ -23,7 +23,7 @@ export default function loginReducer(state = oAuthState, action) {
         case types.OAUTH_TOKEN_SAVE:
             return {
                 ...state,
-                token: state.token = action.payload.token,
+                oAuthSessionDetails: state.oAuthSessionDetails = action.payload.token,
             }
         default:
             return state;

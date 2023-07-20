@@ -14,7 +14,7 @@ const mapStateToProps = state => {
         loginForm: state.login.loginForm as object,
         loginFormLoading: state.login.loginFormLoading as boolean,
         loginFormError: state.login.loginFormError as object,
-        token: state.oAuth.token as string,
+        oAuthSessionDetails: state.oAuth.oAuthSessionDetails as null | object,
     }
 }
 
@@ -41,7 +41,7 @@ const _entryContainer = (
         loginFormError,
         sendLoginRequest,
         updateLoginForm,
-        token
+        oAuthSessionDetails
     }) => {
     
     return (
@@ -52,7 +52,7 @@ const _entryContainer = (
             loginFormError={loginFormError}
             sendLoginRequest={sendLoginRequest}
             updateLoginForm={updateLoginForm}
-            oAuthToken={token}
+            oAuthSessionDetails={oAuthSessionDetails}
         />
     )
 };

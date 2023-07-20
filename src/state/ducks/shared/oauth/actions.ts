@@ -10,18 +10,18 @@ export function oAuthReceiveToken(token, navigation) {
     }
 }
 
-export function oAuthReceiveTokenSave(token) {
+export function oAuthReceiveSessionDetailsSave(oAuthSessionDetails) {
     return {
         type: types.OAUTH_TOKEN_SAVE,
         payload: {
-            token: token
+            oAuthSessionDetails: oAuthSessionDetails
         }
     }
 }
 
 const actions = {
     oAuthReceiveToken,
-    oAuthReceiveTokenSave
+    oAuthReceiveSessionDetailsSave
 };
 
 export default actions;

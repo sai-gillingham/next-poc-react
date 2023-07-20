@@ -15,7 +15,7 @@ const LoginComponent = (
         loginFormError,
         sendLoginRequest,
         updateLoginForm,
-        oAuthToken
+        oAuthSessionDetails
     }) => {
 
     return (
@@ -30,7 +30,7 @@ const LoginComponent = (
             
             <div className={"my-5 bg-light py-4 px-5"}>
                 <code>
-                    現在のセッショントークン: {oAuthToken ?? "未ログイン"}
+                    現在のセッショントークン: {oAuthSessionDetails?.toString ?? "未ログイン"}
                 </code>
             </div>
 

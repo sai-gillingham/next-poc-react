@@ -8,12 +8,12 @@ import types from "./types";
  * リデューサーの生データをフィルタリングして、ビューにきれいな結果を提供するために使用されます。
  * ///////////////////////////////////////
  */
-function getAccessToken(state): string {
-  return state.oAuth.accessToken;
+function getOAuthCredentials(state): string {
+  return state.oAuth;
 }
 
 const selectors = {
-    getAccessToken
+    getOAuthCredentials
 }
 
 export default selectors;
