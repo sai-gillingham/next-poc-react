@@ -23,7 +23,7 @@ export default function loginReducer(state = oAuthState, action) {
         case types.OAUTH_TOKEN_SAVE:
             return {
                 ...state,
-                oAuthSessionDetails: state.oAuthSessionDetails = action.payload.token,
+                oAuthSessionDetails: state.oAuthSessionDetails = action.payload.oAuthSessionDetails,
             }
         default:
             return state;
