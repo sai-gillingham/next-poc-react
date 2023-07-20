@@ -3,6 +3,7 @@ import React from "react";
 import EntryContainer from "../front/entry/EntryContainer";
 import EntryValidationContainer from "../front/entry/EntryValidationContainer";
 import LoginContainer from "../front/auth/LoginContainer";
+import CaptureOAuthTokenContainer from "../front/auth/oauth2/CaptureOAuthTokenContainer";
 
 /**
  * urlに基づいてコンテナをロードする
@@ -20,6 +21,7 @@ const RouteContainer = () => {
                 <Route path={"/entry/complete"} element={<EntryContainer/>}/>
                 <Route path={"/entry/validation/:token"} element={<EntryValidationContainer/>}/>
                 <Route path={"/mypage/login"} element={<LoginContainer/>}/>
+                <Route path={"/oauth/capture"} element={<CaptureOAuthTokenContainer/>}/>
             </Routes>
         </div>
     )

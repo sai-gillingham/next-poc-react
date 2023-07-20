@@ -1,5 +1,5 @@
 import React from 'react';
-import {Alert, Button, Col, Container, Row} from "react-bootstrap";
+import {Button, Col, Container, Row} from "react-bootstrap";
 import {mergeWithDefaultForm} from "../../../../utils/Common";
 import {validator} from "../../../../utils/Validate";
 import {Field, Form, FormSpy} from "react-final-form";
@@ -14,11 +14,27 @@ const LoginComponent = (
         loginFormLoading,
         loginFormError,
         sendLoginRequest,
-        updateLoginForm
+        updateLoginForm,
+        oAuthToken
     }) => {
-    
+
     return (
         <Container>
+            <div className="bg-light p-5 mt-5 mb-5">
+                <div className="d-grid gap-2">
+                    <Button variant={"secondary"}>未開発: お客様としてログイン</Button>
+                    <Button className="fullWidth" href="http://localhost:8080/admin/authorize?response_type=code&client_id=e740f7c9c0f1162c022854a2549c1356&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foauth%2Fcapture&scope=read+write&state=xxx" variant={"primary"}>デバッグ用:
+                        管理者としてログイン</Button>
+                </div>
+            </div>
+            
+            <div className={"my-5 bg-light py-4 px-5"}>
+                <code>
+                    現在のセッショントークン: {oAuthToken ?? "未ログイン"}
+                </code>
+            </div>
+
+            
             <Form
                 onSubmit={async (e) => {
                     e = mergeWithDefaultForm(e, loginForms.loginForm)
@@ -34,12 +50,12 @@ const LoginComponent = (
                     return validation;
                 }}
                 // 初期値を設定します
-                subscription={{ submitting: true, pristine: true }}
+                subscription={{submitting: true, pristine: true}}
                 // ここでは、フォームのレンダリングと制御を行います
                 // エラー処理やダブルクリック防止などはここで行います
                 render={({handleSubmit, form, submitting, pristine, invalid, values}) => (
                     <form onSubmit={handleSubmit} noValidate>
-                        <FormSpy onChange={(state) => updateLoginForm(state)} />
+                        <FormSpy onChange={(state) => updateLoginForm(state)}/>
                         <Row>
                             <Col>
                                 <Field
@@ -68,7 +84,7 @@ const LoginComponent = (
                                 />
                             </Col>
                         </Row>
-                        
+
 
                         <Row>
                             <Col>
