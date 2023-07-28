@@ -11,9 +11,11 @@ import actions from "./actions";
  * ////////////////////////////////////////////////////////
  */
 const oAuthReceiveToken = actions.oAuthReceiveToken;
+const oAuthReceiveSessionDetailsSave = actions.oAuthReceiveSessionDetailsSave
 
 const operations = {
-    oAuthReceiveToken
+    oAuthReceiveToken,
+    oAuthReceiveSessionDetailsSave
 }
 
 export default operations;

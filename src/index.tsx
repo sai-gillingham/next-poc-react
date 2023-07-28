@@ -12,6 +12,7 @@ import storeProvider from "./StoreProvider";
 import './App.scss';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
+import EccubeSessionContainer from "./views/containers/share/EccubeSessionManager";
 
 /***
  * /////////////////////////////////////
@@ -58,7 +59,9 @@ root.render(
     <ReduxProvider store={store}>
         <I18nextProvider i18n={i18next}>
             <BrowserRouter>
-                <App/>
+                <EccubeSessionContainer>
+                    <App/>
+                </EccubeSessionContainer>
             </BrowserRouter>
         </I18nextProvider>
     </ReduxProvider>
