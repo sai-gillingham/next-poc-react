@@ -29,7 +29,7 @@ export function* oAuthSaveStateToLocalStorage(data) {
     
     yield put(actions.oAuthReceiveSessionDetailsSave(sessionData))
     let token = yield select(selectors.getOAuthCredentials)        
-    localStorage.setItem('oAuthCredentials', token);
+    localStorage.setItem('oAuthCredentials', JSON.stringify(token));
     data.payload.navigation('/mypage/login');
     return;
 }

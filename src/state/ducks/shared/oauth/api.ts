@@ -1,4 +1,4 @@
-import oAuthApiUtils from "../../../../utils/oAuthApiUtils";
+import oAuthApiUtils from "../../../../utils/OAuthApiUtils";
 
 export function callLogin(body) {
     return new oAuthApiUtils().post(

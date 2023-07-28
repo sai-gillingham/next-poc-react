@@ -1,5 +1,6 @@
-import ApiUtils from "../../../../utils/ApiUtils";
+import ApiHandlerUtil from "../../../../utils/ApiHandlerUtil";
 import entryMutations from "./graphql/mutations";
+import GraphQLUtils from "../../../../utils/GraphQLUtils";
 
 
 /**
@@ -7,19 +8,22 @@ import entryMutations from "./graphql/mutations";
  * @param params
  */
 export function callEntry(params) {
-    return new ApiUtils().sendMutation(
+    return new ApiHandlerUtil().graphQLRequestApi(
+        () => (new GraphQLUtils()).sendMutation(
         entryMutations.CREATE_ENTRY,
         params,
-    )
+    ))
 }
 
 export function callValidationEntry(params) {
-    return new ApiUtils().sendMutation(
-        entryMutations.VALIDATION_ENTRY,
-        {
-            input: {
-                ...params
+    return new ApiHandlerUtil().graphQLRequestApi(
+        () => (new GraphQLUtils()).sendMutation(
+            entryMutations.VALIDATION_ENTRY,
+            {
+                input: {
+                    ...params
+                }
             }
-        }
+        )
     )
 }

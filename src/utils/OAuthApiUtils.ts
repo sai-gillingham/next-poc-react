@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default class oAuthApiUtils {
+export default class OAuthApiUtils {
     /**
      * constructor
      * @param {string|null} accessToken auth0 アクセストークン
@@ -26,6 +26,12 @@ export default class oAuthApiUtils {
             url: uri,
             data: body
         });
+    }
+    
+    getNewAccessTokenWithRefreshToken(refreshToken) {
+        return this.post('/token/refresh', {
+            'refresh_token': refreshToken
+        })
     }
 }
 

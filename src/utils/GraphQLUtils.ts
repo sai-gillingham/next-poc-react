@@ -1,7 +1,7 @@
 import {ApolloClient, InMemoryCache} from "@apollo/client";
 
 
-export default class ApiUtils {
+export default class GraphQLUtils {
   apolloClient: ApolloClient<any>;
 
     /**
