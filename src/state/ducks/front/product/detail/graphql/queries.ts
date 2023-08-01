@@ -1,8 +1,9 @@
 import {gql} from '@apollo/client';
 
 const GET_PRODUCT = gql`
-    query productGet($id: Int!) {
+    query ($id: ID!) {
         product(id: $id) {
+            id,
             name,
             description_detail,
             create_date,
@@ -20,12 +21,18 @@ const GET_PRODUCT = gql`
                     name
                 }
             }
+            ProductClasses {
+                price01,
+                ProductStock{
+                    stock
+                }
+            }
         }
     }`;
 
-const entryMutations = {
+const productDetailQueries = {
     GET_PRODUCT,
 }
 
-export default entryMutations;
+export default productDetailQueries;
 

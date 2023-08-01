@@ -1,5 +1,6 @@
 import { takeLeading } from "redux-saga/effects";
 import {default as types} from "./types";
+import {pullProductDetailRequest} from "./sagas";
 
 /**
  * //////////////////////////////////////////
@@ -11,6 +12,6 @@ import {default as types} from "./types";
  */
 
 export function* fetchRequests() {
-    
+    yield takeLeading(types.FRONT_PRODUCT_DETAIL_REQUEST, pullProductDetailRequest);
 }
 
