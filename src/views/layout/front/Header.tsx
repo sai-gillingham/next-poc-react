@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {withTranslation} from "react-i18next";
-import {Navbar} from "react-bootstrap";
+import {AppBar, Box, Button, IconButton, Toolbar, Typography} from "@mui/material";
+import MenuIcon from '@mui/icons-material/Menu';
 
 /**
  * @param {string} className - 親からのクラス名
@@ -21,9 +22,25 @@ const TopBar = ({
                 }) => {
 
     return (
-        <Navbar expand="lg" className="bg-body-tertiary">
-                <Navbar.Brand href="#home">ECCUBE REACT</Navbar.Brand>
-        </Navbar>
+        <Box>
+            <AppBar position="static">
+                <Toolbar>
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                        sx={{ mr: 2 }}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        News
+                    </Typography>
+                    <Button color="inherit">Login</Button>
+                </Toolbar>
+            </AppBar>
+        </Box>
     );
 };
 

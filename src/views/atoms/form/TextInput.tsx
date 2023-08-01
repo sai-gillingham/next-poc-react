@@ -1,6 +1,7 @@
 import React from 'react'
-import {Badge, Form} from 'react-bootstrap';
 import { FieldRenderProps } from 'react-final-form';
+import {Chip, FormControl, InputLabel, TextField} from "@mui/material";
+import FormHelperText from "@mui/material/FormHelperText";
 
 /**
  * Final FormプラグインとMaterial UI Formフィールドを結合するコンポーネント
@@ -31,14 +32,14 @@ const TextInput: React.FC<Props> = ({
         style = {fontWeight: 300}
     }
     return (
-        <div>
-            <Form.Label htmlFor="inputPassword5" className={loadOnDisable} style={style}>
+        <FormControl>
+            <InputLabel htmlFor="inputPassword5" className={loadOnDisable} style={style}>
                 {rest.label}
                 {rest.required &&
-                    <Badge className={[loadOnDisable].join(" ") }>必須</Badge>
+                    <Chip className={[loadOnDisable].join(" ") } label="必須"></Chip>
                 }
-            </Form.Label>
-            <Form.Control
+            </InputLabel>
+            <TextField
                 className={[loadOnDisable].join(" ")}
                 {...rest}
                 name={name}
@@ -48,10 +49,10 @@ const TextInput: React.FC<Props> = ({
                 value={value}
             />
             {meta.error && meta.touched && (
-                <Form.Control.Feedback type="invalid">
+                <FormHelperText>
                     {meta.error}
-                </Form.Control.Feedback>
+                </FormHelperText>
             )}
-        </div>)
+        </FormControl>)
 }
 export default TextInput;

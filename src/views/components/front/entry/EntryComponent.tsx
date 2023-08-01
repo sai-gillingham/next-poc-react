@@ -1,11 +1,11 @@
 import React from 'react';
-import {Button, Col, Container, Row} from "react-bootstrap";
 import {Field, Form, FormSpy} from 'react-final-form';
 import {mergeWithDefaultForm} from "../../../../utils/Common";
 import {entryForms, entryValidations} from "../../../../state/ducks/front/entry";
 import TextInput from "../../../atoms/form/TextInput";
 import {validator} from "../../../../utils/Validate";
 import {useNavigate} from "react-router";
+import {Button, Container, Grid} from "@mui/material";
 
 /**
  *
@@ -49,8 +49,8 @@ const EntryComponent = (
                 render={({handleSubmit, form, submitting, pristine, invalid, values}) => (
                     <form onSubmit={handleSubmit} noValidate>
                         <FormSpy onChange={(state) => entryFormUpdate(state)} />
-                        <Row>
-                            <Col>
+                        <Grid container>
+                            <Grid item xs={6}>
                                 <Field
                                     name="name01"
                                     fullWidth
@@ -61,8 +61,8 @@ const EntryComponent = (
                                     component={TextInput}
                                     label={t('entry.name.name01')}
                                 />
-                            </Col>
-                            <Col>
+                            </Grid>
+                            <Grid item xs={6}>
                                 <Field
                                     name="name02"
                                     fullWidth
@@ -73,10 +73,10 @@ const EntryComponent = (
                                     component={TextInput}
                                     label={t('entry.name.name02')}
                                 />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
+                            </Grid>
+                        </Grid>
+                        <Grid container>
+                            <Grid item xs={6}>
                                 <Field
                                     name="kana01"
                                     fullWidth
@@ -87,8 +87,8 @@ const EntryComponent = (
                                     component={TextInput}
                                     label={t('entry.kana.kana01')}
                                 />
-                            </Col>
-                            <Col>
+                            </Grid>
+                            <Grid item xs={6}>
                                 <Field
                                     name="kana02"
                                     fullWidth
@@ -99,10 +99,10 @@ const EntryComponent = (
                                     component={TextInput}
                                     label={t('entry.kana.kana02')}
                                 />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
+                            </Grid>
+                        </Grid>
+                        <Grid container>
+                            <Grid item xs={12}>
                                 <Field
                                     name="pref"
                                     fullWidth
@@ -113,10 +113,10 @@ const EntryComponent = (
                                     component={TextInput}
                                     label={t('entry.pref')}
                                 />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
+                            </Grid>
+                        </Grid>
+                        <Grid container>
+                            <Grid item xs={12}>
                                 <Field
                                     name="postal_code"
                                     fullWidth
@@ -127,10 +127,10 @@ const EntryComponent = (
                                     component={TextInput}
                                     label={t('entry.postal_code')}
                                 />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
+                            </Grid>
+                        </Grid>
+                        <Grid container>
+                            <Grid item xs={12}>
                                 <Field
                                     name="addr01"
                                     fullWidth
@@ -141,10 +141,10 @@ const EntryComponent = (
                                     component={TextInput}
                                     label={t('entry.address.addr01')}
                                 />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
+                            </Grid>
+                        </Grid>
+                        <Grid container>
+                            <Grid item xs={12}>
                                 <Field
                                     name="addr02"
                                     fullWidth
@@ -155,10 +155,10 @@ const EntryComponent = (
                                     component={TextInput}
                                     label={t('entry.address.addr02')}
                                 />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
+                            </Grid>
+                        </Grid>
+                        <Grid container>
+                            <Grid item xs={12}>
                                 <Field
                                     name="phone_number"
                                     fullWidth
@@ -169,10 +169,10 @@ const EntryComponent = (
                                     component={TextInput}
                                     label={t('entry.phone_number')}
                                 />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
+                            </Grid>
+                        </Grid>
+                        <Grid container>
+                            <Grid item xs={12}>
                                 <Field
                                     name="email"
                                     fullWidth
@@ -183,10 +183,10 @@ const EntryComponent = (
                                     component={TextInput}
                                     label={t('entry.email.first')}
                                 />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
+                            </Grid>
+                        </Grid>
+                        <Grid container>
+                            <Grid item xs={12}>
                                 <Field
                                     name="plain_password"
                                     fullWidth
@@ -197,21 +197,21 @@ const EntryComponent = (
                                     component={TextInput}
                                     label={t('entry.plain_password.first')}
                                 />
-                            </Col>
-                        </Row>
+                            </Grid>
+                        </Grid>
                         
-                        <Row>
-                            <Col>
+                        <Grid container>
+                            <Grid item xs={12}>
                                 <Button 
-                                    variant="primary" 
+                                    variant="contained" 
                                     style={{marginTop: 10}} 
                                     type="submit"
                                     disabled={invalid || pristine || registerLoading}
                                 >
                                     {t('general.send')}
                                 </Button>
-                            </Col>
-                        </Row>
+                            </Grid>
+                        </Grid>
                     </form>)}
             />
         </Container>

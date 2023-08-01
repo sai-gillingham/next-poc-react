@@ -1,6 +1,6 @@
 import React from 'react';
-import {Alert, Container} from "react-bootstrap";
 import {useNavigate} from "react-router";
+import {Alert, Container} from "@mui/material";
 
 
 const EntryComplete = (
@@ -10,7 +10,7 @@ const EntryComplete = (
     const navigation = useNavigate();
     return (
         <Container>
-            <Alert key={"primary"} variant={"primary"} >
+            <Alert key={"primary"} variant={"standard"} >
                 <h1>仮会員完了</h1>
             </Alert>
         </Container>
