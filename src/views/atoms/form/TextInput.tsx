@@ -19,8 +19,9 @@ import { FieldRenderProps } from 'react-final-form';
 type Props = FieldRenderProps<string, any>;
 
 const TextInput: React.FC<Props> = ({
-                                input: {name, onChange, value, multiline = 0, ...restInput},
+                                input: {name, onChange, value, multiline = 0, type="text", ...restInput},
                                 meta,
+                                
                                 loadingOnDisable,
                                 ...rest
                             }: Props) => {
@@ -42,6 +43,7 @@ const TextInput: React.FC<Props> = ({
                 className={[loadOnDisable].join(" ")}
                 {...rest}
                 name={name}
+                type={type}
                 onKeyPress={e => {e.key === "Enter" && e.preventDefault()}}
                 disabled={rest.disabled}
                 onChange={onChange}

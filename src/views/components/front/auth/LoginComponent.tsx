@@ -22,7 +22,6 @@ const LoginComponent = (
         <Container>
             <div className="bg-light p-5 mt-5 mb-5">
                 <div className="d-grid gap-2">
-                    <Button variant={"secondary"}>未開発: お客様としてログイン</Button>
                     <Button className="fullWidth" href="http://localhost:8080/admin/authorize?response_type=code&client_id=e740f7c9c0f1162c022854a2549c1356&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foauth%2Fcapture&scope=read+write&state=xxx" variant={"primary"}>デバッグ用:
                         管理者としてログイン</Button>
                 </div>
@@ -76,6 +75,7 @@ const LoginComponent = (
                                     name="password"
                                     fullWidth
                                     required
+                                    type="password"
                                     size={"small"}
                                     loadingOnDisable={loginFormLoading}
                                     disabled={loginFormLoading}

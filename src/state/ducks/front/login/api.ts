@@ -6,10 +6,10 @@ export function callLogin(params) {
         "token",
         {
             "grant_type":"password",
-            "client_id":"1601a785edeb5dbac82c01d12376b947", // TODO: FIX API TOKEN 
+            "client_id":"e88085145f537ee452dbbfd1868a7f6d", // TODO: FIX API TOKEN 
             "username":params.username,
             "password":params.password,
-            "scope":"read write"
+            "scope":"read+write"
         }
     )
 }
