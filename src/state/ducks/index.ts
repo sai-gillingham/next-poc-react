@@ -1,6 +1,7 @@
 import {entryReducer as entry, entryState, entryWatcherSagas} from './front/entry'
 import {loginReducer as login, loginState, loginWatcherSagas} from "./front/login";
 import {oAuthReducer as oAuth, oAuthSagaWatchers, oAuthState} from "./shared/oauth";
+import {productDetailReducer as productDetail, productDetailState, productDetailWatcherSagas} from "./front/product/detail";
 
 import {all, call, spawn} from 'redux-saga/effects';
 
@@ -26,7 +27,8 @@ import {all, call, spawn} from 'redux-saga/effects';
 export const StoreState = {
     entryState: entryState as object,
     loginState: loginState as object,
-    oAuthState: oAuthState as object
+    oAuthState: oAuthState as object,
+    productDetailState: productDetailState as object,
 };
 
 /**
@@ -36,6 +38,7 @@ export const reducers = {
     entry,
     login,
     oAuth,
+    productDetail
 };
 
 /**
@@ -45,7 +48,8 @@ export function* rootSaga() {
     const watchers = [
         ...entryWatcherSagas,
         ...loginWatcherSagas,
-        ...oAuthSagaWatchers
+        ...oAuthSagaWatchers,
+        ...productDetailWatcherSagas
     ];
 
     yield all(
