@@ -1,8 +1,6 @@
-import { takeLeading } from "redux-saga/effects";
-import {default as types} from "./types";
-import {
-    entryRequest, entryValidationRequest
-} from "./sagas";
+import {takeLeading} from "redux-saga/effects";
+import types from "./types";
+import {oAuthSaveStateToLocalStorage} from "./sagas";
 
 /**
  * //////////////////////////////////////////
@@ -12,9 +10,6 @@ import {
  * イベントタイプが一致した場合、下記の第2パラメータの関数が呼び出され、任意のアクションデータを使用することができます。
  * ////////////////////////////////////////////
  */
-
 export function* fetchRequests() {
-    yield takeLeading(types.FRONT_ENTRY_REQUEST, entryRequest);
-    yield takeLeading(types.FRONT_ENTRY_VALIDATION_REQUEST, entryValidationRequest);
+    yield takeLeading(types.OAUTH_TOKEN_RECEIVE, oAuthSaveStateToLocalStorage);
 }
-

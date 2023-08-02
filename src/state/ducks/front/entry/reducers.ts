@@ -14,9 +14,14 @@
 import types from "./types";
 
 export const entryState = {
+    // 仮会員登録情報
     entryForm: {},
     entryFormLoading: false,
-    entryFormError: null
+    entryFormError: null,
+    // 本会員登録情報
+    validationToken: null,
+    validationLoading:  false,
+    validationError: null
 }
 
 export default function entryReducer(state = entryState, action) {
@@ -50,6 +55,28 @@ export default function entryReducer(state = entryState, action) {
             return {
                 ...state,
                 entryForm: state.entryForm = action.payload
+            }
+        // 本会員登録
+        case types.FRONT_ENTRY_VALIDATION_REQUEST:
+            return {
+                ...state,
+                validationToken: state.validationToken = action.payload.token
+            }
+        case types.FRONT_ENTRY_VALIDATION_LOADING:
+            return {
+                ...state,
+                validationLoading: state.validationLoading = true
+            }
+        case types.FRONT_ENTRY_VALIDATION_SUCCESS:
+            return {
+                ...state,
+                validationLoading: state.validationLoading = false
+            }
+        case types.FRONT_ENTRY_VALIDATION_FAILURE:
+            return {
+                ...state,
+                validationError: state.validationError = action.payload,
+                validationLoading: state.validationLoading = false
             }
         default:
             return state;

@@ -1,11 +1,13 @@
 import types from "./types";
 
-export function sendEntryRequest(formData) {
+export function sendEntryRequest(formData, navigate) {
+    
     return {
         type: types.FRONT_ENTRY_REQUEST,
         payload: {
-            formData: formData
-        }
+            formData: formData,
+        },
+        navigate: navigate
     }
 }
 
@@ -37,14 +39,51 @@ export function entryFormUpdate(params) {
     }
 }
 
+export function sendEntryValidationRequest(token) {
+    return {
+        type: types.FRONT_ENTRY_VALIDATION_REQUEST,
+        payload: {
+            token: token
+        }
+    }
+}
+
+export function sendEntryValidationLoading() {
+    return {
+        type: types.FRONT_ENTRY_VALIDATION_LOADING
+    }
+}
+
+export function sendEntryValidationSuccess() {
+    return {
+        type: types.FRONT_ENTRY_VALIDATION_SUCCESS
+    }
+}
+
+export function sendEntryValidationFailure(errorData) {
+    return {
+        type: types.FRONT_ENTRY_VALIDATION_FAILURE,
+        payload: {
+            errorData: errorData
+        }
+    }
+}
+
 
 
 const actions = {
+    // 仮会員登録アクション
     sendEntryRequest,
     sendEntryLoading,
     sendEntrySuccess,
     sendEntryFailure,
-    entryFormUpdate
+    entryFormUpdate,
+    
+    // 本会員登録アクション
+    sendEntryValidationRequest,
+    sendEntryValidationLoading,
+    sendEntryValidationSuccess,
+    sendEntryValidationFailure
 };
 
 export default actions;
