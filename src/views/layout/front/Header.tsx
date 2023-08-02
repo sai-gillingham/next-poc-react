@@ -47,7 +47,7 @@ const TopBar = ({
                                 {"ログイン"}
                             </Button>
                         </Link>
-                        <Link to="/product/1" style={{textDecoration: 'none', color: "white"}}>
+                        <Link to="/product/detail/2" style={{textDecoration: 'none', color: "white"}}>
                             <Button
                                 key={"購入"}
                                 sx={{my: 2, color: 'white', display: 'block'}}

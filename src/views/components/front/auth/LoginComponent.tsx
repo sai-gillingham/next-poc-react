@@ -19,7 +19,7 @@ const LoginComponent = (
     }) => {
 
     return (
-        <Container>
+        <Container sx={{p: 2}}>
             <div className={"my-5 bg-light py-4 px-5"}>
                 <code>
                     現在のセッショントークン: {oAuthSessionDetails?.toString ?? "未ログイン"}
