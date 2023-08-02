@@ -5,7 +5,7 @@ import {entryForms, entryValidations} from "../../../../state/ducks/front/entry"
 import TextInput from "../../../atoms/form/TextInput";
 import {validator} from "../../../../utils/Validate";
 import {useNavigate} from "react-router";
-import {Button, Container, Grid} from "@mui/material";
+import {Button, Container, Grid, Typography} from "@mui/material";
 
 /**
  *
@@ -27,7 +27,8 @@ const EntryComponent = (
     }) => {
     const navigation = useNavigate();
     return (
-        <Container>
+        <Container sx={{p: 2}}>
+            <Typography variant={"h4"}>{t('entry.title')}</Typography>
             <Form
                 onSubmit={async (e) => {
                     e = mergeWithDefaultForm(e, entryForms.entryForm)

@@ -1,6 +1,6 @@
 import React from 'react'
 import { FieldRenderProps } from 'react-final-form';
-import {Chip, FormControl, InputLabel, TextField} from "@mui/material";
+import {Chip, FilledInput, FormControl, Input, InputLabel, OutlinedInput, TextField} from "@mui/material";
 import FormHelperText from "@mui/material/FormHelperText";
 
 /**
@@ -29,20 +29,21 @@ const TextInput: React.FC<Props> = ({
     const loadOnDisable = undefined;
     let style = {};
     if(rest?.noBold === true) {
-        style = {fontWeight: 300}
+        style = {fontWeight: 300, padding: "5px 15px"}
     }
     return (
-        <FormControl>
-            <InputLabel htmlFor="inputPassword5" className={loadOnDisable} style={style}>
-                {rest.label}
-                {rest.required &&
-                    <Chip className={[loadOnDisable].join(" ") } label="必須"></Chip>
-                }
-            </InputLabel>
+        <FormControl fullWidth sx={{ m: 1 }}>
+            {/*<InputLabel htmlFor="inputPassword5" className={loadOnDisable} style={style} >*/}
+            {/*    {rest.label}*/}
+            {/*    {rest.required &&*/}
+            {/*        <Chip className={[loadOnDisable].join(" ") } label="必須"></Chip>*/}
+            {/*    }*/}
+            {/*</InputLabel>*/}
             <TextField
                 className={[loadOnDisable].join(" ")}
                 {...rest}
                 name={name}
+                variant="standard"
                 onKeyPress={e => {e.key === "Enter" && e.preventDefault()}}
                 disabled={rest.disabled}
                 onChange={onChange}

@@ -9,9 +9,9 @@ const EntryComplete = (
     }) => {
     const navigation = useNavigate();
     return (
-        <Container>
+        <Container sx={{p: 2}}>
             <Alert key={"primary"} variant={"standard"} >
-                <h1>仮会員完了</h1>
+                <h1>仮会員登録は完了しています。</h1>
             </Alert>
         </Container>
     );
