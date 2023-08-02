@@ -12,7 +12,7 @@ export default class GraphQLUtils {
      */
   constructor(accessToken = null, timeout = null, baseurl = null) {
     this.apolloClient = new ApolloClient({
-        uri: baseurl || 'http://localhost:8080/api',
+        uri: baseurl || process.env.REACT_APP_GRAPHQL_URL,
         cache: new InMemoryCache()
     });
   }
