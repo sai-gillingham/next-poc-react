@@ -35,6 +35,12 @@
     "male": "男性",
     "female": "女性"
   },
+  
+  "login": {
+    "username": "ユーザー名",
+    "password": "パスワード"
+  },
+  
   "general": {
     "send": "送信"
   }

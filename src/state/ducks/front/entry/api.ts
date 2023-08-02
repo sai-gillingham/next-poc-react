@@ -1,14 +1,29 @@
-import {POST_CUSTOMERS_PATH} from "./constants";
-import ApiUtils from "../../../../utils/ApiUtils";
+import ApiHandlerUtil from "../../../../utils/ApiHandlerUtil";
+import entryMutations from "./graphql/mutations";
+import GraphQLUtils from "../../../../utils/GraphQLUtils";
+
+
 /**
- * @param accessToken
+ * 仮会員登録
  * @param params
- * @param account_id
- * @returns {AxiosPromise}
  */
 export function callEntry(params) {
-    return new ApiUtils().post(
-        POST_CUSTOMERS_PATH,
+    return new ApiHandlerUtil().graphQLRequestApi(
+        () => (new GraphQLUtils()).sendMutation(
+        entryMutations.CREATE_ENTRY,
         params,
+    ))
+}
+
+export function callValidationEntry(params) {
+    return new ApiHandlerUtil().graphQLRequestApi(
+        () => (new GraphQLUtils()).sendMutation(
+            entryMutations.VALIDATION_ENTRY,
+            {
+                input: {
+                    ...params
+                }
+            }
+        )
     )
 }

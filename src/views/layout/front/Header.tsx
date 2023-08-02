@@ -22,7 +22,7 @@ const TopBar = ({
 
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
-                <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+                <Navbar.Brand href="#home">ECCUBE REACT</Navbar.Brand>
         </Navbar>
     );
 };
