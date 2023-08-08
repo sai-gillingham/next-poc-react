@@ -6,7 +6,8 @@ const ProductDetailComponent = (
         t,
         productDetail,
         productDetailLoading,
-        productDetailError
+        productDetailError,
+        oAuthSessionDetails
     }) => {
 
     return (

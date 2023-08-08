@@ -16,6 +16,7 @@ const mapStateToProps = state => {
         productDetail: state.productDetail.productDetail as object,
         productDetailLoading: state.productDetail.productDetailLoading as boolean,
         productDetailError: state.productDetail.productDetailError as object | null,
+        oAuthSessionDetails: state.oAuth.oAuthSessionDetails as null | object,
     }
 }
 
@@ -39,7 +40,8 @@ const _productDetailContainer = (
         fetchProductDetailRequest,
         productDetail,
         productDetailLoading,
-        productDetailError
+        productDetailError,
+        oAuthSessionDetails
     }) => {
 
     let {pid}: Readonly<Params<string>> = useParams();
@@ -56,6 +58,7 @@ const _productDetailContainer = (
             productDetail={productDetail}
             productDetailLoading={productDetailLoading}
             productDetailError={productDetailError}
+            oAuthSessionDetails={oAuthSessionDetails}
         />
     )
 };
