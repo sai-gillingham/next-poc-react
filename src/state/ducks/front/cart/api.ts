@@ -1,11 +1,13 @@
 import GraphQLUtils from "../../../../utils/GraphQLUtils";
-import productDetailQueries from "./graphql/mutations";
+import cartMutations from "./graphql/mutations";
 
-export function callProductDetailData(id) {
-    return new GraphQLUtils().sendQuery(
-        productDetailQueries.GET_PRODUCT,
+export function modifyCartProduct(access_token: string, product_class_id: number, quantity: number) {
+    console.log(access_token);
+    return new GraphQLUtils(access_token).sendMutation(
+        cartMutations.MODIFY_CART_MUTATION,
         {
-            id: id
+            product_class_id: product_class_id,
+            quantity: quantity
         }
     )
 }

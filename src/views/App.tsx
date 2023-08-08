@@ -10,7 +10,9 @@ import EccubeFrontTheme from "./theme/front/EccubeFrontTheme";
  * メインビューコンポーネント、すべてのビューはここからロードされます。
  */
 const mapStateToProps = state => {
-    return {}
+    return {
+        oAuthSessionDetails: state.oAuth.oAuthSessionDetails as null | object,
+    }
 }
 
 /**
@@ -18,12 +20,16 @@ const mapStateToProps = state => {
  */
 const mapEventToProps = {}
 
-const AppContainer = () => {
+const AppContainer = (
+                          oAuthSessionDetails
+                      ) => {
 
     return (
         <div>
             <ThemeProvider theme={EccubeFrontTheme}>
-                <FrontLayout/>
+                <FrontLayout
+                    oAuthSessionDetails={oAuthSessionDetails}
+                />
             </ThemeProvider>
         </div>
     )

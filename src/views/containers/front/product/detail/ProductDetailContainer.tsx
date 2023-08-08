@@ -6,6 +6,7 @@ import {useParams} from "react-router";
 import {Params} from "react-router-dom";
 import {productDetailOperations} from "../../../../../state/ducks/front/product/detail";
 import ProductDetailComponent from "../../../../components/front/product/detail/ProductDetailComponent";
+import {cartOperators} from "../../../../../state/ducks/front/cart";
 
 /**
  * Reduxステート（これはコンポーネントのパラメータに挿入されます。)
@@ -24,15 +25,18 @@ const mapStateToProps = state => {
  * Reduxアクション（これもコンポーネントのパラメータに挿入されます。)
  */
 const mapEventToProps = {
-    fetchProductDetailRequest: productDetailOperations.fetchProductDetailRequest
+    fetchProductDetailRequest: productDetailOperations.fetchProductDetailRequest,
+    modifyCartRequest: cartOperators.modifyCartRequest
 }
 
+
 /**
- *
- * @param {Object} managerProfile
  * @param t
- * @returns {JSX.Element}
- * @constructor
+ * @param fetchProductDetailRequest
+ * @param productDetail
+ * @param productDetailLoading
+ * @param productDetailError
+ * @param oAuthSessionDetails
  */
 const _productDetailContainer = (
     {
@@ -41,7 +45,8 @@ const _productDetailContainer = (
         productDetail,
         productDetailLoading,
         productDetailError,
-        oAuthSessionDetails
+        oAuthSessionDetails,
+        modifyCartRequest
     }) => {
 
     let {pid}: Readonly<Params<string>> = useParams();
@@ -59,6 +64,8 @@ const _productDetailContainer = (
             productDetailLoading={productDetailLoading}
             productDetailError={productDetailError}
             oAuthSessionDetails={oAuthSessionDetails}
+            modifyCartRequest={modifyCartRequest}
+            
         />
     )
 };

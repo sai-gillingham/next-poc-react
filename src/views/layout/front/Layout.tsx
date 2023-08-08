@@ -11,10 +11,12 @@ import Contents from "../../components/share/Contents";
  * @returns {JSX.Element}
  * @constructor
  */
-const FrontLayout = ({}) => {
+const FrontLayout = ({oAuthSessionDetails}) => {
   return (
     <div>
-      <Header/>
+      <Header
+          oAuthSessionDetails={oAuthSessionDetails}
+      />
       <div>
         <div>
           <div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Box, Button, Container, Grid, Skeleton} from "@mui/material";
+import {modifyCartProduct} from "../../../../../state/ducks/front/cart/api";
 
 const ProductDetailComponent = (
     {
@@ -7,7 +8,8 @@ const ProductDetailComponent = (
         productDetail,
         productDetailLoading,
         productDetailError,
-        oAuthSessionDetails
+        oAuthSessionDetails,
+        modifyCartRequest
     }) => {
 
     return (
@@ -39,7 +41,7 @@ const ProductDetailComponent = (
                             <h1>{productDetail.name}</h1>
                             <p>{productDetail.description_detail}</p>
                             <p>{productDetail?.ProductClasses?.[0]?.price01}円</p>
-                            <Button variant="contained" color="primary">
+                            <Button variant="contained" color="primary" onClick={() => modifyCartRequest(productDetail?.ProductClasses?.[0]?.id, 1) }>
                                 {t("product_detail.add_cart")}
                             </Button>
                         </Grid>

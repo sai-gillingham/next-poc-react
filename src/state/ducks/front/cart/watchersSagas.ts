@@ -1,6 +1,6 @@
 import { takeLeading } from "redux-saga/effects";
 import {default as types} from "./types";
-import {pullProductDetailRequest} from "./sagas";
+import {modifyCartItem} from "./sagas";
 
 /**
  * //////////////////////////////////////////
@@ -12,6 +12,6 @@ import {pullProductDetailRequest} from "./sagas";
  */
 
 export function* fetchRequests() {
-    yield takeLeading(types.FRONT_PRODUCT_DETAIL_REQUEST, pullProductDetailRequest);
+    yield takeLeading(types.FRONT_CART_MODIFY_PRODUCT, modifyCartItem);
 }
 

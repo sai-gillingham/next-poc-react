@@ -1,6 +1,7 @@
 import types from "./types";
 
 export function modifyCartRequest(product_class_id : number, quantity : number) {
+    console.log(product_class_id)
     return {
         type: types.FRONT_CART_MODIFY_PRODUCT,
         payload: {

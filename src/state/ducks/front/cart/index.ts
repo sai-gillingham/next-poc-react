@@ -10,10 +10,10 @@
 
 import * as watchersSagas from './watchersSagas';
 
-export const productDetailWatcherSagas = Object.values(watchersSagas);
+export const cartWatcherSagas = Object.values(watchersSagas);
 // export {default as requestSelectors} from "./selectors";
-export {default as productDetailOperations} from "./operations";
-export {default as productDetailTypes} from "./types";
-export {default as productDetailForms} from "./forms"
-export {default as productDetailValidations} from "./validation"
-export {productDetailState, default as productDetailReducer} from './reducers';
+export {default as cartOperators} from "./operations";
+export {default as cartTypes} from "./types";
+export {default as cartForms} from "./forms"
+export {default as cartValidation} from "./validation"
+export {cartState, default as cartReducer} from './reducers';

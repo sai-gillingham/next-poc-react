@@ -10,11 +10,11 @@ import actions from "./actions";
  * 例: https://github.com/alexnm/re-ducks#operations (英語)
  * ////////////////////////////////////////////////////////
  */
-const fetchProductDetailRequest = actions.fetchProductDetailRequest
+const modifyCartRequest = actions.modifyCartRequest
 
 
 const operations = {
-    fetchProductDetailRequest
+    modifyCartRequest
 }
 
 export default operations;

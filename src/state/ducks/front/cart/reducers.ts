@@ -13,32 +13,32 @@
  */
 import types from "./types";
 
-export const productDetailState = {
-    productDetail: {},
-    productDetailLoading: false,
-    productDetailError: null
+export const cartState = {
+    cartDetail: {},
+    
+    cartModifyLoading: false,
+    cartModifyLoadingError: null
 }
 
-export default function productDetailReducer(state = productDetailState, action) {
+export default function cartReducer(state = cartState, action) {
     
     switch (action.type) {
-        case types.FRONT_PRODUCT_DETAIL_LOADING:
+        case types.FRONT_CART_MODIFY_PRODUCT_LOADING:
             return {
                 ...state,
-                productDetailLoading: state.productDetailLoading = true,
-                productDetailError: state.productDetailError = null
+                cartModifyLoading: state.cartModifyLoading = true,
+                cartModifyLoadingError: state.cartModifyLoadingError = null
             }
-        case types.FRONT_PRODUCT_DETAIL_SUCCESS:
+        case types.FRONT_CART_MODIFY_PRODUCT_SUCCESS:
             return {
                 ...state,
-                productDetailLoading: state.productDetailLoading = false,
-                productDetail: state.productDetail = action.payload.productDetailData,
+                cartModifyLoading: state.cartModifyLoading = false
             }
-        case types.FRONT_PRODUCT_DETAIL_FAILURE:
+        case types.FRONT_CART_MODIFY_PRODUCT_FAILURE:
             return {
                 ...state,
-                productDetailLoading: state.productDetailLoading = false,
-                productDetailError: state.productDetailError = action.payload.errorData,
+                cartModifyLoading: state.cartModifyLoading = false,
+                cartModifyLoadingError: state.cartModifyLoadingError = action.payload.errorData,
             }
         default:
             return state;

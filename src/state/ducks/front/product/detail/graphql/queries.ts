@@ -22,6 +22,7 @@ const GET_PRODUCT = gql`
                 }
             }
             ProductClasses {
+                id,
                 price01,
                 ProductStock{
                     stock

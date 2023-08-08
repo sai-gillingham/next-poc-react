@@ -5,22 +5,25 @@ import {AppBar, Box, Button, Toolbar, Typography} from "@mui/material";
 import {Link} from "react-router-dom";
 
 /**
- * @param {string} className - 親からのクラス名
- * @param {boolean} onMobileNavOpen - スマートフォンのナビメニュー開閉
- * @param {*} t - 翻訳ファイル
- * @param {Object} managerProfile - ログインユーザープロフィールデータ
- * @param {*} i18n - 翻訳ファイル
- * @param {*} rest - 他の変数
+ * 
+ * @param className
+ * @param onMobileNavOpen
+ * @param t
+ * @param i18n
+ * @param oAuthSessionDetails
+ * @param rest
+ * @constructor
  */
 const TopBar = ({
                     className,
                     onMobileNavOpen,
                     t,
-                    managerProfile,
                     i18n,
+                    oAuthSessionDetails,
                     ...rest
                 }) => {
 
+    console.log(oAuthSessionDetails?.oAuthSessionDetails)
     return (
         <Box>
             <AppBar position="static" color={"primary"}>
@@ -55,6 +58,11 @@ const TopBar = ({
                                 {"購入"}
                             </Button>
                         </Link>
+                    </Box>
+                    <Box sx={{ flexGrow: 0 }}>
+                        <Button variant="contained" color={"secondary"}>
+                            {oAuthSessionDetails?.oAuthSessionDetails?.access_token ? "ログアウト" : "ログイン"}
+                        </Button>
                     </Box>
                 </Toolbar>
             </AppBar>

@@ -44,5 +44,8 @@
   
   "general": {
     "send": "送信"
+  },
+  "product_detail": {
+    "add_cart": "カートに追加"
   }
 }

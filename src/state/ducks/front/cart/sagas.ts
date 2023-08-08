@@ -11,15 +11,18 @@
 
 import {call, put} from "redux-saga/effects";
 import actions from "./actions";
-import {callProductDetailData} from "./api";
+import { modifyCartProduct} from "./api";
+import {oAuthSelectors} from "../../shared/oauth";
+import {select} from 'redux-saga/effects';
 
-export function* pullProductDetailRequest(data) {
-    yield put(actions.fetchProductDetailLoading())
+export function* modifyCartItem(data) {
+    yield put(actions.modifyCartRequestLoading())
+    const access_token = yield select(oAuthSelectors.getOAuthCredentials);
     try {
-        const requests = yield call(callProductDetailData, data.payload.id);
-        yield put(actions.fetchProductDetailSuccess(requests.data.product));
+        yield call(modifyCartProduct, access_token?.access_token, data.payload.product_class_id, data.payload.quantity);
+        yield put(actions.modifyCartRequestSuccess());
     } catch (e) {
         console.log(e);
-        yield put(actions.fetchProductDetailFailure(e));
+        yield put(actions.modifyCartRequestFailure(e));
     }
 }
