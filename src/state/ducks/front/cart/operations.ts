@@ -11,10 +11,18 @@ import actions from "./actions";
  * ////////////////////////////////////////////////////////
  */
 const modifyCartRequest = actions.modifyCartRequest
+const cartRequest = actions.cartRequest
+const cartSliderShow = actions.cartSliderShow
+const cartSliderHide = actions.cartSliderHide
+const cartSliderInitialShow = actions.cartSliderInitialShow
 
 
 const operations = {
-    modifyCartRequest
+    modifyCartRequest,
+    cartRequest,
+    cartSliderShow,
+    cartSliderHide,
+    cartSliderInitialShow
 }
 
 export default operations;

@@ -1,38 +1,29 @@
 import {gql} from '@apollo/client';
 
-const GET_CART = gql`
-    query ($id: ID!) {
-        product(id: $id) {
-            id,
-            name,
-            description_detail,
-            create_date,
-            update_date,
-            ProductCategories {
-                Category {
-                    name
-                }
-            }
-            ProductImage {
-                file_name
-            },
-            ProductTag {
-                Tag {
-                    name
-                }
-            }
-            ProductClasses {
-                id,
-                price01,
-                ProductStock{
-                    stock
+const GET_CARTS = gql`
+    query {
+        carts {
+            cart_key,
+            CartItems {
+                quantity,
+                ProductClass {
+                    ClassCategory1 {
+                        name
+                    }
+                    ClassCategory2 {
+                        name
+                    }
+                    price01
+                    Product {
+                        name
+                    }
                 }
             }
         }
     }`;
 
 const productDetailQueries = {
-    GET_PRODUCT,
+    GET_CARTS,
 }
 
 export default productDetailQueries;

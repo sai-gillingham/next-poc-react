@@ -1,32 +1,34 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Footer from "./Footer";
 import Header from "./Header";
 import Contents from "../../components/share/Contents";
+import CartContainer from "../../containers/share/CartContainer";
+import {Drawer} from "@mui/material";
+import CartDrawerContainer from "../../containers/front/cart/CartDrawerContainer";
 
-/**
- *
- * @param getProfile
- * @param managerProfile
- * @param sidebarLinks
- * @returns {JSX.Element}
- * @constructor
- */
-const FrontLayout = ({oAuthSessionDetails}) => {
-  return (
-    <div>
-      <Header
-          oAuthSessionDetails={oAuthSessionDetails}
-      />
-      <div>
+const FrontLayout = ({
+                         oAuthSessionDetails,
+                         cartSliderShow
+                     }) => {
+    return (
         <div>
-          <div>
-            <Contents/>
-            <Footer/>
-          </div>
+            <CartContainer>
+                <Header
+                    oAuthSessionDetails={oAuthSessionDetails}
+                    cartSliderShow={cartSliderShow}
+                />
+                <div>
+                    <div>
+                        <div>
+                            <Contents/>
+                            <CartDrawerContainer/>
+                            <Footer/>
+                        </div>
+                    </div>
+                </div>
+            </CartContainer>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default FrontLayout;

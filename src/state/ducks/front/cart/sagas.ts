@@ -11,7 +11,7 @@
 
 import {call, put} from "redux-saga/effects";
 import actions from "./actions";
-import { modifyCartProduct} from "./api";
+import {cartRequestApi, modifyCartProduct} from "./api";
 import {oAuthSelectors} from "../../shared/oauth";
 import {select} from 'redux-saga/effects';
 
@@ -24,5 +24,17 @@ export function* modifyCartItem(data) {
     } catch (e) {
         console.log(e);
         yield put(actions.modifyCartRequestFailure(e));
+    }
+}
+
+export function* cartRequest() {
+    yield put(actions.cartRequestLoading())
+    const access_token = yield select(oAuthSelectors.getOAuthCredentials);
+    try {
+        const cartData = yield call(cartRequestApi, access_token?.access_token);
+        yield put(actions.cartRequestSuccess(cartData.data?.carts));
+    } catch (e) {
+        console.log(e);
+        yield put(actions.cartRequestFailure(e));
     }
 }
