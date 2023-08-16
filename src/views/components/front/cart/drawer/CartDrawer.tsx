@@ -27,7 +27,7 @@ const CartDrawer = (
                     {cartDetailLoading === true &&
                         <LoadingAtom/>
                     }
-                    {cartDetailLoading === false &&
+                    {cartDetailLoading === false && Array.isArray(cartDetail) &&
                         cartDetail.map((cart, index) => (
                             <>
                                 <List key={"cart_" + index}>
