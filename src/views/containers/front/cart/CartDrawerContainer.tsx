@@ -1,14 +1,9 @@
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {withTranslation} from "react-i18next";
-import EntryComponent from "../../../components/front/entry/EntryComponent";
 import {compose} from "redux";
-import {requestOperations} from "../../../../state/ducks/front/entry";
-import {useLocation} from "react-router";
-import EntryComplete from "../../../components/front/entry/EntryComplete";
 import {cartOperators} from "../../../../state/ducks/front/cart";
 import CartDrawer from "../../../components/front/cart/drawer/CartDrawer";
-import LoadingAtom from "../../../atoms/LoadingAtom";
 
 /**
  * Reduxステート（これはコンポーネントのパラメータに挿入されます。)
@@ -58,18 +53,13 @@ const _cartDrawerContainer = (
 
     return (
         <>
-            {cartDetailLoading === false && initialCartSliderShow === false &&
-                <CartDrawer
-                    t={t}
-                    cartDetail={cartDetail}
-                    cartSliderHide={cartSliderHide}
-                    cartSliderShowState={cartSliderShow}
-                    cartDetailLoading={cartDetailLoading}
-                />
-            }
-            {cartDetailLoading === true &&
-                <LoadingAtom/>
-            }
+            <CartDrawer
+                t={t}
+                cartDetail={cartDetail}
+                cartSliderHide={cartSliderHide}
+                cartSliderShowState={cartSliderShow}
+                cartDetailLoading={cartDetailLoading}
+            />
         </>
     )
 };
