@@ -1,10 +1,10 @@
 import GraphQLUtils from "../../../../utils/GraphQLUtils";
-import cartMutations from "./graphql/mutations";
+import orderMutations from "./graphql/mutations";
 
-export function modifyCartProduct(access_token: string, product_class_id: number, quantity: number) {
+export function orderMutationAPI(access_token: string) {
     console.log(access_token);
     return new GraphQLUtils(access_token).sendMutation(
-        cartMutations.MODIFY_CART_MUTATION,
+        orderMutations.ORDER_MUTATION,
         {}
     )
 }

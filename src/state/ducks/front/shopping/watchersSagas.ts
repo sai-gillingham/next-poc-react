@@ -15,4 +15,3 @@ import {mutateAndFetchOrder} from "./sagas";
 export function* fetchRequests() {
     yield takeLeading(types.FRONT_SHOPPING_ORDER, mutateAndFetchOrder);
 }
-

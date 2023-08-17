@@ -1,33 +1,54 @@
 import {gql} from "@apollo/client";
 
-const MODIFY_CART_MUTATION = gql`
+const ORDER_MUTATION = gql`
     mutation {
         orderMutation: orderMutation {
-            total,
-            subtotal,
-            postal_code,
+            total
+            subtotal
+            postal_code
             Pref {
                 name
-            },
-            addr01,
-            addr02
-            phone_number,
-            email
-            OrderItems {
-                price,
-                Product {
-                    ProductImage {
-                        file_name
-                    }
-                },
-                product_name,
-                product_code,
             }
+            addr01
+            addr02
+            phone_number
+            name01
+            name02
+            kana01
+            kana02
+            Shippings {
+                addr01
+                addr02
+                Pref {
+                    name
+                }
+                phone_number
+                name01
+                name02
+                kana01
+                kana02
+                shipping_delivery_name
+                shipping_delivery_date
+                shipping_delivery_time
+                OrderItems {
+                    price
+                    Product {
+                        ProductImage {
+                            file_name
+                        }
+                    }
+                    quantity
+                    product_name
+                    product_code
+                }
+            }
+            company_name
+            email
         }
     }`;
 
-const cartMutations = {
-    MODIFY_CART_MUTATION
+const orderMutations = {
+    ORDER_MUTATION
 }
 
-export default cartMutations;
+export default orderMutations;

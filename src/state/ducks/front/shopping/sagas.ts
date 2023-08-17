@@ -10,14 +10,14 @@
 import {call, put, select} from "redux-saga/effects";
 import actions from "./actions";
 import {oAuthSelectors} from "../../shared/oauth";
-import {modifyCartProduct} from "./api";
+import {orderMutationAPI} from "./api";
 
 export function* mutateAndFetchOrder(data) {
     yield put(actions.mutateAndFetchOrderLoading())
     const access_token = yield select(oAuthSelectors.getOAuthCredentials);
     try {
-        const order = yield call(modifyCartProduct, access_token?.access_token, data.payload.product_class_id, data.payload.quantity);
-        yield put(actions.mutateAndFetchOrderSuccess(order));
+        const order = yield call(orderMutationAPI, access_token?.access_token);
+        yield put(actions.mutateAndFetchOrderSuccess(order?.data?.orderMutation));
     } catch (e) {
         console.log(e);
         yield put(actions.mutateAndFetchOrderFailure(e));

@@ -1,12 +1,14 @@
 import types from "./types";
 
 export function mutateAndFetchOrder() {
+    console.log("G")
     return {
-        types: types.FRONT_SHOPPING_ORDER
+        type: types.FRONT_SHOPPING_ORDER
     }
 }
 
 export function mutateAndFetchOrderLoading() {
+    console.log("L")
     return {
         type: types.FRONT_SHOPPING_ORDER_LOADING
     }
