@@ -39,15 +39,23 @@ const CartComponent = (
                                                 商品名: {item?.ProductClass?.Product?.name}<br/>
                                                 ※ 規格名1: {item?.ProductClass?.ClassCategory1?.name}<br/>
                                                 ※ 規格名2: {item?.ProductClass?.ClassCategory2?.name}<br/>
-                                                価格: ￥{item?.ProductClass?.price01}<br/>
+                                                価格: ￥{item?.price}<br/>
                                                 数量: {item?.quantity}<br/>
                                             </code>
                                         </ListItem>
                                     ))}
                                 </List>
                                 <Divider/>
+                                <Box>
+                                    <Grid container spacing={2}>
+                                        <Grid item xs={12} sm={12}>
+                                            <Typography variant={"body1"} style={{textAlign: "right"}}>合計金額: ￥{cart?.total_price}</Typography>
+                                        </Grid>
+                                    </Grid>
+                                </Box>
                             </>
                         ))}
+                       
                     </Box>
                 }
                 <Link to={"/shopping"}>
