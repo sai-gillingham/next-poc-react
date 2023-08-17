@@ -28,7 +28,7 @@ const CartComponent = (
                         </Grid>
                     </>
                 }
-                {cartDetailLoading === false &&
+                {cartDetailLoading === false && Array.isArray(cartDetail) &&
                     <Box sx={{p: 2}}>
                         {cartDetail.map((cart, index) => (
                             <>
