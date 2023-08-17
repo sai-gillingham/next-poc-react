@@ -1,3 +1,4 @@
+import actions from "./actions";
 /***
  * /////////////////////////////////////////////////////////
  * OPERATIONS オペレーション
@@ -8,10 +9,10 @@
  * 例: https://github.com/alexnm/re-ducks#operations (英語)
  * ////////////////////////////////////////////////////////
  */
-
+const mutateAndFetchOrder = actions.mutateAndFetchOrder;
 
 const operations = {
-    
+    mutateAndFetchOrder
 }
 
 export default operations;

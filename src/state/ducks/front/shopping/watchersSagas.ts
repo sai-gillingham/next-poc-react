@@ -1,3 +1,7 @@
+import {takeLeading} from "redux-saga/effects";
+import {default as types} from "./types";
+import {mutateAndFetchOrder} from "./sagas";
+
 /**
  * //////////////////////////////////////////
  * SAGA WATCHERS (サガ・ウォッチャー)
@@ -7,7 +11,8 @@
  * ////////////////////////////////////////////
  */
 
+
 export function* fetchRequests() {
-    
+    yield takeLeading(types.FRONT_SHOPPING_ORDER, mutateAndFetchOrder);
 }
 
