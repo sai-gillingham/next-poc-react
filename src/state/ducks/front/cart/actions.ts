@@ -6,7 +6,7 @@ import types from "./types";
 
 export function modifyCartRequest(product_class_id : number, quantity : number) {
     return {
-        type: types.FRONT_CART_MODIFY_PRODUCT,
+        type: types.FRONT_CART_MODIFY_PRODUCT_REQUEST,
         payload: {
             product_class_id: product_class_id,
             quantity: quantity
@@ -16,19 +16,19 @@ export function modifyCartRequest(product_class_id : number, quantity : number) 
 
 export function modifyCartRequestLoading() {
     return {
-        type: types.FRONT_CART_MODIFY_PRODUCT_LOADING
+        type: types.FRONT_CART_MODIFY_PRODUCT_REQUEST_LOADING
     }
 }
 
 export function modifyCartRequestSuccess() {
     return {
-        type: types.FRONT_CART_MODIFY_PRODUCT_SUCCESS
+        type: types.FRONT_CART_MODIFY_PRODUCT_REQUEST_SUCCESS
     }
 }
 
 export function modifyCartRequestFailure(errorData: any) {
     return {
-        type: types.FRONT_CART_MODIFY_PRODUCT_FAILURE,
+        type: types.FRONT_CART_MODIFY_PRODUCT_REQUEST_FAILURE,
         payload: {
             errorData: errorData
         }
