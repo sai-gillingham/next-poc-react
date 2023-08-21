@@ -61,9 +61,18 @@ const PAYMENT_METHOD_MUTATION = gql`
     }
 `;
 
+const PURCHASE_MUTATION = gql`
+    mutation {
+        purchaseMutation {
+            id
+        }
+    }
+`;
+
 const orderMutations = {
     ORDER_MUTATION,
-    PAYMENT_METHOD_MUTATION
+    PAYMENT_METHOD_MUTATION,
+    PURCHASE_MUTATION
 }
 
 export default orderMutations;

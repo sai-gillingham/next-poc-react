@@ -8,9 +8,9 @@
  * ////////////////
  */
 import {call, put, select} from "redux-saga/effects";
-import actions from "./actions";
+import actions, {mutateAndFetchOrderConfirmRequestLoading} from "./actions";
 import {oAuthSelectors} from "../../shared/oauth";
-import {orderMutationAPI, paymentMethodMutationAPI} from "./api";
+import {orderMutationAPI, paymentMethodMutationAPI, purchaseMutationAPI} from "./api";
 
 export function* mutateAndFetchOrder(data) {
     yield put(actions.mutateAndFetchOrderLoading())
@@ -35,5 +35,18 @@ export function* mutateAndFetchPaymentMethod(data) {
     } catch (e) {
         console.log(e);
         yield put(actions.mutateAndFetchPaymentMethodFailure(e));
+    }
+}
+
+export function* mutateAndFetchOrderConfirmRequest(data) {
+    yield put(actions.mutateAndFetchOrderConfirmRequestLoading())
+    const access_token = yield select(oAuthSelectors.getOAuthCredentials);
+    try {
+        yield call(purchaseMutationAPI, access_token?.access_token);
+        yield put(actions.mutateAndFetchOrderConfirmRequestSuccess());
+        yield put(data.navigate('/shopping/complete'));
+    } catch (e) {
+        console.log(e);
+        yield put(actions.mutateAndFetchOrderConfirmRequestFailure(e));
     }
 }

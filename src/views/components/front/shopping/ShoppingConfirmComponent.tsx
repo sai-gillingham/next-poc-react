@@ -8,7 +8,9 @@ const ShoppingConfirmComponent = (
         t,
         order,
         loadingOrder,
-        orderError
+        orderError,
+        navigation,
+        mutateAndFetchOrderConfirmRequest
     }) => {
     
     return (
@@ -105,11 +107,9 @@ const ShoppingConfirmComponent = (
             }
             <Box paddingTop={5}>
                 <Link to={"/cart"}>
-                    <Button variant={"contained"} color={"primary"}>カートに戻る</Button>
+                    <Button variant={"contained"} color={"primary"}>ご注文手続きに戻る</Button>
                 </Link>
-                <Link to={"/shopping/confirm"}>
-                    <Button variant={"contained"} color={"primary"}>確認する</Button>
-                </Link>
+                <Button variant={"contained"} color={"primary"} onClick={() => mutateAndFetchOrderConfirmRequest(navigation)}>注文する</Button>
             </Box>
         </Container>
     )

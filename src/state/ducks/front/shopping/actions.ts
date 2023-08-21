@@ -34,10 +34,11 @@ export function mutateAndFetchOrderFailure(errorData: any) {
         }
     }
 }
+
 //////////////////////////////
 // 支払い方法
 //////////////////////////////
-export function mutateAndFetchPaymentMethod(payment_method_id: number|null) {
+export function mutateAndFetchPaymentMethod(payment_method_id: number | null) {
     return {
         type: types.FRONT_SHOPPING_PAYMENT_METHOD,
         payload: {
@@ -70,6 +71,37 @@ export function mutateAndFetchPaymentMethodFailure(errorData: any) {
     }
 }
 
+//////////////////////////////
+// 注文を確定する
+//////////////////////////////
+export function mutateAndFetchOrderConfirmRequest(navigate) {
+    return {
+        type: types.FRONT_SHOPPING_ORDER_CONFIRM_REQUEST,
+        navigate: navigate
+    }
+}
+
+export function mutateAndFetchOrderConfirmRequestLoading() {
+    return {
+        type: types.FRONT_SHOPPING_ORDER_CONFIRM_REQUEST_LOADING
+    }
+}
+
+export function mutateAndFetchOrderConfirmRequestSuccess() {
+    return {
+        type: types.FRONT_SHOPPING_ORDER_CONFIRM_REQUEST_SUCCESS
+    }
+}
+
+export function mutateAndFetchOrderConfirmRequestFailure(errorData: any) {
+    return {
+        type: types.FRONT_SHOPPING_ORDER_CONFIRM_REQUEST_FAILURE,
+        payload: {
+            errorData: errorData
+        }
+    }
+}
+
 
 const actions = {
     // 注文
@@ -82,7 +114,13 @@ const actions = {
     mutateAndFetchPaymentMethod,
     mutateAndFetchPaymentMethodLoading,
     mutateAndFetchPaymentMethodSuccess,
-    mutateAndFetchPaymentMethodFailure
+    mutateAndFetchPaymentMethodFailure,
+
+    // 注文を確定する
+    mutateAndFetchOrderConfirmRequest,
+    mutateAndFetchOrderConfirmRequestLoading,
+    mutateAndFetchOrderConfirmRequestSuccess,
+    mutateAndFetchOrderConfirmRequestFailure
 };
 
 export default actions;

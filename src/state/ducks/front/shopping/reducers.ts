@@ -21,7 +21,10 @@ export const shoppingState = {
     paymentMethods: [],
     selectedPaymentMethod: null,
     paymentMethodsLoading: true,
-    paymentMethodsError: {}
+    paymentMethodsError: {},
+    
+    confirmOrderLoading: false,
+    confirmOrderError: {}
 }
 
 export default function shoppingReducer(state = shoppingState, action) {
@@ -67,6 +70,31 @@ export default function shoppingReducer(state = shoppingState, action) {
                 paymentMethodsLoading: state.paymentMethodsLoading = false,
                 paymentMethodsError: state.paymentMethodsError = action.payload.errorData
             }
+        //////////////////////////////
+        // 注文を確定する
+        //////////////////////////////
+            case types.FRONT_SHOPPING_ORDER_CONFIRM_REQUEST_LOADING:
+            {
+                return {
+                    ...state,
+                    confirmOrderLoading: state.confirmOrderLoading = true
+                }
+            }
+        case types.FRONT_SHOPPING_ORDER_CONFIRM_REQUEST_SUCCESS: {
+            return {
+                ...state,
+                confirmOrderLoading: state.confirmOrderLoading = false,
+                confirmOrderError: state.confirmOrderError = {}
+            }
+        }
+        case types.FRONT_SHOPPING_ORDER_CONFIRM_REQUEST_FAILURE: {
+            return {
+                ...state,
+                confirmOrderLoading: state.confirmOrderLoading = false,
+                confirmOrderError: state.confirmOrderError = action.payload.errorData
+            }
+        }
+            
         default:
             return state;
     }

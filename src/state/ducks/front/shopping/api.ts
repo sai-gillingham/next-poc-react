@@ -16,3 +16,10 @@ export function paymentMethodMutationAPI(access_token: string, payment_method_id
         }
     )
 }
+
+export function purchaseMutationAPI(access_token: string) {
+    return new GraphQLUtils(access_token).sendMutation(
+        orderMutations.PURCHASE_MUTATION,
+        {}
+    )
+}

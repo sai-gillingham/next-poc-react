@@ -11,10 +11,12 @@ import actions from "./actions";
  */
 const mutateAndFetchOrder = actions.mutateAndFetchOrder;
 const mutateAndFetchPaymentMethod = actions.mutateAndFetchPaymentMethod;
+const mutateAndFetchOrderConfirmRequest = actions.mutateAndFetchOrderConfirmRequest;
 
 const operations = {
     mutateAndFetchOrder,
-    mutateAndFetchPaymentMethod
+    mutateAndFetchPaymentMethod,
+    mutateAndFetchOrderConfirmRequest
 }
 
 export default operations;

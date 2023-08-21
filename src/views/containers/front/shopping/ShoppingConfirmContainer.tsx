@@ -5,6 +5,7 @@ import {compose} from "redux";
 import ShoppingComponent from "../../../components/front/shopping/ShoppingComponent";
 import {shoppingOperators} from "../../../../state/ducks/front/shopping";
 import ShoppingConfirmComponent from "../../../components/front/shopping/ShoppingConfirmComponent";
+import {useNavigate} from "react-router";
 
 /**
  * Reduxステート（これはコンポーネントのパラメータに挿入されます。)
@@ -23,7 +24,8 @@ const mapStateToProps = state => {
  * Reduxアクション（これもコンポーネントのパラメータに挿入されます。)
  */
 const mapEventToProps = {
-    mutateAndFetchOrder: shoppingOperators.mutateAndFetchOrder
+    mutateAndFetchOrder: shoppingOperators.mutateAndFetchOrder,
+    mutateAndFetchOrderConfirmRequest: shoppingOperators.mutateAndFetchOrderConfirmRequest
 }
 
 
@@ -31,8 +33,10 @@ const _shoppingConfirmContainer = (
     {
         t,
         mutateAndFetchOrder,
-        oAuthSessionDetails,
+        mutateAndFetchOrderConfirmRequest,
         
+        
+        oAuthSessionDetails,
         order,
         loadingOrder,
         orderError
@@ -49,12 +53,16 @@ const _shoppingConfirmContainer = (
         }, [initialOpen, mutateAndFetchOrder, oAuthSessionDetails]
     )
 
+    const navigation = useNavigate();
+
     return (
         <ShoppingConfirmComponent
             t={t}
             order={order}
             loadingOrder={loadingOrder}
             orderError={orderError}
+            navigation={navigation}
+            mutateAndFetchOrderConfirmRequest={mutateAndFetchOrderConfirmRequest}
         />
     )
 };

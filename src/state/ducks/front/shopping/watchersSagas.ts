@@ -1,6 +1,6 @@
 import {takeLeading} from "redux-saga/effects";
 import {default as types} from "./types";
-import {mutateAndFetchOrder, mutateAndFetchPaymentMethod} from "./sagas";
+import {mutateAndFetchOrder, mutateAndFetchOrderConfirmRequest, mutateAndFetchPaymentMethod} from "./sagas";
 
 /**
  * //////////////////////////////////////////
@@ -15,4 +15,5 @@ import {mutateAndFetchOrder, mutateAndFetchPaymentMethod} from "./sagas";
 export function* fetchRequests() {
     yield takeLeading(types.FRONT_SHOPPING_ORDER, mutateAndFetchOrder);
     yield takeLeading(types.FRONT_SHOPPING_PAYMENT_METHOD, mutateAndFetchPaymentMethod);
+    yield takeLeading(types.FRONT_SHOPPING_ORDER_CONFIRM_REQUEST, mutateAndFetchOrderConfirmRequest);
 }
