@@ -1,4 +1,5 @@
-import {ApolloClient, InMemoryCache} from "@apollo/client";
+import {ApolloClient, HttpLink, InMemoryCache} from "@apollo/client";
+import {setContext} from "@apollo/client/link/context";
 
 
 export default class GraphQLUtils {
@@ -11,8 +12,23 @@ export default class GraphQLUtils {
      * @param baseurl
      */
   constructor(accessToken = null, timeout = null, baseurl = null) {
+      const httpLink = new HttpLink({
+            uri: baseurl || process.env.REACT_APP_GRAPHQL_URL,
+      });
+      
+      const authLink = setContext((_, { headers }) => {
+            return {
+                headers: {
+                    ...headers,
+                    authorization: accessToken ? `Bearer ${accessToken}` : "",
+                }
+            }
+      });
+      
+      
+      
     this.apolloClient = new ApolloClient({
-        uri: baseurl || 'http://localhost:8080/api',
+        link: authLink.concat(httpLink),
         cache: new InMemoryCache()
     });
   }

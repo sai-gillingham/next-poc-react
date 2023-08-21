@@ -1,5 +1,6 @@
 {
   "entry": {
+    "title": "新規会員登録",
     "name": {
       "name01": "名前「姓」",
       "name02": "名前「名」"
@@ -43,5 +44,8 @@
   
   "general": {
     "send": "送信"
+  },
+  "product_detail": {
+    "add_cart": "カートに追加"
   }
 }

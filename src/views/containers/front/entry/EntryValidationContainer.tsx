@@ -44,9 +44,6 @@ const _entryValidationContainer = (
     const location = useLocation()
 
     useEffect(() => {
-        console.log('token', token)
-        console.log('validationToken', validationToken)
-        console.log('validationLoading', validationLoading)
             if (token !== validationToken && validationLoading !== true) {
                 sendEntryValidationRequest(token)
             }

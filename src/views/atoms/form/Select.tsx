@@ -1,6 +1,7 @@
 import React from "react";
-import {Badge, Form} from "react-bootstrap";
 import {FieldRenderProps} from "react-final-form";
+import {Chip, FormControl, InputLabel, Select as MSelect} from "@mui/material";
+import FormHelperText from '@mui/material/FormHelperText';
 
 type Props = FieldRenderProps<string, any>;
 
@@ -34,20 +35,20 @@ const Select: React.FC<Props> = (
         // const loadOnDisable = loadingOnDisable && rest.disabled ? classes.loadingOnDisable : undefined
         const loadOnDisable = undefined;
         return (
-            <div>
+            <FormControl fullWidth>
                 {rest.label &&
                     <div>
-                        <Form.Label className={loadOnDisable}>
+                        <InputLabel className={loadOnDisable}>
                             {/* この項目は必須ですか？ チェック */}
                             {rest.label}
                             {rest.required &&
-                                <Badge className={[loadOnDisable].join(" ") }>必須</Badge>
+                                <Chip className={[loadOnDisable].join(" ") } label="必須"></Chip>
                             }
-                        </Form.Label>
+                        </InputLabel>
                         <br/>
                     </div>
                 }
-                    <Form.Select
+                    <MSelect
                         className={loadOnDisable}
                         name={name}
                         style={rest.inputStyle}
@@ -61,13 +62,11 @@ const Select: React.FC<Props> = (
                         { options && options.map((option) => (
                             <option data-testid={option.value} key={option.id} value={option.value}>{t(option.translation_view)}</option>
                         ))}
-                    </Form.Select>
+                    </MSelect>
                 {meta.error && meta.touched && showError &&
-                    <Form.Control.Feedback type="invalid" style={{fontSize: "0.6964285714285714rem"}}>
-                        {meta.error}
-                    </Form.Control.Feedback>
+                    <FormHelperText>Error</FormHelperText>
                 }
-            </div>
+            </FormControl>
         )
     }
 ;

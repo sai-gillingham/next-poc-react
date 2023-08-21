@@ -1,5 +1,6 @@
+import {Alert, Container} from '@mui/material';
 import React from 'react';
-import {Alert, Container, Spinner} from "react-bootstrap";
+import LinearProgress from '@mui/material/LinearProgress';
 
 
 const EntryValidationComplete = (
@@ -12,7 +13,7 @@ const EntryValidationComplete = (
         <>
             {((validationToken && validationLoading === false) || validationToken) &&
             <Container>
-                <Alert key={"primary"} variant={"primary"}>
+                <Alert key={"primary"} variant={"standard"}>
                     <h1>仮会員完了</h1>
                 </Alert>
             </Container>
@@ -20,9 +21,7 @@ const EntryValidationComplete = (
             {(validationLoading === true || !validationToken) &&
             // ロード中
             <Container>
-                <Spinner animation="border" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </Spinner>
+                <LinearProgress />
             </Container>
             }
         </>

@@ -2,27 +2,39 @@ import React from 'react';
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {withTranslation} from "react-i18next";
-import {ThemeProvider} from "react-bootstrap";
 import FrontLayout from "./layout/front/Layout";
+import {ThemeProvider} from "@mui/material";
+import EccubeFrontTheme from "./theme/front/EccubeFrontTheme";
+import {cartOperators} from "../state/ducks/front/cart";
 
 /**
  * メインビューコンポーネント、すべてのビューはここからロードされます。
  */
 const mapStateToProps = state => {
-    return {}
+    return {
+        oAuthSessionDetails: state.oAuth.oAuthSessionDetails as null | object,
+    }
 }
 
 /**
  * Reduxアクション（これもコンポーネントのパラメータに挿入されます。)
  */
-const mapEventToProps = {}
+const mapEventToProps = {
+    cartSliderShow: cartOperators.cartSliderShow
+}
 
-const AppContainer = () => {
-
+const AppContainer = ({
+                          oAuthSessionDetails,
+                          cartSliderShow
+                      }) => {
+    console.log(oAuthSessionDetails)
     return (
         <div>
-            <ThemeProvider>
-                <FrontLayout/>
+            <ThemeProvider theme={EccubeFrontTheme}>
+                <FrontLayout
+                    oAuthSessionDetails={oAuthSessionDetails}
+                    cartSliderShow={cartSliderShow}
+                />
             </ThemeProvider>
         </div>
     )
