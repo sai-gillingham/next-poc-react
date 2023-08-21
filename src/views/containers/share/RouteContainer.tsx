@@ -5,6 +5,7 @@ import EntryValidationContainer from "../front/entry/EntryValidationContainer";
 import LoginContainer from "../front/auth/LoginContainer";
 import CaptureOAuthTokenContainer from "../front/auth/oauth2/CaptureOAuthTokenContainer";
 import ProductDetailContainer from "../front/product/detail/ProductDetailContainer";
+import CartContainer from "../front/cart/CartContainer";
 
 /**
  * urlに基づいてコンテナをロードする
@@ -24,6 +25,7 @@ const RouteContainer = () => {
                 <Route path={"/mypage/login"} element={<LoginContainer/>}/>
                 <Route path={"/oauth/capture"} element={<CaptureOAuthTokenContainer/>}/>
                 <Route path={"product/detail/:pid"} element={<ProductDetailContainer/>}/>
+                <Route path={"/cart"} element={<CartContainer/>}/>
             </Routes>
         </div>
     )

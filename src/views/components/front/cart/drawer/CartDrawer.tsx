@@ -27,7 +27,7 @@ const CartDrawer = (
                     {cartDetailLoading === true &&
                         <LoadingAtom/>
                     }
-                    {cartDetailLoading === false &&
+                    {cartDetailLoading === false && Array.isArray(cartDetail) &&
                         cartDetail.map((cart, index) => (
                             <>
                                 <List key={"cart_" + index}>
@@ -37,7 +37,7 @@ const CartDrawer = (
                                                 商品名: {item?.ProductClass?.Product?.name}<br/>
                                                 ※ 規格名1: {item?.ProductClass?.ClassCategory1?.name}<br/>
                                                 ※ 規格名2: {item?.ProductClass?.ClassCategory2?.name}<br/>
-                                                価格: ￥{item?.ProductClass?.price01}<br/>
+                                                価格: ￥{item?.price}<br/>
                                                 数量: {item?.quantity}<br/>
                                             </code>
                                         </ListItem>

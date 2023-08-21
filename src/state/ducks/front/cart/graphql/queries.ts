@@ -4,8 +4,10 @@ const GET_CARTS = gql`
     query {
         carts {
             cart_key,
+            total_price
             CartItems {
                 quantity,
+                price
                 ProductClass {
                     ClassCategory1 {
                         name
@@ -13,7 +15,6 @@ const GET_CARTS = gql`
                     ClassCategory2 {
                         name
                     }
-                    price01
                     Product {
                         name
                     }
