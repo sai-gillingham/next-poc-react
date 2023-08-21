@@ -5,6 +5,7 @@ import {Field, Form, FormSpy} from "react-final-form";
 import TextInput from "../../../atoms/form/TextInput";
 import {loginForms, loginValidation} from "../../../../state/ducks/front/login";
 import {Button, Container, Grid} from "@mui/material";
+import {Code} from "@mui/icons-material";
 
 
 const LoginComponent = (
@@ -21,8 +22,8 @@ const LoginComponent = (
     return (
         <Container sx={{p: 2}}>
             <div className={"my-5 bg-light py-4 px-5"}>
-                <code>
-                    現在のセッショントークン: {oAuthSessionDetails?.toString ?? "未ログイン"}
+                <code style={{overflowWrap: "break-word"}}>
+                    現在のセッショントークン: {oAuthSessionDetails?.access_token ?? "未ログイン"}
                 </code>
             </div>
 

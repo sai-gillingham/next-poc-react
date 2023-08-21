@@ -6,6 +6,7 @@ import {useParams} from "react-router";
 import {Params} from "react-router-dom";
 import {productDetailOperations} from "../../../../../state/ducks/front/product/detail";
 import ProductDetailComponent from "../../../../components/front/product/detail/ProductDetailComponent";
+import {cartOperators} from "../../../../../state/ducks/front/cart";
 
 /**
  * Reduxステート（これはコンポーネントのパラメータに挿入されます。)
@@ -16,6 +17,7 @@ const mapStateToProps = state => {
         productDetail: state.productDetail.productDetail as object,
         productDetailLoading: state.productDetail.productDetailLoading as boolean,
         productDetailError: state.productDetail.productDetailError as object | null,
+        oAuthSessionDetails: state.oAuth.oAuthSessionDetails as null | object,
     }
 }
 
@@ -23,15 +25,18 @@ const mapStateToProps = state => {
  * Reduxアクション（これもコンポーネントのパラメータに挿入されます。)
  */
 const mapEventToProps = {
-    fetchProductDetailRequest: productDetailOperations.fetchProductDetailRequest
+    fetchProductDetailRequest: productDetailOperations.fetchProductDetailRequest,
+    modifyCartRequest: cartOperators.modifyCartRequest
 }
 
+
 /**
- *
- * @param {Object} managerProfile
  * @param t
- * @returns {JSX.Element}
- * @constructor
+ * @param fetchProductDetailRequest
+ * @param productDetail
+ * @param productDetailLoading
+ * @param productDetailError
+ * @param oAuthSessionDetails
  */
 const _productDetailContainer = (
     {
@@ -39,7 +44,9 @@ const _productDetailContainer = (
         fetchProductDetailRequest,
         productDetail,
         productDetailLoading,
-        productDetailError
+        productDetailError,
+        oAuthSessionDetails,
+        modifyCartRequest
     }) => {
 
     let {pid}: Readonly<Params<string>> = useParams();
@@ -56,6 +63,9 @@ const _productDetailContainer = (
             productDetail={productDetail}
             productDetailLoading={productDetailLoading}
             productDetailError={productDetailError}
+            oAuthSessionDetails={oAuthSessionDetails}
+            modifyCartRequest={modifyCartRequest}
+            
         />
     )
 };
