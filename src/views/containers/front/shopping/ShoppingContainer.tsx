@@ -78,6 +78,7 @@ const _shoppingContainer = (
             orderError={orderError}
             paymentMethods={paymentMethods}
             selectedPaymentMethod={selectedPaymentMethod}
+            mutateAndFetchPaymentMethod={mutateAndFetchPaymentMethod}
             paymentMethodsLoading={paymentMethodsLoading}
         />
     )

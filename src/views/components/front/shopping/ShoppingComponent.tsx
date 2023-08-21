@@ -15,10 +15,11 @@ import React from "react";
 import {Link} from "react-router-dom";
 import {empty} from "../../../../utils/Common";
 
-const CartComponent = (
+const ShoppingComponent = (
     {
         t,
         order,
+        mutateAndFetchPaymentMethod,
         loadingOrder,
         orderError,
 
@@ -138,8 +139,8 @@ const CartComponent = (
                             <RadioGroup
                                 aria-labelledby="demo-controlled-radio-buttons-group"
                                 name="controlled-radio-buttons-group"
-                                value={order?.id}
-                                onChange={(event: React.ChangeEvent<HTMLInputElement>) => selectedPaymentMethod((event.target as HTMLInputElement).value)}
+                                value={order?.Payment?.id}
+                                onChange={(event: React.ChangeEvent<HTMLInputElement>) => mutateAndFetchPaymentMethod((event.target as HTMLInputElement).value)}
                             >
                                 {paymentMethods.map((paymentMethod, index) => (
                                     <FormControlLabel value={paymentMethod.id} control={<Radio/>}
@@ -154,7 +155,7 @@ const CartComponent = (
                 <Link to={"/cart"}>
                     <Button variant={"contained"} color={"primary"}>カートに戻る</Button>
                 </Link>
-                <Link to={"/shopping"}>
+                <Link to={"/shopping/confirm"}>
                     <Button variant={"contained"} color={"primary"}>確認する</Button>
                 </Link>
             </Box>
@@ -162,4 +163,4 @@ const CartComponent = (
     )
 }
 
-export default CartComponent;
+export default ShoppingComponent;
