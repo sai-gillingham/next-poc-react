@@ -18,6 +18,7 @@ const ORDER_MUTATION = gql`
             kana02
             Payment {
                 id
+                method
             }
             Shippings {
                 addr01
