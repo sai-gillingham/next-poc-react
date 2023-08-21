@@ -1,4 +1,16 @@
-import {Box, Button, Card, Container, Divider, Grid, Skeleton, Typography} from "@mui/material";
+import {
+    Box,
+    Button,
+    Card,
+    Container,
+    Divider,
+    FormControlLabel,
+    Grid,
+    Radio,
+    RadioGroup,
+    Skeleton,
+    Typography
+} from "@mui/material";
 import React from "react";
 import {Link} from "react-router-dom";
 import {empty} from "../../../../utils/Common";
@@ -8,7 +20,11 @@ const CartComponent = (
         t,
         order,
         loadingOrder,
-        orderError
+        orderError,
+
+        paymentMethods,
+        selectedPaymentMethod,
+        paymentMethodsLoading
     }) => {
 
     console.log(order);
@@ -47,7 +63,8 @@ const CartComponent = (
                         <Typography variant={"body1"}>メールアドレス: {order?.email}</Typography>
                     </Card>
 
-                    <Card variant={"outlined"} style={{padding: "15px",  marginBottom: "15px", backgroundColor: "#eeeeee"}}>
+                    <Card variant={"outlined"}
+                          style={{padding: "15px", marginBottom: "15px", backgroundColor: "#eeeeee"}}>
                         <Typography variant={"h5"}>配送情報</Typography>
                         {order?.Shippings &&
                             order?.Shippings.map((shipping, index) => (
@@ -76,12 +93,19 @@ const CartComponent = (
                                                 <>
                                                     {item?.Product &&
                                                         <>
-                                                            <img src={"http://localhost:8080/html/upload/save_image/" + item?.Product?.ProductImage?.[0]?.file_name} alt={item?.Product?.name}/>
-                                                            <Typography variant={"body1"}>商品名: {item?.product_name}</Typography>
-                                                            <Typography variant={"body1"}>商品コード: {item?.product_code }</Typography>
-                                                            <Typography variant={"body1"}>価格: ￥{item?.price}</Typography>
-                                                            <Typography variant={"body1"}>数量: {item?.quantity}</Typography>
-                                                            <Typography variant={"body1"}>小計: ￥{item.price * item?.quantity}</Typography>
+                                                            <img
+                                                                src={"http://localhost:8080/html/upload/save_image/" + item?.Product?.ProductImage?.[0]?.file_name}
+                                                                alt={item?.Product?.name}/>
+                                                            <Typography
+                                                                variant={"body1"}>商品名: {item?.product_name}</Typography>
+                                                            <Typography
+                                                                variant={"body1"}>商品コード: {item?.product_code}</Typography>
+                                                            <Typography variant={"body1"}>価格:
+                                                                ￥{item?.price}</Typography>
+                                                            <Typography
+                                                                variant={"body1"}>数量: {item?.quantity}</Typography>
+                                                            <Typography variant={"body1"}>小計:
+                                                                ￥{item.price * item?.quantity}</Typography>
                                                         </>
                                                     }
                                                 </>
@@ -95,7 +119,34 @@ const CartComponent = (
                     <Card variant={"outlined"}
                           style={{padding: "15px", marginBottom: "15px", backgroundColor: "#eeeeee"}}>
                         <Typography variant={"h5"}>お支払い情報</Typography>
-                        
+                        {paymentMethodsLoading === true &&
+                            <>
+                                <Grid container spacing={2}>
+                                    <Grid item xs={12} sm={6}>
+                                        <Skeleton variant="rectangular" width={210} height={118}/>
+                                    </Grid>
+                                    <Grid item xs={12} sm={6}>
+                                        <Skeleton variant="text"/>
+                                        <Skeleton variant="text"/>
+                                        <Skeleton variant="text"/>
+                                        <Skeleton variant="text"/>
+                                    </Grid>
+                                </Grid>
+                            </>
+                        }
+                        {paymentMethodsLoading === false && !empty(paymentMethods) && Array.isArray(paymentMethods) &&
+                            <RadioGroup
+                                aria-labelledby="demo-controlled-radio-buttons-group"
+                                name="controlled-radio-buttons-group"
+                                value={order?.id}
+                                onChange={(event: React.ChangeEvent<HTMLInputElement>) => selectedPaymentMethod((event.target as HTMLInputElement).value)}
+                            >
+                                {paymentMethods.map((paymentMethod, index) => (
+                                    <FormControlLabel value={paymentMethod.id} control={<Radio/>}
+                                                      label={paymentMethod.method}/>
+                                ))}
+                            </RadioGroup>
+                        }
                     </Card>
                 </Box>
             }

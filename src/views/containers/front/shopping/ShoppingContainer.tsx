@@ -15,6 +15,10 @@ const mapStateToProps = state => {
         loadingOrder: state.shopping.loadingOrder as boolean,
         orderError: state.shopping.orderError as object | null,
         oAuthSessionDetails: state.oAuth.oAuthSessionDetails as null | object,
+        paymentMethods: state.shopping.paymentMethods as object | null,
+        selectedPaymentMethod: state.shopping.selectedPaymentMethod as object | null,
+        paymentMethodsLoading: state.shopping.paymentMethodsLoading as boolean,
+        paymentMethodsError: state.shopping.paymentMethodsError as object | null,
     }
 }
 
@@ -22,7 +26,8 @@ const mapStateToProps = state => {
  * Reduxアクション（これもコンポーネントのパラメータに挿入されます。)
  */
 const mapEventToProps = {
-    mutateAndFetchOrder: shoppingOperators.mutateAndFetchOrder
+    mutateAndFetchOrder: shoppingOperators.mutateAndFetchOrder,
+    mutateAndFetchPaymentMethod: shoppingOperators.mutateAndFetchPaymentMethod,
 }
 
 
@@ -31,20 +36,37 @@ const _shoppingContainer = (
         t,
         mutateAndFetchOrder,
         oAuthSessionDetails,
+        paymentMethods,
+        selectedPaymentMethod,
+        paymentMethodsLoading,
+        paymentMethodsError,
+        
 
         order,
         loadingOrder,
-        orderError
+        orderError,
+        mutateAndFetchPaymentMethod
     }) => {
 
-    const [initialOpen, setInitialOpen] = useState(false)
+    const [initialOpen, setInitialOpen] = useState(false);
+    const [initialOpenPayment, setInitialOpenPayment] = useState(false);
 
+    // 注文情報を取得する
     useEffect(() => {
             if (initialOpen === false && oAuthSessionDetails?.access_token) {
                 setInitialOpen(true);
                 mutateAndFetchOrder();
             }
         }, [initialOpen, mutateAndFetchOrder, oAuthSessionDetails]
+    )
+
+    // 支払い方法を取得する
+    useEffect(() => {
+            if (initialOpenPayment === false && oAuthSessionDetails?.access_token) {
+                setInitialOpenPayment(true);
+                mutateAndFetchPaymentMethod();
+            }
+        }, [initialOpenPayment, mutateAndFetchPaymentMethod, oAuthSessionDetails]
     )
 
 
@@ -54,6 +76,9 @@ const _shoppingContainer = (
             order={order}
             loadingOrder={loadingOrder}
             orderError={orderError}
+            paymentMethods={paymentMethods}
+            selectedPaymentMethod={selectedPaymentMethod}
+            paymentMethodsLoading={paymentMethodsLoading}
         />
     )
 };

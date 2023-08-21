@@ -16,11 +16,19 @@ import types from "./types";
 export const shoppingState = {
     loadingOrder: true,
     order: {},
-    orderError: {}
+    orderError: {},
+    
+    paymentMethods: [],
+    selectedPaymentMethod: null,
+    paymentMethodsLoading: true,
+    paymentMethodsError: {}
 }
 
 export default function shoppingReducer(state = shoppingState, action) {
     switch (action.type) {
+        //////////////////////////////
+        // 注文
+        //////////////////////////////
         case types.FRONT_SHOPPING_ORDER_LOADING:
             return {
                 ...state,
@@ -37,6 +45,27 @@ export default function shoppingReducer(state = shoppingState, action) {
                 ...state,
                 loadingOrder: state.loadingOrder = false,
                 orderError: state.orderError = action.payload.errorData
+            }
+            
+        //////////////////////////////
+        // 支払い方法
+        //////////////////////////////
+        case types.FRONT_SHOPPING_PAYMENT_METHOD_LOADING:
+            return {
+                ...state,
+                paymentMethodsLoading: state.paymentMethodsLoading = true
+            }
+        case types.FRONT_SHOPPING_PAYMENT_METHOD_SUCCESS:
+            return {
+                ...state,
+                paymentMethodsLoading: state.paymentMethodsLoading = false,
+                paymentMethods: state.paymentMethods = action.payload.paymentMethods
+            }
+        case types.FRONT_SHOPPING_PAYMENT_METHOD_FAILURE:
+            return {
+                ...state,
+                paymentMethodsLoading: state.paymentMethodsLoading = false,
+                paymentMethodsError: state.paymentMethodsError = action.payload.errorData
             }
         default:
             return state;

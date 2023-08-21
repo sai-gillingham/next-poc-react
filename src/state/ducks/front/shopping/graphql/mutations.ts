@@ -16,6 +16,9 @@ const ORDER_MUTATION = gql`
             name02
             kana01
             kana02
+            Payment {
+                id
+            }
             Shippings {
                 addr01
                 addr02
@@ -37,9 +40,9 @@ const ORDER_MUTATION = gql`
                             file_name
                         }
                     }
-                    quantity
                     product_name
                     product_code
+                    quantity
                 }
             }
             company_name
@@ -47,8 +50,19 @@ const ORDER_MUTATION = gql`
         }
     }`;
 
+const PAYMENT_METHOD_MUTATION = gql`
+    mutation ($payment_method_id: ID) {
+        paymentMethodMutation (payment_method_id: $payment_method_id) {
+            id
+            method
+            payment_image
+        }
+    }
+`;
+
 const orderMutations = {
-    ORDER_MUTATION
+    ORDER_MUTATION,
+    PAYMENT_METHOD_MUTATION
 }
 
 export default orderMutations;
