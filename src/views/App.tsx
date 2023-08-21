@@ -2,8 +2,9 @@ import React from 'react';
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {withTranslation} from "react-i18next";
-import {ThemeProvider} from "react-bootstrap";
 import FrontLayout from "./layout/front/Layout";
+import {ThemeProvider} from "@mui/material";
+import EccubeFrontTheme from "./theme/front/EccubeFrontTheme";
 
 /**
  * メインビューコンポーネント、すべてのビューはここからロードされます。
@@ -21,7 +22,7 @@ const AppContainer = () => {
 
     return (
         <div>
-            <ThemeProvider>
+            <ThemeProvider theme={EccubeFrontTheme}>
                 <FrontLayout/>
             </ThemeProvider>
         </div>

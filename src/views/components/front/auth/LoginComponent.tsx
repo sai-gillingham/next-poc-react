@@ -1,10 +1,10 @@
 import React from 'react';
-import {Button, Col, Container, Row} from "react-bootstrap";
 import {mergeWithDefaultForm} from "../../../../utils/Common";
 import {validator} from "../../../../utils/Validate";
 import {Field, Form, FormSpy} from "react-final-form";
 import TextInput from "../../../atoms/form/TextInput";
 import {loginForms, loginValidation} from "../../../../state/ducks/front/login";
+import {Button, Container, Grid} from "@mui/material";
 
 
 const LoginComponent = (
@@ -19,15 +19,7 @@ const LoginComponent = (
     }) => {
 
     return (
-        <Container>
-            <div className="bg-light p-5 mt-5 mb-5">
-                <div className="d-grid gap-2">
-                    <Button variant={"secondary"}>未開発: お客様としてログイン</Button>
-                    <Button className="fullWidth" href="http://localhost:8080/admin/authorize?response_type=code&client_id=e740f7c9c0f1162c022854a2549c1356&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foauth%2Fcapture&scope=read+write&state=xxx" variant={"primary"}>デバッグ用:
-                        管理者としてログイン</Button>
-                </div>
-            </div>
-            
+        <Container sx={{p: 2}}>
             <div className={"my-5 bg-light py-4 px-5"}>
                 <code>
                     現在のセッショントークン: {oAuthSessionDetails?.toString ?? "未ログイン"}
@@ -56,8 +48,8 @@ const LoginComponent = (
                 render={({handleSubmit, form, submitting, pristine, invalid, values}) => (
                     <form onSubmit={handleSubmit} noValidate>
                         <FormSpy onChange={(state) => updateLoginForm(state)}/>
-                        <Row>
-                            <Col>
+                        <Grid container>
+                            <Grid item xs={12}>
                                 <Field
                                     name="username"
                                     fullWidth
@@ -68,10 +60,10 @@ const LoginComponent = (
                                     component={TextInput}
                                     label={t('login.username')}
                                 />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
+                            </Grid>
+                        </Grid>
+                        <Grid container>
+                            <Grid item xs={12}>
                                 <Field
                                     name="password"
                                     fullWidth
@@ -82,22 +74,22 @@ const LoginComponent = (
                                     component={TextInput}
                                     label={t('login.password')}
                                 />
-                            </Col>
-                        </Row>
+                            </Grid>
+                        </Grid>
 
 
-                        <Row>
-                            <Col>
+                        <Grid container>
+                            <Grid item xs={12}>
                                 <Button
-                                    variant="primary"
+                                    variant="outlined"
                                     style={{marginTop: 10}}
                                     type="submit"
                                     disabled={invalid || pristine || loginFormLoading}
                                 >
                                     {t('general.send')}
                                 </Button>
-                            </Col>
-                        </Row>
+                            </Grid>
+                        </Grid>
                     </form>)}
             />
         </Container>
