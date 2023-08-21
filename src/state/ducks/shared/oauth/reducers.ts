@@ -14,6 +14,8 @@
 import types from "./types";
 
 export const oAuthState = {
+    request_last_state: {},
+    
     // ログイン情報
     oAuthSessionDetails: {},
     initialRequestFailure: false,
@@ -25,6 +27,7 @@ export const oAuthState = {
 
 export default function loginReducer(state = oAuthState, action) {
     const failure_event_match = /FAILURE/.test(action.type);
+    const request_last_state = /REQUEST$/.test(action.type);
 
     switch (action.type) {
         case types.OAUTH_TOKEN_SAVE:
@@ -32,12 +35,7 @@ export default function loginReducer(state = oAuthState, action) {
                 ...state,
                 oAuthSessionDetails: state.oAuthSessionDetails = action.payload.oAuthSessionDetails,
             }
-        case failure_event_match && action.type: {
-            return {
-                ...state,
-                initialRequestFailure: state.initialRequestFailure = true
-            }
-        }
+
         case types.REFRESH_TOKEN_REQUEST_LOADING: {
             return {
                 ...state,
@@ -57,6 +55,18 @@ export default function loginReducer(state = oAuthState, action) {
                 ...state,
                 refreshTokenLoading: state.refreshTokenLoading = false,
                 refreshTokenError: state.refreshTokenError = action.payload.errorData
+            }
+        }
+        case failure_event_match && action.type: {
+            return {
+                ...state,
+                initialRequestFailure: state.initialRequestFailure = true
+            }
+        }
+        case request_last_state && action.type: {
+            return {
+                ...state,
+                request_last_state: state.request_last_state = action
             }
         }
         default:
