@@ -6,6 +6,7 @@ import FrontLayout from "./layout/front/Layout";
 import {ThemeProvider} from "@mui/material";
 import EccubeFrontTheme from "./theme/front/EccubeFrontTheme";
 import {cartOperators} from "../state/ducks/front/cart";
+import {oAuthOperations} from "../state/ducks/shared/oauth";
 
 /**
  * メインビューコンポーネント、すべてのビューはここからロードされます。
@@ -13,6 +14,7 @@ import {cartOperators} from "../state/ducks/front/cart";
 const mapStateToProps = state => {
     return {
         oAuthSessionDetails: state.oAuth.oAuthSessionDetails as null | object,
+        logoutIrregularLoading: state.oAuth.logoutIrregularLoading as boolean,
     }
 }
 
@@ -20,12 +22,14 @@ const mapStateToProps = state => {
  * Reduxアクション（これもコンポーネントのパラメータに挿入されます。)
  */
 const mapEventToProps = {
-    cartSliderShow: cartOperators.cartSliderShow
+    cartSliderShow: cartOperators.cartSliderShow,
+    oAuthLogoutIrregular: oAuthOperations.oAuthLogoutIrregular
 }
 
 const AppContainer = ({
                           oAuthSessionDetails,
-                          cartSliderShow
+                          cartSliderShow,
+                          oAuthLogoutIrregular
                       }) => {
     console.log(oAuthSessionDetails)
     return (
@@ -34,6 +38,7 @@ const AppContainer = ({
                 <FrontLayout
                     oAuthSessionDetails={oAuthSessionDetails}
                     cartSliderShow={cartSliderShow}
+                    oAuthLogoutIrregular={oAuthLogoutIrregular}
                 />
             </ThemeProvider>
         </div>

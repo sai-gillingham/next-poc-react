@@ -1,6 +1,6 @@
 import {takeLeading} from "redux-saga/effects";
 import types from "./types";
-import {oAuthRefreshAccessToken} from "./sagas";
+import {oAuthLogoutRequest, oAuthRefreshAccessToken} from "./sagas";
 
 
 /**
@@ -13,4 +13,5 @@ import {oAuthRefreshAccessToken} from "./sagas";
  */
 export function* fetchRequests() {
     yield takeLeading(types.REFRESH_TOKEN_REQUEST, oAuthRefreshAccessToken);
+    yield takeLeading(types.LOGOUT_REQUEST_IRREGULAR, oAuthLogoutRequest);
 }

@@ -38,11 +38,11 @@ const EntryComponent = (
                     }
                 }}
                 // ここでフォームデータを妥当性確認し、キーを変換します。
-                validate={e => {
-                    const validation = validator(e, entryValidations.entryForm);
-                    console.log(validation);
-                    return validation;
-                }}
+                // validate={e => {
+                //     // const validation = validator(e, entryValidations.entryForm);
+                //     // console.log(validation);
+                //     // return validation;
+                // }}
                 // 初期値を設定します
                 subscription={{ submitting: true, pristine: true }}
                 // ここでは、フォームのレンダリングと制御を行います
