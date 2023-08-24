@@ -6,6 +6,9 @@ import LoginContainer from "../front/auth/LoginContainer";
 import CaptureOAuthTokenContainer from "../front/auth/oauth2/CaptureOAuthTokenContainer";
 import ProductDetailContainer from "../front/product/detail/ProductDetailContainer";
 import CartContainer from "../front/cart/CartContainer";
+import ShoppingContainer from "../front/shopping/ShoppingContainer";
+import ShoppingConfirmContainer from "../front/shopping/ShoppingConfirmContainer";
+import ShoppingCompleteContainer from "../front/shopping/ShoppingCompleteContainer";
 
 /**
  * urlに基づいてコンテナをロードする
@@ -26,6 +29,9 @@ const RouteContainer = () => {
                 <Route path={"/oauth/capture"} element={<CaptureOAuthTokenContainer/>}/>
                 <Route path={"product/detail/:pid"} element={<ProductDetailContainer/>}/>
                 <Route path={"/cart"} element={<CartContainer/>}/>
+                <Route path={"/shopping"} element={<ShoppingContainer/>}/>
+                <Route path={"/shopping/confirm"} element={<ShoppingConfirmContainer/>}/>
+                <Route path={"/shopping/complete"} element={<ShoppingCompleteContainer/>}/>
             </Routes>
         </div>
     )

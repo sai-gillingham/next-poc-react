@@ -69,9 +69,14 @@ export function empty (mixedVar) {
             return true
         }
     }
+
+    if(mixedVar instanceof RegExp) {
+        return false;
+    }
+
     if (typeof mixedVar === 'object') {
         for (key in mixedVar) {
-            if (mixedVar.hasOwnProperty(key)) {
+            if (Object.prototype.hasOwnProperty.call(mixedVar, key)) {
                 return false
             }
         }

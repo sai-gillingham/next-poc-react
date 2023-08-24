@@ -3,6 +3,8 @@ import {loginReducer as login, loginState, loginWatcherSagas} from "./front/logi
 import {oAuthReducer as oAuth, oAuthSagaWatchers, oAuthState} from "./shared/oauth";
 import {productDetailReducer as productDetail, productDetailState, productDetailWatcherSagas} from "./front/product/detail";
 import {cartReducer as cart, cartState, cartWatcherSagas} from "./front/cart";
+import {shoppingReducer as shopping, shoppingState, shoppingWatcherSagas} from "./front/shopping";
+
 
 import {all, call, spawn} from 'redux-saga/effects';
 
@@ -30,7 +32,8 @@ export const StoreState = {
     loginState: loginState as object,
     oAuthState: oAuthState as object,
     productDetailState: productDetailState as object,
-    cartState: cartState as object
+    cartState: cartState as object,
+    shoppingState: shoppingState as object
 };
 
 /**
@@ -41,7 +44,8 @@ export const reducers = {
     login,
     oAuth,
     productDetail,
-    cart
+    cart,
+    shopping
 };
 
 /**
@@ -53,7 +57,8 @@ export function* rootSaga() {
         ...loginWatcherSagas,
         ...oAuthSagaWatchers,
         ...productDetailWatcherSagas,
-        ...cartWatcherSagas
+        ...cartWatcherSagas,
+        ...shoppingWatcherSagas
     ];
 
     yield all(
