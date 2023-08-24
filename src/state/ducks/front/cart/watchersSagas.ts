@@ -12,7 +12,7 @@ import {cartRequest, modifyCartItem} from "./sagas";
  */
 
 export function* fetchRequests() {
-    yield takeLeading(types.FRONT_CART_MODIFY_PRODUCT, modifyCartItem);
+    yield takeLeading(types.FRONT_CART_MODIFY_PRODUCT_REQUEST, modifyCartItem);
     yield takeLeading(types.FRONT_CART_REQUEST, cartRequest);
 }
 

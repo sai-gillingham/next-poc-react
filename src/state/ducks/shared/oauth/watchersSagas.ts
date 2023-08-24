@@ -1,6 +1,7 @@
 import {takeLeading} from "redux-saga/effects";
 import types from "./types";
-import {oAuthSaveStateToLocalStorage} from "./sagas";
+import {oAuthRefreshAccessToken} from "./sagas";
+
 
 /**
  * //////////////////////////////////////////
@@ -11,5 +12,5 @@ import {oAuthSaveStateToLocalStorage} from "./sagas";
  * ////////////////////////////////////////////
  */
 export function* fetchRequests() {
-    yield takeLeading(types.OAUTH_TOKEN_RECEIVE, oAuthSaveStateToLocalStorage);
+    yield takeLeading(types.REFRESH_TOKEN_REQUEST, oAuthRefreshAccessToken);
 }

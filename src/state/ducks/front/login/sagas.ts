@@ -24,7 +24,6 @@ export function* loginRequest(data) {
         yield put(actions.sendLoginSuccess());
         localStorage.setItem('oAuthCredentials', JSON.stringify(requests.data));
         yield put(rootAction.oAuthReceiveSessionDetailsSave(requests.data))
-        yield put(data.navigate('/mypage'));
     } catch (e) {
         console.log(e);
         yield put(actions.sendLoginFailure(e));

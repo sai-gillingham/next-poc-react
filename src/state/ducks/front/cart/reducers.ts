@@ -28,18 +28,18 @@ export const cartState = {
 export default function cartReducer(state = cartState, action) {
 
     switch (action.type) {
-        case types.FRONT_CART_MODIFY_PRODUCT_LOADING:
+        case types.FRONT_CART_MODIFY_PRODUCT_REQUEST_LOADING:
             return {
                 ...state,
                 cartModifyLoading: state.cartModifyLoading = true,
                 cartModifyLoadingError: state.cartModifyLoadingError = null
             }
-        case types.FRONT_CART_MODIFY_PRODUCT_SUCCESS:
+        case types.FRONT_CART_MODIFY_PRODUCT_REQUEST_SUCCESS:
             return {
                 ...state,
                 cartModifyLoading: state.cartModifyLoading = false
             }
-        case types.FRONT_CART_MODIFY_PRODUCT_FAILURE:
+        case types.FRONT_CART_MODIFY_PRODUCT_REQUEST_FAILURE:
             return {
                 ...state,
                 cartModifyLoading: state.cartModifyLoading = false,
