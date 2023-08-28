@@ -33,7 +33,6 @@ const Select: React.FC<Props> = (
             t,
             ...rest
         }: Props) => {
-    console.log(options);
         // const loadOnDisable = loadingOnDisable && rest.disabled ? classes.loadingOnDisable : undefined
         // const loadOnDisable = undefined;
         return (

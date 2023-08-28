@@ -30,7 +30,6 @@ const EntryComponent = (
         entryFormErrorFields
     }: any): JSX.Element => {
     const navigation = useNavigate();
-    console.log(entryFormErrorFields);
     return (
         <Container sx={{p: 2}}>
             <Typography variant={"h4"}>{t('entry.title')}</Typography>

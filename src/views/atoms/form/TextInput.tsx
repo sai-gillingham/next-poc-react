@@ -32,7 +32,6 @@ const TextInput: React.FC<Props> = ({
     if (rest?.noBold === true) {
         style = {fontWeight: 300, padding: "5px 15px"}
     }
-    console.log(errorMessages);
     return (
         <FormControl fullWidth sx={{m: 1}}>
             {/*<InputLabel htmlFor="inputPassword5" className={loadOnDisable} style={style} >*/}
