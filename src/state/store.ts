@@ -1,6 +1,7 @@
 import {applyMiddleware, combineReducers, compose, createStore} from "redux";
 import {reducers, rootSaga} from './ducks';
 import createSagaMiddleware from 'redux-saga';
+import MiddlewareHub from "./middleware/global";
 
 declare global {
     interface Window {
@@ -22,7 +23,12 @@ const sagaMiddleware = createSagaMiddleware();
 
 export default function configureStore(REDUX_INITIAL_DATA: any | undefined) {
     const middlewares = [];
+    // サーガミドルウェアを追加
     middlewares.push(sagaMiddleware);
+    
+    // ECCUBE自作ミドルウェアを追加
+    middlewares.push(MiddlewareHub.ErrorOrganizationMiddleware);
+    
     const rootReducer = combineReducers(reducers);
 
     const composeEnhancer = (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&

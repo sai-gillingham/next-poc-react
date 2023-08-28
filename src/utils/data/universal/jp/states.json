@@ -1,0 +1,239 @@
+{
+  "states": [
+    {
+      "id": 1,
+      "value": 2,
+      "translation_view": "states.hokkaido"
+    },
+    {
+      "id": 2,
+      "value": 2,
+      "translation_view": "states.aomori"
+    },
+    {
+      "id": 3,
+      "value": 3,
+      "translation_view": "states.iwate"
+    },
+    {
+      "id": 4,
+      "value": 4,
+      "translation_view": "states.miyagi"
+    },
+    {
+      "id": 5,
+      "value": 5,
+      "translation_view": "states.akita"
+    },
+    {
+      "id": 6,
+      "value": 6,
+      "translation_view": "states.yamagata"
+    },
+    {
+      "id": 7,
+      "value": 7,
+      "translation_view": "states.fukushima"
+    },
+    {
+      "id": 8,
+      "value": 8,
+      "translation_view": "states.ibaraki"
+    },
+    {
+      "id": 9,
+      "value": 9,
+      "translation_view": "states.tochigi"
+    },
+    {
+      "id": 10,
+      "value": 10,
+      "translation_view": "states.gunma"
+    },
+    {
+      "id": 11,
+      "value": 11,
+      "translation_view": "states.saitama"
+    },
+    {
+      "id": 12,
+      "value": 12,
+      "translation_view": "states.chiba"
+    },
+    {
+      "id": 13,
+      "value": 13,
+      "translation_view": "states.tokyo"
+    },
+    {
+      "id": 14,
+      "value": 14,
+      "translation_view": "states.kanawaga"
+    },
+    {
+      "id": 15,
+      "value": 15,
+      "translation_view": "states.niigata"
+    },
+    {
+      "id": 16,
+      "value": 16,
+      "translation_view": "states.toyama"
+    },
+    {
+      "id": 17,
+      "value": 17,
+      "translation_view": "states.ishikawa"
+    },
+    {
+      "id": 18,
+      "value": 18,
+      "translation_view": "states.fukui"
+    },
+    {
+      "id": 19,
+      "value": 19,
+      "translation_view": "states.yamanashi"
+    },
+    {
+      "id": 20,
+      "value": 20,
+      "translation_view": "states.nagano"
+    },
+    {
+      "id": 21,
+      "value": 21,
+      "translation_view": "states.gifu"
+    },
+    {
+      "id": 22,
+      "value": 22,
+      "translation_view": "states.shizuoka"
+    },
+    {
+      "id": 23,
+      "value": 23,
+      "translation_view": "states.aichi"
+    },
+    {
+      "id": 24,
+      "value": 24,
+      "translation_view": "states.mie"
+    },
+    {
+      "id": 25,
+      "value": 25,
+      "translation_view": "states.shiga"
+    },
+    {
+      "id": 26,
+      "value": 26,
+      "translation_view": "states.kyoto"
+    },
+    {
+      "id": 27,
+      "value": 27,
+      "translation_view": "states.osaka"
+    },
+    {
+      "id": 28,
+      "value": 28,
+      "translation_view": "states.hyogo"
+    },
+    {
+      "id": 29,
+      "value": 29,
+      "translation_view": "states.nara"
+    },
+    {
+      "id": 30,
+      "value": 30,
+      "translation_view": "states.wakayama"
+    },
+    {
+      "id": 31,
+      "value": 31,
+      "translation_view": "states.tottori"
+    },
+    {
+      "id": 32,
+      "value": 32,
+      "translation_view": "states.shimane"
+    },
+    {
+      "id": 33,
+      "value": 33,
+      "translation_view": "states.okayama"
+    },
+    {
+      "id": 34,
+      "value": 34,
+      "translation_view": "states.hiroshima"
+    },
+    {
+      "id": 35,
+      "value": 35,
+      "translation_view": "states.yamaguchi"
+    },
+    {
+      "id": 36,
+      "value": 36,
+      "translation_view": "states.tokushima"
+    },
+    {
+      "id": 37,
+      "value": 37,
+      "translation_view": "states.kagawa"
+    },
+    {
+      "id": 38,
+      "value": 38,
+      "translation_view": "states.ehime"
+    },
+    {
+      "id": 39,
+      "value": 39,
+      "translation_view": "states.kochi"
+    },
+    {
+      "id": 40,
+      "value": 40,
+      "translation_view": "states.fukuoka"
+    },
+    {
+      "id": 41,
+      "value": 41,
+      "translation_view": "states.saga"
+    },
+    {
+      "id": 42,
+      "value": 42,
+      "translation_view": "states.nagashi"
+    },
+    {
+      "id": 43,
+      "value": 43,
+      "translation_view": "states.komamoto"
+    },
+    {
+      "id": 44,
+      "value": 44,
+      "translation_view": "states.oita"
+    },
+    {
+      "id": 45,
+      "value": 45,
+      "translation_view": "states.miyazaki"
+    },
+    {
+      "id": 46,
+      "value": 46,
+      "translation_view": "states.kagoshima"
+    },
+    {
+      "id": 47,
+      "value": 47,
+      "translation_view": "states.okinawa"
+    }
+  ]
+}

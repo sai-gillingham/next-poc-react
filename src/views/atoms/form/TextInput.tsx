@@ -1,6 +1,6 @@
 import React from 'react'
-import { FieldRenderProps } from 'react-final-form';
-import {Chip, FilledInput, FormControl, Input, InputLabel, OutlinedInput, TextField} from "@mui/material";
+import {FieldRenderProps} from 'react-final-form';
+import {FormControl, TextField} from "@mui/material";
 import FormHelperText from "@mui/material/FormHelperText";
 
 /**
@@ -20,19 +20,21 @@ import FormHelperText from "@mui/material/FormHelperText";
 type Props = FieldRenderProps<string, any>;
 
 const TextInput: React.FC<Props> = ({
-                                input: {name, onChange, value, multiline = 0, ...restInput},
-                                meta,
-                                loadingOnDisable,
-                                ...rest
-                            }: Props) => {
+                                        input: {name, onChange, value, multiline = 0, ...restInput},
+                                        meta,
+                                        loadingOnDisable,
+                                        errorMessages,
+                                        ...rest
+                                    }: Props) => {
     // const loadOnDisable = loadingOnDisable && rest.disabled ? classes.loadingOnDisable : undefined
     const loadOnDisable = undefined;
     let style = {};
-    if(rest?.noBold === true) {
+    if (rest?.noBold === true) {
         style = {fontWeight: 300, padding: "5px 15px"}
     }
+    console.log(errorMessages);
     return (
-        <FormControl fullWidth sx={{ m: 1 }}>
+        <FormControl fullWidth sx={{m: 1}}>
             {/*<InputLabel htmlFor="inputPassword5" className={loadOnDisable} style={style} >*/}
             {/*    {rest.label}*/}
             {/*    {rest.required &&*/}
@@ -44,14 +46,17 @@ const TextInput: React.FC<Props> = ({
                 {...rest}
                 name={name}
                 variant="standard"
-                onKeyPress={e => {e.key === "Enter" && e.preventDefault()}}
+                onKeyPress={e => {
+                    e.key === "Enter" && e.preventDefault()
+                }}
+                error={errorMessages ? true : false}
                 disabled={rest.disabled}
                 onChange={onChange}
                 value={value}
             />
-            {meta.error && meta.touched && (
+            {errorMessages && (
                 <FormHelperText>
-                    {meta.error}
+                    {errorMessages}
                 </FormHelperText>
             )}
         </FormControl>)

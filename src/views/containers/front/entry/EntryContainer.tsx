@@ -6,6 +6,7 @@ import {compose} from "redux";
 import {requestOperations} from "../../../../state/ducks/front/entry";
 import {useLocation} from "react-router";
 import EntryComplete from "../../../components/front/entry/EntryComplete";
+import states from "../../../../utils/data/universal/jp/states.json"
 
 /**
  * Reduxステート（これはコンポーネントのパラメータに挿入されます。)
@@ -15,7 +16,8 @@ const mapStateToProps = state => {
     return {
         entryForm: state.entry.entryForm as object,
         entryData: state.entry.entryFormError as object,
-        entryFormLoading: state.entry.entryFormLoading as boolean
+        entryFormLoading: state.entry.entryFormLoading as boolean,
+        entryFormErrorFields: state.entry.entryFormError?.errorData?.simple[0]?.fields as object|null
     }
 }
 
@@ -40,7 +42,8 @@ const _entryContainer = (
         sendEntryRequest,
         entryForm,
         entryFormLoading,
-        entryFormUpdate
+        entryFormUpdate,
+        entryFormErrorFields
     }) => {
 
     const location = useLocation()
@@ -53,6 +56,8 @@ const _entryContainer = (
                 entryData={entryForm}
                 registerLoading={entryFormLoading}
                 entryFormUpdate={entryFormUpdate}
+                states={states.states}
+                entryFormErrorFields={entryFormErrorFields}
             />
         ) || (location.pathname === '/entry/complete' &&
             <EntryComplete
