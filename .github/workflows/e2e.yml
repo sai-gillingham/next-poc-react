@@ -1,0 +1,95 @@
+name: E2E test for EC-CUBE
+on:
+  push:
+    branches:
+      - '**'
+    tags:
+      - '**'
+    paths:
+      - '**'
+      - '!*.md'
+  pull_request:
+    paths:
+      - '**'
+      - '!*.md'
+jobs:
+  e2e:
+    name: E2E
+    runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+        ports:
+          - 5432:5432
+        # needed because the postgres container does not provide a healthcheck
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+      mailcatcher:
+        image: schickling/mailcatcher
+        ports:
+          - 1080:1080
+          - 1025:1025
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
+
+      - name: Setup EC-CUBE
+        run: |
+          git clone https://github.com/EC-CUBE/next-poc.git ec-cube
+          cd ec-cube
+          composer install
+          echo "APP_ENV=prod
+            APP_DEBUG=0
+            TRUSTED_HOSTS=^127\.0\.0\.1$,^localhost$
+            DATABASE_URL=postgres://postgres:password@127.0.0.1:5432/eccube_db
+            DATABASE_SERVER_VERSION=14
+            MAILER_DSN=smtp://127.0.0.1:1025" > .env
+          bin/console doctrine:database:create
+          bin/console doctrine:schema:create
+          bin/console eccube:fixtures:load
+
+      - name: Setup EC-CUBE API Plugin
+        working-directory: ec-cube
+        run: |
+          git clone -b next-poc https://github.com/EC-CUBE/eccube-api4.git
+          sed -i 's/"extra": {/"extra": { "id": 123,/g' eccube-api4/composer.json
+          bin/console eccube:composer:require ec-cube/api42 --from=./eccube-api4
+          bin/console eccube:plugin:enable --code Api42
+          bin/console doctrine:schema:update --dump-sql -f # プラグイン有効化時に何故かoauth2のテーブルが生成されないので
+          bin/console doctrine:query:sql "INSERT INTO oauth2_client (name, secret, redirect_uris, grants, scopes, active, allow_plain_text_pkce, identifier) VALUES ('', NULL, 'http://localhost', 'password refresh_token', 'read:Authority write:Authority read:AuthorityRole write:AuthorityRole read:BaseInfo write:BaseInfo read:Block write:Block read:BlockPosition write:BlockPosition read:Cart write:Cart read:CartItem write:CartItem read:Category write:Category read:ClassCategory write:ClassCategory read:ClassName write:ClassName read:Country write:Country read:Csv write:Csv read:CsvType write:CsvType read:Customer write:Customer read:CustomerAddress write:CustomerAddress read:CustomerFavoriteProduct write:CustomerFavoriteProduct read:CustomerOrderStatus write:CustomerOrderStatus read:CustomerStatus write:CustomerStatus read:Delivery write:Delivery read:DeliveryDuration write:DeliveryDuration read:DeliveryFee write:DeliveryFee read:DeliveryTime write:DeliveryTime read:DeviceType write:DeviceType read:Job write:Job read:Layout write:Layout read:MailHistory write:MailHistory read:MailTemplate write:MailTemplate read:Member write:Member read:News write:News read:Order write:Order read:OrderItem write:OrderItem read:OrderItemType write:OrderItemType read:OrderPdf write:OrderPdf read:OrderStatus write:OrderStatus read:OrderStatusColor write:OrderStatusColor read:Page write:Page read:PageLayout write:PageLayout read:PageMax write:PageMax read:Payment write:Payment read:PaymentOption write:PaymentOption read:Plugin write:Plugin read:Pref write:Pref read:Product write:Product read:ProductCategory write:ProductCategory read:ProductClass write:ProductClass read:ProductImage write:ProductImage read:ProductListMax write:ProductListMax read:ProductListOrderBy write:ProductListOrderBy read:ProductStatus write:ProductStatus read:ProductStock write:ProductStock read:ProductTag write:ProductTag read:RoundingType write:RoundingType read:SaleType write:SaleType read:Sex write:Sex read:Shipping write:Shipping read:Tag write:Tag read:TaxDisplayType write:TaxDisplayType read:TaxRule write:TaxRule read:TaxType write:TaxType read:Template write:Template read:Work write:Work', true, false, '121ecaab37f52176ef2b7ce9dfca872b');"
+          composer install # プラグインのインストールでdevのライブラリが削除されるため再実行
+          bin/console e:f:g --customers=1 --products=0 --orders=0 --without-image --env=dev
+          bin/console doctrine:query:sql "update dtb_customer set email='ec-cube@example.com'"
+
+      - name: Start PHP Development Server
+        working-directory: ec-cube
+        run: |
+          php -S localhost:8080 &
+
+      - name: Start EC-CUBE Client
+        run: |
+          sed -i 's/<<API_CLIENT_KEY>>/121ecaab37f52176ef2b7ce9dfca872b/g' .env.development
+          npm ci
+          npm start &
+          npx wait-on http://127.0.0.1:3000
+
+      - name: Start E2E Tests
+        run: |
+          echo tests
