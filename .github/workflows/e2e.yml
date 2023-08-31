@@ -92,4 +92,5 @@ jobs:
 
       - name: Start E2E Tests
         run: |
+          rm -rf ec-cube/zap # ec-cube本体のplaywrightが実行されてしまうので削除
           npx playwright test
