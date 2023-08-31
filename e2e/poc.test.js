@@ -30,7 +30,7 @@ async function entry(page) {
     await page.getByLabel('住所「都道府県」 *').fill('住所1');
     await page.getByLabel('住所「市区町村」 *').fill('住所2');
     await page.getByLabel('電話番号 *').fill('00011112222');
-    await page.getByLabel('メールアドレス *').fill('chihiro_adachi@ec-cube.co.jp');
+    await page.getByLabel('メールアドレス *').fill('ec-cube@example.com');
     await page.getByLabel('パスワード *').fill('password');
     await page.getByRole('button', { name: '送信' }).click();
 }
@@ -42,7 +42,7 @@ async function login(page) {
     let token = await page.locator('text=現在のセッショントークン');
     await expect(token).toContainText('未ログイン');
 
-    await page.getByLabel('ユーザー名 *').fill('chihiro_adachi@ec-cube.co.jp');
+    await page.getByLabel('ユーザー名 *').fill('ec-cube@example.com');
     await page.getByLabel('パスワード *').fill('password');
     await page.getByRole('button', {name: '送信'}).click();
 
