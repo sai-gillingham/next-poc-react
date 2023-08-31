@@ -68,7 +68,8 @@ jobs:
       - name: Setup EC-CUBE API Plugin
         working-directory: ec-cube
         run: |
-          git clone -b next-poc https://github.com/EC-CUBE/eccube-api4.git
+          #git clone -b next-poc https://github.com/EC-CUBE/eccube-api4.git
+          git clone -b dev/next/entity-scope https://github.com/kiy0taka/eccube-api4.git
           sed -i 's/"extra": {/"extra": { "id": 123,/g' eccube-api4/composer.json
           bin/console eccube:composer:require ec-cube/api42 --from=./eccube-api4
           bin/console eccube:plugin:enable --code Api42
