@@ -108,10 +108,36 @@ class EccubeValidationBuilder {
     }
   `
         });
-        console.log(response.data.data.__schema.types);
-        // Output response  to file
+        // Output response to file
         const fs = require('fs');
-        fs.writeFileSync('schema.json', JSON.stringify(response.data.data.__schema, null, 2));
+        await fs.writeFileSync('schema.json', JSON.stringify(response.data.data.__schema, null, 2));
+        // Get Mutation results only
+        const mutationTypes = response.data.data.__schema.types.filter(type => type.name === 'Mutation')[0];
+        // Get Mutation name
+        
+        //console.log(mutationTypes);
+        
+        mutationTypes.fields.forEach(mutation => {
+            //console.log(mutation);
+            // Get Name of Mutation
+            const mutationName = mutation.name;
+            // Get All field names and field types
+            const mutationFields = mutation.args;
+ 
+            // Get All field names and field types
+            const mutationArguments = mutationFields.map(field => {
+                return {
+                    name: field.name,
+                    type: field.type.name
+                }
+            });
+            console.log(mutationArguments, mutationName);
+        });
+        // Get Mutation Arguments
+        
+        
+        
+        
         
         // Generate Validation Rules from Introspection Query Result
         throw new Error('Not Implemented');
