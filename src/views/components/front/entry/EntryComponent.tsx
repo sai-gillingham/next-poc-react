@@ -1,11 +1,12 @@
 import React from 'react';
 import {Field, Form, FormSpy} from 'react-final-form';
 import {mergeWithDefaultForm} from "../../../../utils/Common";
-import {entryForms} from "../../../../state/ducks/front/entry";
+import {entryForms, entryValidations} from "../../../../state/ducks/front/entry";
 import TextInput from "../../../atoms/form/TextInput";
 import {useNavigate} from "react-router";
 import {Button, Container, Grid, Typography} from "@mui/material";
 import Select from "../../../atoms/form/Select";
+import { validator } from '../../../../utils/Validate';
 
 /**
  *
@@ -43,11 +44,11 @@ const EntryComponent = (
                     }
                 }}
                 // ここでフォームデータを妥当性確認し、キーを変換します。
-                // validate={e => {
-                //     const validation = validator(e, entryValidations.entryForm);
-                //     console.log(validation);
-                //     return validation;
-                // }}
+                validate={e => {
+                    const validation = validator(e, entryValidations.entryCustomerSchema);
+                    console.log(validation);
+                    return validation;
+                }}
                 // 初期値を設定します
                 subscription={{submitting: true, pristine: true}}
                 // ここでは、フォームのレンダリングと制御を行います

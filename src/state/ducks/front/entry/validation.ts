@@ -1,8 +1,9 @@
 import Joi from "joi";
 import { tlds } from '@hapi/tlds';
+import { auto_validation } from "./auto_validation";
 
 // Review Form
-export const entryForm = Joi.object({
+export const entryCustomerSchema = Joi.object({
     name01: Joi.string().required().max(255),
     name02: Joi.string().required().max(255),
     kana01: Joi.string().required().max(255),
@@ -17,7 +18,8 @@ export const entryForm = Joi.object({
 });
 
 const validationForms = {
-    entryForm
+    ...auto_validation, 
+    entryCustomerSchema,
 }
 
 export default validationForms;
