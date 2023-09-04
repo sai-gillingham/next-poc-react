@@ -21,7 +21,9 @@ import {useNavigate} from "react-router-dom";
 export function* entryRequest(data) {
     yield put(actions.sendEntryLoading())
     try {
-        const requests = yield call(callEntry, data.payload.formData);
+        // fixme
+        data.payload.formData.address_pref = parseInt(data.payload.formData.address_pref);
+        const requests = yield call(callEntry, { 'input': data.payload.formData });
         if(requests.data.errors) {
             throw new Error(requests.data.errors);
         }
