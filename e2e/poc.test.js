@@ -110,13 +110,15 @@ async function purchase(page, params) {
     await expect(page.url()).toBe(CLIENT_URL + '/shopping');
     // 支払い方法を変更
     await page.getByText('お支払い情報').waitFor({state: "visible"});
-    await page.getByText('代金引換').click(); // todo 支払方法変更のクリックが効いていない
-    await page.getByText('代金引換').waitFor({state: "visible"});
+    const paymentInput = await page.getByText('代金引換');
+    await expect(paymentInput).toBeVisible();
+    await page.waitForTimeout(1000); // 支払い方法のクリックが検知されないため少しだけ待機
+    await paymentInput.click();
     // 確認画面へ
     await page.getByRole('button', { name: '確認する' }).click();
     await expect(page.url()).toBe(CLIENT_URL + '/shopping/confirm');
-    const payment = await page.getByText('郵便振替'); // todo 支払方法変更のクリックが効いていない
-    await expect(payment).toBeVisible();
+    const paymentConfirm = await page.getByText('代金引換');
+    await expect(paymentConfirm).toBeVisible();
     // 注文完了
     await page.getByRole('button', { name: '注文する' }).click();
     const thanks = await page.getByText('注文ありがとうございます。');
