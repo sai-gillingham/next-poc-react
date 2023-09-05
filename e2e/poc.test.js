@@ -1,49 +1,86 @@
 import { test, expect } from '@playwright/test';
 
+const crypto = require("crypto");
+
+const CLIENT_URL = 'http://localhost:3000';
+const MAILCATCHER_URL = 'http://localhost:1080';
+
 test('pocのシナリオをテストする', async ({ page }) => {
-    await page.goto('http://localhost:3000/');
+    await page.goto(CLIENT_URL);
+
+    const params = {
+        'email': 'ec-cube+' + crypto.randomBytes(3).toString('hex') + '@example.com',
+        'password': 'password.1234'
+    }
 
     // 会員登録
-    //await entry(page)
+    await entry(page, params)
+
+    // 本会員登録
+    await entry_activate(page, params);
 
     // ログイン
-    await login(page)
+    await login(page, params)
 
     // 購入フロー
-    await purchase(page)
+    await purchase(page, params)
 
     // ログアウト
     // await logout(page)
 });
 
-// todo
-async function entry(page) {
+async function entry(page, params) {
+    // 会員登録画面を表示
     await page.locator('text=登録').click()
-    await expect(page.url()).toBe('http://localhost:3000/entry');
-
+    await expect(page.url()).toBe(CLIENT_URL + '/entry');
+    // 入力
     await page.getByLabel('名前「姓」 *').fill('足立');
     await page.getByLabel('名前「名」 *').fill('智広');
-    await page.getByLabel('フリガナ「セイ」 *').fill('ちひろ');
+    await page.getByLabel('フリガナ「セイ」 *').fill('あだち');
     await page.getByLabel('フリガナ「メイ」 *').fill('ちひろ');
     await page.getByLabel('都道府県 *').fill('1');
     await page.getByLabel('郵便番号 *').fill('0001111');
-    await page.getByLabel('住所「都道府県」 *').fill('住所1');
+    await page.getByLabel('住所「都道府県」 *').fill('住所1'); // todo 住所「都道府県」はラベルの誤り
     await page.getByLabel('住所「市区町村」 *').fill('住所2');
     await page.getByLabel('電話番号 *').fill('00011112222');
-    await page.getByLabel('メールアドレス *').fill('ec-cube@example.com');
-    await page.getByLabel('パスワード *').fill('password');
+    await page.getByLabel('メールアドレス *').fill(params.email);
+    await page.getByLabel('パスワード *').fill(params.password);
+    // 送信
     await page.getByRole('button', { name: '送信' }).click();
+    const thanks = await page.getByText('仮会員登録は完了しています。');
+    await expect(thanks).toBeVisible();
+    await expect(page.url()).toBe(CLIENT_URL + '/entry/complete');
 }
 
-async function login(page) {
+async function entry_activate(page, params) {
+    // mailcatcherから最後のメッセージを取得
+    const messagesResp = await fetch(MAILCATCHER_URL + '/messages');
+    const messages = await messagesResp.json();
+    const id = messages.pop().id;
+
+    // mail bodyから本会員登録用URLを取得
+    const bodyResp = await fetch(MAILCATCHER_URL + '/messages/' + id + '.plain');
+    const body = await bodyResp.text();
+    const activate_url = body.match(/http.+/)[0]
+
+    // 本会員登録用URLを表示
+    await page.goto(activate_url);
+    const thanks = await page.getByText('会員登録ありがとうございます');
+    await expect(thanks).toBeVisible();
+
+    // ec-cube clientへ戻る
+    await page.goto(CLIENT_URL);
+}
+
+async function login(page, params) {
     await page.getByRole('link', {name: 'ログイン'}).getByRole('button').click();
-    await expect(page.url()).toBe('http://localhost:3000/mypage/login');
+    await expect(page.url()).toBe(CLIENT_URL + '/mypage/login');
 
     let token = await page.locator('text=現在のセッショントークン');
     await expect(token).toContainText('未ログイン');
 
-    await page.getByLabel('ユーザー名 *').fill('ec-cube@example.com');
-    await page.getByLabel('パスワード *').fill('password');
+    await page.getByLabel('ユーザー名 *').fill(params.email);
+    await page.getByLabel('パスワード *').fill(params.password);
     await page.getByRole('button', {name: '送信'}).click();
 
     token = await page.locator('text=現在のセッショントークン');
@@ -55,10 +92,10 @@ async function logout(page) {
 
 }
 
-async function purchase(page) {
+async function purchase(page, params) {
     // 商品詳細を表示
     await page.getByRole('button', { name: '購入' }).click();
-    await expect(page.url()).toBe('http://localhost:3000/product/detail/2');
+    await expect(page.url()).toBe(CLIENT_URL + '/product/detail/2');
     await page.getByText("チェリーアイスサンド");
     // カートに入れる
     await page.getByRole('button', { name: 'カートに追加' }).click();
@@ -66,23 +103,23 @@ async function purchase(page) {
     await page.getByLabel('account of current user').click();
     // カート表示
     await page.getByRole('button', { name: 'カートを見る' }).click();
-    await expect(page.url()).toBe('http://localhost:3000/cart');
+    await expect(page.url()).toBe(CLIENT_URL + '/cart');
     await page.getByTestId('CloseIcon').locator('path').click(); // サイドバーをクローズ
     // 注文画面へ
     await page.getByRole('button', { name: 'レジへ進む' }).click();
-    await expect(page.url()).toBe('http://localhost:3000/shopping');
+    await expect(page.url()).toBe(CLIENT_URL + '/shopping');
     // 支払い方法を変更
     await page.getByText('お支払い情報').waitFor({state: "visible"});
     await page.getByText('代金引換').click(); // todo 支払方法変更のクリックが効いていない
     await page.getByText('代金引換').waitFor({state: "visible"});
     // 確認画面へ
     await page.getByRole('button', { name: '確認する' }).click();
-    await expect(page.url()).toBe('http://localhost:3000/shopping/confirm');
+    await expect(page.url()).toBe(CLIENT_URL + '/shopping/confirm');
     const payment = await page.getByText('郵便振替'); // todo 支払方法変更のクリックが効いていない
     await expect(payment).toBeVisible();
     // 注文完了
     await page.getByRole('button', { name: '注文する' }).click();
     const thanks = await page.getByText('注文ありがとうございます。');
     await expect(thanks).toBeVisible();
-    await expect(page.url()).toBe('http://localhost:3000/shopping/complete');
+    await expect(page.url()).toBe(CLIENT_URL + '/shopping/complete');
 }
