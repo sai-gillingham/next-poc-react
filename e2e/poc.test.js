@@ -40,8 +40,8 @@ async function entry(page, params) {
     await page.getByLabel('フリガナ「メイ」 *').fill('ちひろ');
     await page.getByLabel('都道府県 *').fill('1');
     await page.getByLabel('郵便番号 *').fill('0001111');
-    await page.getByLabel('住所「都道府県」 *').fill('住所1'); // todo 住所「都道府県」はラベルの誤り
-    await page.getByLabel('住所「市区町村」 *').fill('住所2');
+    await page.getByLabel('住所「市区町村名」 *').fill('住所1');
+    await page.getByLabel('住所「番地・ビル名」 *').fill('住所2');
     await page.getByLabel('電話番号 *').fill('00011112222');
     await page.getByLabel('メールアドレス *').fill(params.email);
     await page.getByLabel('パスワード *').fill(params.password);
