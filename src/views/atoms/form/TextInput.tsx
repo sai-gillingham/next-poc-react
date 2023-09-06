@@ -28,18 +28,13 @@ const TextInput: React.FC<Props> = ({
                                     }: Props) => {
     // const loadOnDisable = loadingOnDisable && rest.disabled ? classes.loadingOnDisable : undefined
     const loadOnDisable = undefined;
+    errorMessages = errorMessages ? errorMessages : meta?.error;
     let style = {};
     if (rest?.noBold === true) {
         style = {fontWeight: 300, padding: "5px 15px"}
     }
     return (
         <FormControl fullWidth sx={{m: 1}}>
-            {/*<InputLabel htmlFor="inputPassword5" className={loadOnDisable} style={style} >*/}
-            {/*    {rest.label}*/}
-            {/*    {rest.required &&*/}
-            {/*        <Chip className={[loadOnDisable].join(" ") } label="必須"></Chip>*/}
-            {/*    }*/}
-            {/*</InputLabel>*/}
             <TextField
                 className={[loadOnDisable].join(" ")}
                 {...rest}

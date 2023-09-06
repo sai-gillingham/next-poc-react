@@ -33,8 +33,7 @@ const Select: React.FC<Props> = (
             t,
             ...rest
         }: Props) => {
-        // const loadOnDisable = loadingOnDisable && rest.disabled ? classes.loadingOnDisable : undefined
-        // const loadOnDisable = undefined;
+        errorMessages = errorMessages ? errorMessages : meta?.error;
         return (
             <FormControl fullWidth>
                 {rest.label &&
@@ -49,22 +48,25 @@ const Select: React.FC<Props> = (
                         <br/>
                     </div>
                 }
-                    <MSelect
-                        // className={loadOnDisable}
-                        name={name}
-                        style={rest.inputStyle}
-                        data-testid={name}
-                        onKeyPress={e => {e.key === "Enter" && e.preventDefault()}}
-                        disabled={rest.disabled}
-                        error={errorMessages ? true : false}
-                        onChange={onChange}
-                        value={value}
-                    >
-                        {/*<MenuItem key={0} value="">選択してください</MenuItem>*/}
-                        { options && options.map((option) => (
-                            <MenuItem data-testid={option.value} key={option.id} value={option.value}>{t(option.translation_view)}</MenuItem>
-                        ))}
-                    </MSelect>
+                <MSelect
+                    // className={loadOnDisable}
+                    name={name}
+                    style={rest.inputStyle}
+                    data-testid={name}
+                    onKeyPress={e => {
+                        e.key === "Enter" && e.preventDefault()
+                    }}
+                    disabled={rest.disabled}
+                    error={errorMessages ? true : false}
+                    onChange={onChange}
+                    value={value}
+                >
+                    {/*<MenuItem key={0} value="">選択してください</MenuItem>*/}
+                    {options && options.map((option) => (
+                        <MenuItem data-testid={option.value} key={option.id}
+                                  value={option.value}>{t(option.translation_view)}</MenuItem>
+                    ))}
+                </MSelect>
                 {errorMessages &&
                     <FormHelperText>{errorMessages}</FormHelperText>
                 }
