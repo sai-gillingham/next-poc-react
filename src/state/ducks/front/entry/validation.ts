@@ -18,8 +18,8 @@ export const entryCustomerSchema = Joi.object({
 });
 
 const validationForms = {
-    ...auto_validation, 
-    entryCustomerSchema,
+    ...auto_validation
+//    entryCustomerSchema,
 }
 
 export default validationForms;
