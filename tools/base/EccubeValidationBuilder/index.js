@@ -66,7 +66,9 @@ class EccubeValidationBuilder {
         const mutationArguments = mutationQLData.map(field => {
             return {
                 name: field.name,
-                type: field?.type?.ofType?.name ?? field.type.name
+                type: field?.type?.ofType?.name ?? field.type.name,
+                required: field.type.kind === 'NON_NULL',
+                // required_kind: field.type.kind // for debug
             }
         });
 
@@ -83,7 +85,9 @@ class EccubeValidationBuilder {
             return type.inputFields.map(field => {
                 return {
                     name: field.name,
-                    type: field?.type?.ofType?.name ?? field.type.name
+                    type: field?.type?.ofType?.name ?? field.type.name,
+                    required: field.type.kind === 'NON_NULL',
+                    // required_kind: field.type.kind // for debug
                 }
             });
         });

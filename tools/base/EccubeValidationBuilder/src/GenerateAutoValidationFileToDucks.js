@@ -80,7 +80,9 @@ class GenerateAutoValidationFileToDucks {
         for (const MutationField of MutationFields) {
             console.log(jsonConversionFile);
             console.log(MutationField.type);
-            JoiValidationFileConstructor += jsonConversionFile.fields[MutationField.type].replace('{FIELD_NAME}', MutationField.name);
+            JoiValidationFileConstructor += jsonConversionFile.fields[MutationField.type]
+                .replace('{FIELD_NAME}', MutationField.name)
+                .replace('{REQUIRED}', MutationField.required ? '.required()' : '');
         }
         
         JoiValidationFileConstructor += jsonConversionFile.end_tag;
