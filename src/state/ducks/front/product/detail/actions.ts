@@ -11,13 +11,13 @@ export function fetchProductDetailRequest(id : number) {
 
 export function fetchProductDetailLoading() {
     return {
-        type: types.FRONT_PRODUCT_DETAIL_LOADING
+        type: types.FRONT_PRODUCT_DETAIL_REQUEST_LOADING
     }
 }
 
 export function fetchProductDetailSuccess(productDetailData) {
     return {
-        type: types.FRONT_PRODUCT_DETAIL_SUCCESS,
+        type: types.FRONT_PRODUCT_DETAIL_REQUEST_SUCCESS,
         payload: {
             productDetailData: productDetailData
         }
@@ -26,7 +26,7 @@ export function fetchProductDetailSuccess(productDetailData) {
 
 export function fetchProductDetailFailure(errorData) {
     return {
-        type: types.FRONT_PRODUCT_DETAIL_FAILURE,
+        type: types.FRONT_PRODUCT_DETAIL_REQUEST_FAILURE,
         payload: {
             errorData: errorData
         }

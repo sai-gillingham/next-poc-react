@@ -4,7 +4,7 @@ import {oAuthReducer as oAuth, oAuthSagaWatchers, oAuthState} from "./shared/oau
 import {productDetailReducer as productDetail, productDetailState, productDetailWatcherSagas} from "./front/product/detail";
 import {cartReducer as cart, cartState, cartWatcherSagas} from "./front/cart";
 import {shoppingReducer as shopping, shoppingState, shoppingWatcherSagas} from "./front/shopping";
-
+import {siteHealthReducer as siteHealth, siteHealthState, siteHealthSagaWatchers} from "./shared/site_health";
 
 import {all, call, spawn} from 'redux-saga/effects';
 
@@ -33,7 +33,8 @@ export const StoreState = {
     oAuthState: oAuthState as object,
     productDetailState: productDetailState as object,
     cartState: cartState as object,
-    shoppingState: shoppingState as object
+    shoppingState: shoppingState as object,
+    siteHealthState: siteHealthState as object
 };
 
 /**
@@ -45,7 +46,8 @@ export const reducers = {
     oAuth,
     productDetail,
     cart,
-    shopping
+    shopping,
+    siteHealth
 };
 
 /**
@@ -58,7 +60,8 @@ export function* rootSaga() {
         ...oAuthSagaWatchers,
         ...productDetailWatcherSagas,
         ...cartWatcherSagas,
-        ...shoppingWatcherSagas
+        ...shoppingWatcherSagas,
+        ...siteHealthSagaWatchers
     ];
 
     yield all(
