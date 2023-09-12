@@ -35,17 +35,17 @@ export default function entryReducer(state = entryState, action) {
                 },
                 entryFormError: null
             }
-        case types.FRONT_ENTRY_LOADING:
+        case types.FRONT_ENTRY_REQUEST_LOADING:
             return {
                 ...state,
                 entryFormLoading: state.entryFormLoading = true
             }
-        case types.FRONT_ENTRY_SUCCESS:
+        case types.FRONT_ENTRY_REQUEST_SUCCESS:
             return {
                 ...state,
                 entryFormLoading: state.entryFormLoading = false
             }
-        case types.FRONT_ENTRY_FAILURE:
+        case types.FRONT_ENTRY_REQUEST_FAILURE:
             return {
                 ...state,
                 entryFormError: action.payload,
@@ -62,17 +62,17 @@ export default function entryReducer(state = entryState, action) {
                 ...state,
                 validationToken: state.validationToken = action.payload.token
             }
-        case types.FRONT_ENTRY_VALIDATION_LOADING:
+        case types.FRONT_ENTRY_VALIDATION_REQUEST_LOADING:
             return {
                 ...state,
                 validationLoading: state.validationLoading = true
             }
-        case types.FRONT_ENTRY_VALIDATION_SUCCESS:
+        case types.FRONT_ENTRY_VALIDATION_REQUEST_SUCCESS:
             return {
                 ...state,
                 validationLoading: state.validationLoading = false
             }
-        case types.FRONT_ENTRY_VALIDATION_FAILURE:
+        case types.FRONT_ENTRY_VALIDATION_REQUEST_FAILURE:
             return {
                 ...state,
                 validationError: state.validationError = action.payload,

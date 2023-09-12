@@ -3,9 +3,10 @@ import {Field, Form, FormSpy} from 'react-final-form';
 import {mergeWithDefaultForm} from "../../../../utils/Common";
 import {entryForms, entryValidations} from "../../../../state/ducks/front/entry";
 import TextInput from "../../../atoms/form/TextInput";
-import {validator} from "../../../../utils/Validate";
 import {useNavigate} from "react-router";
 import {Button, Container, Grid, Typography} from "@mui/material";
+import Select from "../../../atoms/form/Select";
+import { validator } from '../../../../utils/Validate';
 
 /**
  *
@@ -14,6 +15,8 @@ import {Button, Container, Grid, Typography} from "@mui/material";
  * @param registerEvent
  * @param entryData
  * @param entryFormUpdate
+ * @param states
+ * @param entryFormErrorFields
  * @returns {JSX.Element}
  * @constructor
  */
@@ -23,8 +26,10 @@ const EntryComponent = (
         registerLoading,
         registerEvent,
         entryData,
-        entryFormUpdate
-    }) => {
+        entryFormUpdate,
+        states,
+        entryFormErrorFields
+    }: any): JSX.Element => {
     const navigation = useNavigate();
     return (
         <Container sx={{p: 2}}>
@@ -33,29 +38,31 @@ const EntryComponent = (
                 onSubmit={async (e) => {
                     e = mergeWithDefaultForm(e, entryForms.entryForm)
                     console.log(e);
+                    
                     if (!registerLoading) {
                         registerEvent(e, navigation);
                     }
                 }}
                 // ここでフォームデータを妥当性確認し、キーを変換します。
                 validate={e => {
-                    const validation = validator(e, entryValidations.entryForm);
+                    const validation = validator(e, entryValidations.entryCustomerSchema);
                     console.log(validation);
                     return validation;
                 }}
                 // 初期値を設定します
-                subscription={{ submitting: true, pristine: true }}
+                subscription={{submitting: true, pristine: true}}
                 // ここでは、フォームのレンダリングと制御を行います
                 // エラー処理やダブルクリック防止などはここで行います
                 render={({handleSubmit, form, submitting, pristine, invalid, values}) => (
                     <form onSubmit={handleSubmit} noValidate>
-                        <FormSpy onChange={(state) => entryFormUpdate(state)} />
+                        <FormSpy onChange={(state) => entryFormUpdate(state)}/>
                         <Grid container>
                             <Grid item xs={6}>
                                 <Field
-                                    name="name01"
+                                    name="name_name01"
                                     fullWidth
                                     required
+                                    errorMessages={entryFormErrorFields?.name01}
                                     size={"small"}
                                     loadingOnDisable={registerLoading}
                                     disabled={registerLoading}
@@ -65,10 +72,11 @@ const EntryComponent = (
                             </Grid>
                             <Grid item xs={6}>
                                 <Field
-                                    name="name02"
+                                    name="name_name02"
                                     fullWidth
                                     required
                                     size={"small"}
+                                    errorMessages={entryFormErrorFields?.name02}
                                     loadingOnDisable={registerLoading}
                                     disabled={registerLoading}
                                     component={TextInput}
@@ -79,10 +87,11 @@ const EntryComponent = (
                         <Grid container>
                             <Grid item xs={6}>
                                 <Field
-                                    name="kana01"
+                                    name="kana_kana01"
                                     fullWidth
                                     required
                                     size={"small"}
+                                    errorMessages={entryFormErrorFields?.kana01}
                                     loadingOnDisable={registerLoading}
                                     disabled={registerLoading}
                                     component={TextInput}
@@ -91,10 +100,11 @@ const EntryComponent = (
                             </Grid>
                             <Grid item xs={6}>
                                 <Field
-                                    name="kana02"
+                                    name="kana_kana02"
                                     fullWidth
                                     required
                                     size={"small"}
+                                    errorMessages={entryFormErrorFields?.kana02}
                                     loadingOnDisable={registerLoading}
                                     disabled={registerLoading}
                                     component={TextInput}
@@ -105,13 +115,16 @@ const EntryComponent = (
                         <Grid container>
                             <Grid item xs={12}>
                                 <Field
-                                    name="pref"
+                                    name="address_pref"
                                     fullWidth
                                     required
                                     size={"small"}
+                                    errorMessages={entryFormErrorFields?.pref}
                                     loadingOnDisable={registerLoading}
                                     disabled={registerLoading}
-                                    component={TextInput}
+                                    component={Select}
+                                    t={t}
+                                    options={states}
                                     label={t('entry.pref')}
                                 />
                             </Grid>
@@ -123,6 +136,7 @@ const EntryComponent = (
                                     fullWidth
                                     required
                                     size={"small"}
+                                    errorMessages={entryFormErrorFields?.postal_code}
                                     loadingOnDisable={registerLoading}
                                     disabled={registerLoading}
                                     component={TextInput}
@@ -133,10 +147,11 @@ const EntryComponent = (
                         <Grid container>
                             <Grid item xs={12}>
                                 <Field
-                                    name="addr01"
+                                    name="address_addr01"
                                     fullWidth
                                     required
                                     size={"small"}
+                                    errorMessages={entryFormErrorFields?.addr01}
                                     loadingOnDisable={registerLoading}
                                     disabled={registerLoading}
                                     component={TextInput}
@@ -147,10 +162,11 @@ const EntryComponent = (
                         <Grid container>
                             <Grid item xs={12}>
                                 <Field
-                                    name="addr02"
+                                    name="address_addr02"
                                     fullWidth
                                     required
                                     size={"small"}
+                                    errorMessages={entryFormErrorFields?.addr02}
                                     loadingOnDisable={registerLoading}
                                     disabled={registerLoading}
                                     component={TextInput}
@@ -165,6 +181,7 @@ const EntryComponent = (
                                     fullWidth
                                     required
                                     size={"small"}
+                                    errorMessages={entryFormErrorFields?.phone_number}
                                     loadingOnDisable={registerLoading}
                                     disabled={registerLoading}
                                     component={TextInput}
@@ -179,6 +196,7 @@ const EntryComponent = (
                                     fullWidth
                                     required
                                     size={"small"}
+                                    errorMessages={entryFormErrorFields?.email}
                                     loadingOnDisable={registerLoading}
                                     disabled={registerLoading}
                                     component={TextInput}
@@ -193,6 +211,7 @@ const EntryComponent = (
                                     fullWidth
                                     required
                                     size={"small"}
+                                    errorMessages={entryFormErrorFields?.plain_password}
                                     loadingOnDisable={registerLoading}
                                     disabled={registerLoading}
                                     component={TextInput}
@@ -200,12 +219,12 @@ const EntryComponent = (
                                 />
                             </Grid>
                         </Grid>
-                        
+
                         <Grid container>
                             <Grid item xs={12}>
-                                <Button 
-                                    variant="contained" 
-                                    style={{marginTop: 10}} 
+                                <Button
+                                    variant="contained"
+                                    style={{marginTop: 10}}
                                     type="submit"
                                     disabled={invalid || pristine || registerLoading}
                                 >

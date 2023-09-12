@@ -1,0 +1,14 @@
+{
+  "comment_text": "// ################# \r\n // ### 注意：自動生成されたファイルのため、このファイルを編集しないでください ### \r\n // ################# \r\n",  
+  "import_text" : "\r\n import Joi from \"joi\"; \r\n",
+  "fields" : {
+    "Int": "{FIELD_NAME} : Joi.number(){REQUIRED},\r\n",
+    "String": "{FIELD_NAME} : Joi.string(){REQUIRED},\r\n",
+    "Boolean": "{FIELD_NAME} : Joi.boolean(){REQUIRED},\r\n",
+    "Date": "{FIELD_NAME} : Joi.date(){REQUIRED},\r\n",
+    "DateTime": "{FIELD_NAME} : Joi.date(){REQUIRED},\r\n",
+    "ID": "{FIELD_NAME} : Joi.number(){REQUIRED},\r\n"
+  },
+  "start_tag": "const {MODEL_NAME}Schema = Joi.object().keys({\r\n",
+  "end_tag": "});\r\n"
+}

@@ -1,15 +1,18 @@
 const entryForm = {
-    name01: "",
-    name02: "",
-    kana01: "",
-    kana02: "",
+    name_name01: "",
+    name_name02: "",
+    kana_kana01: "",
+    kana_kana02: "",
     email: "",
-    pref: "",
+    address_pref: 1,
     postal_code: "",
-    phone_number: "",
-    addr01: "",
-    addr02: "",
-    plain_password: ""
+    address_addr01: "",
+    address_addr02: "",
+    plain_password: "",
+    phone_number : "",
+    "birth": "2023-01-02T00:01:01Z",
+    "sex": null,
+    "job": null
 }
 
 const forms = {
