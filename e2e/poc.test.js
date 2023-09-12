@@ -38,7 +38,8 @@ async function entry(page, params) {
     await page.getByLabel('名前「名」 *').fill('智広');
     await page.getByLabel('フリガナ「セイ」 *').fill('あだち');
     await page.getByLabel('フリガナ「メイ」 *').fill('ちひろ');
-    await page.getByLabel('都道府県 *').fill('1');
+    await page.getByTestId('address_pref').click();
+    await page.getByRole('option', { name: '北海道' }).click();
     await page.getByLabel('郵便番号 *').fill('0001111');
     await page.getByLabel('住所「市区町村名」 *').fill('住所1');
     await page.getByLabel('住所「番地・ビル名」 *').fill('住所2');
