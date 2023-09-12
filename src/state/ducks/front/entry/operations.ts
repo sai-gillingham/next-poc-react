@@ -14,6 +14,7 @@ const sendEntryRequest = actions.sendEntryRequest;
 const entryFormUpdate = actions.entryFormUpdate;
 const sendEntryValidationRequest = actions.sendEntryValidationRequest;
 
+
 const operations = {
     sendEntryRequest,
     entryFormUpdate,

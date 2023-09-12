@@ -9,7 +9,8 @@ import {App} from "../../App";
 
 const mapStateToProps = state => {
     return {
-        oAuthSessionDetails: state.oAuth.oAuthSessionDetails as null | object,
+        oAuthSessionDetails: state.oAuth.oAuthSessionDetails as object | null,
+        initialRequestFailure: state.oAuth.initialRequestFailure as boolean,
     }
 }
 
@@ -18,17 +19,16 @@ const mapStateToProps = state => {
  */
 const mapEventToProps = {
     oAuthReceiveSessionDetailsSave: oAuthOperations.oAuthReceiveSessionDetailsSave,
+    oAuthRefreshToken: oAuthOperations.oAuthRefreshToken
 }
 
-/**
- * urlに基づいてコンテナをロードする
- * @returns {JSX.Element}
- * @constructor
- */
 const _eccubeSessionContainer = ({
                                      t,
                                      oAuthSessionDetails,
+                                     initialRequestFailure,
+    
                                      oAuthReceiveSessionDetailsSave,
+                                     oAuthRefreshToken,
     ...props
                                  }) => {
     useEffect(() => {
@@ -37,6 +37,14 @@ const _eccubeSessionContainer = ({
             }
         }, [oAuthSessionDetails, oAuthReceiveSessionDetailsSave]
     )
+
+    useEffect(() => {
+            if (!empty(oAuthSessionDetails) && initialRequestFailure === true) {
+                oAuthRefreshToken();
+            }
+        }, [oAuthSessionDetails, initialRequestFailure, oAuthRefreshToken]
+    )
+    
     return (<>
         {props.children}
     </>)

@@ -34,7 +34,7 @@ const ProductDetailComponent = (
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
                             <img
-                                src={"http://localhost:8080/html/upload/save_image/" + productDetail?.ProductImage?.[0]?.file_name}
+                                src={process.env.REACT_APP_API_URL + "/html/upload/save_image/" + productDetail?.ProductImage?.[0]?.file_name}
                                 alt={productDetail.name}/>
                         </Grid>
                         <Grid item xs={12} sm={6}>

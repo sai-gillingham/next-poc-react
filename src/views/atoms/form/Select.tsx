@@ -1,6 +1,6 @@
 import React from "react";
 import {FieldRenderProps} from "react-final-form";
-import {Chip, FormControl, InputLabel, Select as MSelect} from "@mui/material";
+import {Chip, FormControl, InputLabel, MenuItem, Select as MSelect} from "@mui/material";
 import FormHelperText from '@mui/material/FormHelperText';
 
 type Props = FieldRenderProps<string, any>;
@@ -28,43 +28,47 @@ const Select: React.FC<Props> = (
             meta,
             loadingOnDisable,
             options,
+            errorMessages,
             showError = true,
             t,
             ...rest
         }: Props) => {
-        // const loadOnDisable = loadingOnDisable && rest.disabled ? classes.loadingOnDisable : undefined
-        const loadOnDisable = undefined;
+        errorMessages = errorMessages ? errorMessages : meta?.error;
         return (
             <FormControl fullWidth>
                 {rest.label &&
                     <div>
-                        <InputLabel className={loadOnDisable}>
+                        <InputLabel>
                             {/* この項目は必須ですか？ チェック */}
                             {rest.label}
                             {rest.required &&
-                                <Chip className={[loadOnDisable].join(" ") } label="必須"></Chip>
+                                <Chip label="必須"></Chip>
                             }
                         </InputLabel>
                         <br/>
                     </div>
                 }
-                    <MSelect
-                        className={loadOnDisable}
-                        name={name}
-                        style={rest.inputStyle}
-                        data-testid={name}
-                        onKeyPress={e => {e.key === "Enter" && e.preventDefault()}}
-                        disabled={rest.disabled}
-                        onChange={onChange}
-                        value={value}
-                    >
-                        <option key={0} value="">選択してください</option>
-                        { options && options.map((option) => (
-                            <option data-testid={option.value} key={option.id} value={option.value}>{t(option.translation_view)}</option>
-                        ))}
-                    </MSelect>
-                {meta.error && meta.touched && showError &&
-                    <FormHelperText>Error</FormHelperText>
+                <MSelect
+                    // className={loadOnDisable}
+                    name={name}
+                    style={rest.inputStyle}
+                    data-testid={name}
+                    onKeyPress={e => {
+                        e.key === "Enter" && e.preventDefault()
+                    }}
+                    disabled={rest.disabled}
+                    error={errorMessages ? true : false}
+                    onChange={onChange}
+                    value={value}
+                >
+                    {/*<MenuItem key={0} value="">選択してください</MenuItem>*/}
+                    {options && options.map((option) => (
+                        <MenuItem data-testid={option.value} key={option.id}
+                                  value={option.value}>{t(option.translation_view)}</MenuItem>
+                    ))}
+                </MSelect>
+                {errorMessages &&
+                    <FormHelperText>{errorMessages}</FormHelperText>
                 }
             </FormControl>
         )
