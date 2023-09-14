@@ -83,8 +83,11 @@ jobs:
       - name: Start EC-CUBE Client
         run: |
           sed -i 's/<<API_CLIENT_KEY>>/121ecaab37f52176ef2b7ce9dfca872b/g' .env.development
+          sed -i 's|$REACT_APP_API_URL|http://localhost:8080|g' .env.development
+          cp .env.development .env
           npm ci
-          npm start &
+          echo a | node tools/EccubeReactBuilder.js
+          npx react-scripts start &
           npx wait-on http://127.0.0.1:3000
 
       - name: Start E2E Tests
