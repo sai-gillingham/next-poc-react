@@ -27,6 +27,9 @@ test('pocのシナリオをテストする', async ({ page }) => {
 
     // ログアウト
     // await logout(page)
+
+    // 404
+    await not_found(page, params)
 });
 
 async function entry(page, params) {
@@ -125,4 +128,10 @@ async function purchase(page, params) {
     const thanks = await page.getByText('注文ありがとうございます。');
     await expect(thanks).toBeVisible();
     await expect(page.url()).toBe(CLIENT_URL + '/shopping/complete');
+}
+
+async function not_found(page, params) {
+    await page.goto(CLIENT_URL + '/product/detail/999')
+    const not_found = await page.getByText('404');
+    await expect(not_found).toBeVisible();
 }
