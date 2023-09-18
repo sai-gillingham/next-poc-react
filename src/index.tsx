@@ -1,5 +1,4 @@
 import React from 'react';
-import {render} from 'react-dom';
 import {Provider as ReduxProvider} from "react-redux";
 import {App} from './views/App';
 import configureStore from "./state/store";
@@ -13,6 +12,7 @@ import './App.scss';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import EccubeSessionContainer from "./views/containers/share/EccubeSessionManager";
+import EccubeErrorCatcherContainer from "./views/containers/share/EccubeErrorCatcherContainer";
 
 /***
  * /////////////////////////////////////
@@ -29,9 +29,9 @@ import EccubeSessionContainer from "./views/containers/share/EccubeSessionManage
  */
 
 declare global {
-  interface Window {
-    REDUX_INITIAL_DATA?: typeof store;
-  }
+    interface Window {
+        REDUX_INITIAL_DATA?: typeof store;
+    }
 }
 
 // 翻訳機能も追加。※ デフォルトは日本語
@@ -59,9 +59,11 @@ root.render(
     <ReduxProvider store={store}>
         <I18nextProvider i18n={i18next}>
             <BrowserRouter>
-                <EccubeSessionContainer>
-                    <App/>
-                </EccubeSessionContainer>
+                <EccubeErrorCatcherContainer>
+                    <EccubeSessionContainer>
+                        <App/>
+                    </EccubeSessionContainer>
+                </EccubeErrorCatcherContainer>
             </BrowserRouter>
         </I18nextProvider>
     </ReduxProvider>

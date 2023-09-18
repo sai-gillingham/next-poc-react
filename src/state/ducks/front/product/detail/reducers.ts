@@ -22,19 +22,19 @@ export const productDetailState = {
 export default function productDetailReducer(state = productDetailState, action) {
     
     switch (action.type) {
-        case types.FRONT_PRODUCT_DETAIL_LOADING:
+        case types.FRONT_PRODUCT_DETAIL_REQUEST_LOADING:
             return {
                 ...state,
                 productDetailLoading: state.productDetailLoading = true,
                 productDetailError: state.productDetailError = null
             }
-        case types.FRONT_PRODUCT_DETAIL_SUCCESS:
+        case types.FRONT_PRODUCT_DETAIL_REQUEST_SUCCESS:
             return {
                 ...state,
                 productDetailLoading: state.productDetailLoading = false,
                 productDetail: state.productDetail = action.payload.productDetailData,
             }
-        case types.FRONT_PRODUCT_DETAIL_FAILURE:
+        case types.FRONT_PRODUCT_DETAIL_REQUEST_FAILURE:
             return {
                 ...state,
                 productDetailLoading: state.productDetailLoading = false,

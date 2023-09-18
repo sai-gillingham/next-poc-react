@@ -6,8 +6,6 @@ const GET_PRODUCT = gql`
             id,
             name,
             description_detail,
-            create_date,
-            update_date,
             ProductCategories {
                 Category {
                     name
