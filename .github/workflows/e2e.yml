@@ -12,6 +12,20 @@ on:
     paths:
       - '**'
       - '!*.md'
+  workflow_dispatch:
+    inputs:
+      eccube-api-repository:
+        description: 'EC-CUBE API REPOSITORY'
+        default: 'https://github.com/EC-CUBE/eccube-api4.git'
+        required: false
+      eccube-api-branch:
+        description: 'EC-CUBE API BRANCH'
+        default: 'next-poc'
+        required: false
+env:
+  API_REPOSITORY: ${{ inputs.eccube-api-repository || 'https://github.com/EC-CUBE/eccube-api4.git' }}
+  API_BRANCH: ${{ inputs.eccube-api-branch || 'next-poc' }}
+
 jobs:
   e2e:
     name: E2E
@@ -68,7 +82,7 @@ jobs:
       - name: Setup EC-CUBE API Plugin
         working-directory: ec-cube
         run: |
-          git clone -b next-poc https://github.com/EC-CUBE/eccube-api4.git
+          git clone -b ${API_BRANCH} ${API_REPOSITORY}
           sed -i 's/"extra": {/"extra": { "id": 123,/g' eccube-api4/composer.json
           bin/console eccube:composer:require ec-cube/api42 --from=./eccube-api4
           bin/console eccube:plugin:enable --code Api42
