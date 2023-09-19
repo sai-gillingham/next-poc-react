@@ -11,5 +11,5 @@ export function refreshToken(refresh_token: string) {
 }
 
 export function logoutAPI(access_token: string) {
-    // @TODO: Implement logout API
+    return new oAuthApiUtils().logout(access_token);
 }
