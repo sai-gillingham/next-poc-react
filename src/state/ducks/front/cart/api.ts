@@ -7,8 +7,10 @@ export function modifyCartProduct(access_token: string, product_class_id: number
     return new GraphQLUtils(access_token).sendMutation(
         cartMutations.MODIFY_CART_MUTATION,
         {
-            product_class_id: product_class_id,
-            quantity: quantity
+            input: {
+                product_class_id: product_class_id,
+                quantity: quantity
+            },
         }
     )
 }
