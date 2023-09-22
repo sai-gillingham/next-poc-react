@@ -9,7 +9,6 @@ export function callLogin(params) {
             "client_id": process.env.REACT_APP_API_CLIENT_KEY,
             "username":params.username,
             "password":params.password,
-            "scope":"read write"
         }
     )
 }
