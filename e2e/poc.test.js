@@ -111,6 +111,7 @@ async function logout(page) {
     // oAuthCredentialsが削除されていることを確認
     const JWTSessionKey = await page.evaluate(() => JSON.stringify(window.localStorage.getItem('oAuthCredentials')));
     // https://stackoverflow.com/a/41813719 によると、null結果があっても、toBeFlasy()は成功しない
+    console.log(JWTSessionKey);
     expect(JWTSessionKey === null).toBeTruthy();
 }
 
