@@ -110,7 +110,7 @@ async function logout(page) {
     
     // oAuthCredentialsが削除されていることを確認
     const JWTSessionKey = await page.evaluate(() => JSON.stringify(window.localStorage.getItem('oAuthCredentials')));
-    await expect(JWTSessionKey).toBeFalsy();
+    expect(JWTSessionKey).toBeFalsy();
 }
 
 async function purchase(page, params) {
