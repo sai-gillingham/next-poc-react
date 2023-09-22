@@ -96,10 +96,15 @@ async function login(page, params) {
  * @param page
  * @returns {Promise<void>}
  */
-async function logout(page) {
+async function logout(page) { 
+    // ログイン画面へ遷移する
+    await page.getByRole('link', {name: 'ログイン'}).getByRole('button').click();
+    await expect(page.url()).toBe(CLIENT_URL + '/mypage/login');
+    
     // ログアウトボタンをクリック
-    await page.getByRole('link', {name: 'ログアウト'}).click();
+    await page.getByRole('button', {name: 'ログアウト'}).click();
     const token = await page.locator('text=現在のセッショントークン');
+    
     // 未ログインになっていることを確認
     await expect(token).toContainText('未ログイン');
     
