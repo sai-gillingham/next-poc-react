@@ -2,12 +2,10 @@ import {gql} from "@apollo/client";
 
 const MODIFY_CART_MUTATION = gql`
     mutation cartModify(
-        $product_class_id: ID!
-        $quantity: Int!
+        $input: add_cartInput!
     ) {
         cartModify(
-            product_class_id: $product_class_id,
-            quantity: $quantity
+            input: $input
         ) {
             id
         }

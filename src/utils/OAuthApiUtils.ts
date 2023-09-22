@@ -8,7 +8,7 @@ export default class OAuthApiUtils {
      * @param {string|null} baseurl カスタムURL
      */
     constructor(timeout = null, baseurl = null) {
-        axios.defaults.baseURL = baseurl  || 'http://localhost:8080';
+        axios.defaults.baseURL = baseurl  || process.env.REACT_APP_API_URL;
         axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
         axios.defaults.timeout = timeout || process.env.REACT_APP_ECCUBE_TIMEOUT;
     }
