@@ -26,7 +26,7 @@ test('pocのシナリオをテストする', async ({ page }) => {
     await purchase(page, params)
 
     // ログアウト
-    // await logout(page)
+    await logout(page)
 
     // 404
     await not_found(page, params)
@@ -91,9 +91,21 @@ async function login(page, params) {
     await expect(token).not.toContainText('未ログイン');
 }
 
-// todo
+/**
+ * ログアウト機能のテスト
+ * @param page
+ * @returns {Promise<void>}
+ */
 async function logout(page) {
-
+    // ログアウトボタンをクリック
+    await page.getByRole('link', {name: 'ログアウト'}).click();
+    const token = await page.locator('text=現在のセッショントークン');
+    // 未ログインになっていることを確認
+    await expect(token).toContainText('未ログイン');
+    
+    // oAuthCredentialsが削除されていることを確認
+    const JWTSessionKey = await page.evaluate(() => JSON.stringify(window.localStorage.getItem('oAuthCredentials')));
+    await expect(JWTSessionKey).toBeEmpty();
 }
 
 async function purchase(page, params) {
