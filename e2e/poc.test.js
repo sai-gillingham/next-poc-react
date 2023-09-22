@@ -112,7 +112,8 @@ async function logout(page) {
     const JWTSessionKey = await page.evaluate(() => JSON.stringify(window.localStorage.getItem('oAuthCredentials')));
     // https://stackoverflow.com/a/41813719 によると、null結果があっても、toBeFlasy()は成功しない
     console.log(JWTSessionKey);
-    expect(JWTSessionKey === null).toBeTruthy();
+    console.log(typeof JWTSessionKey);
+    expect(JWTSessionKey).toBe("null");
 }
 
 async function purchase(page, params) {
