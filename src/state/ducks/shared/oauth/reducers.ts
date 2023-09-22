@@ -22,7 +22,11 @@ export const oAuthState = {
     
     // リフレッシュトークン
     refreshTokenLoading: false,
-    refreshTokenError: {}
+    refreshTokenError: {},
+    
+    // ログアウト
+    logoutIrregularLoading: false,
+    logoutIrregularError: {}
 }
 
 export default function loginReducer(state = oAuthState, action) {
@@ -30,6 +34,7 @@ export default function loginReducer(state = oAuthState, action) {
     const request_last_state = /REQUEST$/.test(action.type);
 
     switch (action.type) {
+        // ログイン
         case types.OAUTH_TOKEN_SAVE:
             return {
                 ...state,
@@ -57,6 +62,30 @@ export default function loginReducer(state = oAuthState, action) {
                 refreshTokenError: state.refreshTokenError = action.payload.errorData
             }
         }
+        // ログアウト
+        case types.LOGOUT_REQUEST_IRREGULAR_LOADING: {
+            return {
+                ...state,
+                logoutIrregularLoading: state.logoutIrregularLoading = true
+            }
+        }
+        case types.LOGOUT_REQUEST_IRREGULAR_SUCCESS: {
+            return {
+                ...state,
+                logoutIrregularLoading: state.logoutIrregularLoading = false,
+                oAuthSessionDetails: state.oAuthSessionDetails = {}
+            }
+        }
+        
+        case types.LOGOUT_REQUEST_IRREGULAR_FAILURE: {
+            return {
+                ...state,
+                logoutIrregularLoading: state.logoutIrregularLoading = false,
+                logoutIrregularError: state.logoutIrregularError = action.payload.errorData
+            }
+        }
+        
+        // エラーキャッチ
         case failure_event_match && action.type: {
             return {
                 ...state,
