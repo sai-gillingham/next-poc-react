@@ -9,7 +9,7 @@
 import {call, put} from "redux-saga/effects";
 import { select } from "redux-saga/effects";
 import actions from "./actions";
-import {refreshToken} from "./api";
+import {logoutAPI, refreshToken} from "./api";
 import {oAuthSelectors} from "./index";
 
 
@@ -26,5 +26,18 @@ export function* oAuthRefreshAccessToken(data) {
     } catch (e) {
         console.log(e);
         yield put(actions.oAuthRefreshTokenFailure(e));
+    }
+}
+
+export function* oAuthLogoutRequest(data) {
+    yield put(actions.oAuthLogoutIrregularLoading());
+    const access_token = yield select(oAuthSelectors.getOAuthCredentials);
+    try {
+        yield call(logoutAPI, access_token?.access_token);
+        localStorage.removeItem('oAuthCredentials');
+        yield put(actions.oAuthLogoutIrregularSuccess());
+    } catch (e) {
+        console.log(e);
+        yield put(actions.oAuthLogoutIrregularFailure(e));
     }
 }

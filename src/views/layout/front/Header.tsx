@@ -25,6 +25,7 @@ const TopBar = ({
                     i18n,
                     oAuthSessionDetails,
                     cartSliderShow,
+                    oAuthLogoutIrregular,
                     ...rest
                 }) => {
     
@@ -80,7 +81,7 @@ const TopBar = ({
                         </div>
                     )}
                     <Box sx={{ flexGrow: 0 }}>
-                        <Button variant="contained" color={"secondary"}>
+                        <Button variant="contained" color={"secondary"} onClick={() => oAuthSessionDetails?.access_token ?  oAuthLogoutIrregular() : console.log("Login")}>
                             {oAuthSessionDetails?.access_token ? "ログアウト" : "ログイン"}
                         </Button>
                     </Box>

@@ -54,17 +54,53 @@ export function oAuthRefreshTokenFailure(errorData: any) {
     }
 }
 
+//////////////////////////////
+// ログアウト機能
+//////////////////////////////
+export function oAuthLogoutIrregular() {
+    return {
+        type: types.LOGOUT_REQUEST_IRREGULAR
+    }
+}
 
+export function oAuthLogoutIrregularLoading() {
+    return {
+        type: types.LOGOUT_REQUEST_IRREGULAR_LOADING
+    }
+}
+
+export function oAuthLogoutIrregularSuccess() {
+    return {
+        type: types.LOGOUT_REQUEST_IRREGULAR_SUCCESS
+    }
+}
+
+export function oAuthLogoutIrregularFailure(errorData: any) {
+    return {
+        type: types.LOGOUT_REQUEST_IRREGULAR_FAILURE,
+        payload: {
+            errorData: errorData
+        }
+    }
+}
 
 
 const actions = {
+    // OAUTHトークン受信と更新
     oAuthReceiveToken,
     oAuthReceiveSessionDetailsSave,
 
+    // リフレッシュトークン
     oAuthRefreshToken,
     oAuthRefreshTokenLoading,
     oAuthRefreshTokenSuccess,
-    oAuthRefreshTokenFailure
+    oAuthRefreshTokenFailure,
+    
+    // ログアウト機能
+    oAuthLogoutIrregular,
+    oAuthLogoutIrregularLoading,
+    oAuthLogoutIrregularSuccess,
+    oAuthLogoutIrregularFailure,
 };
 
 export default actions;

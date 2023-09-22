@@ -8,7 +8,8 @@ import CartDrawerContainer from "../../containers/front/cart/CartDrawerContainer
 
 const FrontLayout = ({
                          oAuthSessionDetails,
-                         cartSliderShow
+                         cartSliderShow,
+                         oAuthLogoutIrregular
                      }) => {
     return (
         <div>
@@ -16,6 +17,7 @@ const FrontLayout = ({
                 <Header
                     oAuthSessionDetails={oAuthSessionDetails}
                     cartSliderShow={cartSliderShow}
+                    oAuthLogoutIrregular={oAuthLogoutIrregular}
                 />
                 <div>
                     <div>
