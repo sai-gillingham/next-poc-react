@@ -8,7 +8,6 @@ export default class OAuthApiUtils {
      * @param {string|null} baseurl カスタムURL
      */
     constructor(timeout = null, baseurl = null) {
-        // @TODO: CHANGE TO CORRECT URL
         axios.defaults.baseURL = baseurl  || process.env.REACT_APP_API_URL;
         axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
         axios.defaults.timeout = timeout || process.env.REACT_APP_ECCUBE_TIMEOUT;
@@ -18,13 +17,15 @@ export default class OAuthApiUtils {
      * oAuth API POST リクエスト
      * @param {string} uri API アクセスポイント
      * @param {Object} body Post データ
+     * @param headers headers 
      * @returns {Promise<axios.AxiosResponse<any>> | *} (API|Network) リスポンス
      */
-    post(uri, body) {
+    post(uri, body, headers = {}) {
         return axios({
             method: 'POST',
             url: uri,
-            data: body
+            data: body,
+            headers: headers
         });
     }
     
@@ -33,6 +34,39 @@ export default class OAuthApiUtils {
             'refresh_token': refreshToken
         })
     }
+
+    /**
+     * サーバーですべてのACCESS_TOKENを削除
+     * 
+     * @param accessToken
+     */
+    logout(accessToken: string) {
+        return this.post(
+            "/api/logout", {}, {
+                "Authorization": "Bearer " + accessToken,
+            }
+        )
+    }
+
+    /**
+     * ログイン
+     * 
+     * @param accountEmail
+     * @param password
+     */
+    login(accountEmail : string, password : string) {
+        return this.post(
+            "token",
+            {
+                "grant_type":"password",
+                "client_id": process.env.REACT_APP_API_CLIENT_KEY,
+                "username": accountEmail,
+                "password": password
+            }
+        )
+        
+    }
+    
 }
 
 export {axios};
