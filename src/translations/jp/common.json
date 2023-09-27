@@ -96,5 +96,38 @@
     "miyazaki": "宮崎県",
     "kagoshima": "鹿児島県",
     "okinawa": "沖縄県"
+  },
+  "joi_validation": {
+    "any.empty": " ",
+    "any.required": "必須項目です",
+    "string.base": "文字列で入力してください",
+    "string.empty": " ",
+    "string.min": "文字以上で入力してください",
+    "string.max": "文字以下で入力してください",
+    "string.email": "メールアドレスの形式で入力してください",
+    "string.pattern.base": " ",
+    "number.base": "数値で入力してください",
+    "number.empty": " ",
+    "number.min": "以上の数値で入力してください",
+    "number.max": "以下の数値で入力してください",
+    "number.integer": "整数で入力してください",
+    "number.positive": "正の数値で入力してください",
+    "number.negative": "負の数値で入力してください",
+    "number.precision": " ",
+    "date.base": " ",
+    "date.format": " ",
+    "date.greater": " ",
+    "date.less": " ",
+    "boolean.base": " ",
+    "object.base": " ",
+    "object.unknown": " ",
+    "object.and": " ",
+    "object.nand": " ",
+    "object.or": " ",
+    "object.xor": " ",
+    "object.missing": " ",
+    "object.with": " ",
+    "object.without": " "
   }
 }
+

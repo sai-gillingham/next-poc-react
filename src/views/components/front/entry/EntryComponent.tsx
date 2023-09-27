@@ -6,7 +6,7 @@ import TextInput from "../../../atoms/form/TextInput";
 import {useNavigate} from "react-router";
 import {Button, Container, Grid, Typography} from "@mui/material";
 import Select from "../../../atoms/form/Select";
-import { validator } from '../../../../utils/Validate';
+import {translateResult, validator} from '../../../../utils/Validate';
 
 /**
  *
@@ -45,7 +45,7 @@ const EntryComponent = (
                 }}
                 // ここでフォームデータを妥当性確認し、キーを変換します。
                 validate={e => {
-                    const validation = validator(e, entryValidations.entryCustomerSchema);
+                    const validation = translateResult(t, validator(e, entryValidations.entryCustomerSchema));
                     console.log(validation);
                     return validation;
                 }}
