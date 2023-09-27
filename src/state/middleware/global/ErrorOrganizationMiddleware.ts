@@ -6,7 +6,6 @@ export default function ErrorOrganizationMiddleware(storeAPI) {
     return function wrapDispatch(next) {
         return function handleAction(action) {
             if (action.type.includes('REQUEST_FAILURE')) {
-                console.log(action);
                 // ネットワークエラーの場合 //
                 if (action.payload.errorData.networkError && action.payload.errorData.message === "Failed to fetch") {
                     // ネットワークエラー
